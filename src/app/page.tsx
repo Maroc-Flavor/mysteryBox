@@ -65,7 +65,7 @@ export default function Home() {
         <div className="hidden lg:block fixed right-6 bottom-6 z-50">
           <div className="bg-white/10 backdrop-blur-xl p-4 rounded-full border border-white/20 shadow-xl">
             <Image
-              src="/mysteryBox/founder-floating.jpg"
+                src="/mysteryBox/founder-floating.jpg"
               alt="Gründer"
               width={60}
               height={60}
@@ -81,7 +81,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/mysteryBox/founder-portrait.jpg"
+                    src="/mysteryBox/founder-portrait.jpg"
                   alt="Gründer Portrait"
                   fill
                   style={{ objectFit: 'cover' }}

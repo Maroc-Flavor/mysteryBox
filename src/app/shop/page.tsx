@@ -7,7 +7,7 @@ const products = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/mysterybos-tech.jpg',
+		image: '/mysteryBox/mysterybox-tech.jpg',
 		price: 'Surprise!',
 		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
