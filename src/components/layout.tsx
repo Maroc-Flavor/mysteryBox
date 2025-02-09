@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Cart from './Cart';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -32,6 +33,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			</nav>
 
 			{children}
+
+			<Cart />
 
 			{/* Footer */}
 			<footer className="bg-gray-900 text-white py-12">
