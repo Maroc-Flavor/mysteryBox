@@ -42,7 +42,7 @@ export default function Home() {
               <div className="relative">
                 <div className="relative h-[600px] rounded-2xl overflow-hidden">
                     <Image
-                    src="/founder-image.jpg"
+                    src="/mysteryBox/founder-image.jpg"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -65,7 +65,7 @@ export default function Home() {
         <div className="hidden lg:block fixed right-6 bottom-6 z-50">
           <div className="bg-white/10 backdrop-blur-xl p-4 rounded-full border border-white/20 shadow-xl">
             <Image
-                src="/founder-floating.jpg"
+                src="/mysteryBox/founder-floating.jpg"
               alt="Gründer"
               width={60}
               height={60}
@@ -81,7 +81,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                    src="/founder-portrait.jpg"
+                    src="/mysteryBox/founder-portrait.jpg"
                   alt="Gründer Portrait"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -123,7 +123,7 @@ export default function Home() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                 <div className="relative h-72">
                     <Image
-                    src="/mysterybox-premium1.jpg"
+                    src="/mysteryBox/mysterybox-premium1.jpg"
                     alt="10 KG Überraschungsbox"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -146,7 +146,7 @@ export default function Home() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                 <div className="relative h-72">
                     <Image
-                    src="/starterbox.jpg"
+                    src="/mysteryBox/starterbox.jpg"
                     alt="3 KG Überraschungskarton"
                     fill
                     style={{ objectFit: 'cover' }}
