@@ -8,17 +8,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				<div className="container mx-auto px-4">
 					<ul className="flex justify-center space-x-12 py-6">
 						<li>
-							<Link href="/" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
+							<Link href="/mysteryBox/" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
 								Home
 							</Link>
 						</li>
 						<li>
-							<Link href="/shop" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
+							<Link href="/mysteryBox/shop" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
 								Shop
 							</Link>
 						</li>
 						<li>
-							<Link href="/kontakt" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
+							<Link href="/mysteryBox/kontakt" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
 								Kontakt
 							</Link>
 						</li>
@@ -35,9 +35,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 						<div>
 							<h3 className="text-xl font-bold mb-4">Rechtliches</h3>
 							<ul className="space-y-2">
-								<li><Link href="/impressum" className="hover:text-indigo-400">Impressum</Link></li>
-								<li><Link href="/agb" className="hover:text-indigo-400">AGB</Link></li>
-								<li><Link href="/datenschutz" className="hover:text-indigo-400">Datenschutz</Link></li>
+								<li><Link href="/mysteryBox/impressum" className="hover:text-indigo-400">Impressum</Link></li>
+								<li><Link href="/mysteryBox/agb" className="hover:text-indigo-400">AGB</Link></li>
+								<li><Link href="/mysteryBox/datenschutz" className="hover:text-indigo-400">Datenschutz</Link></li>
 							</ul>
 						</div>
 						<div>

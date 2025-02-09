@@ -29,7 +29,7 @@ export default function Home() {
                   Jedes Paket erzählt eine einzigartige Geschichte.
                 </p>
                 <div className="flex gap-4">
-                  <Link href="/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    <Link href="/mysteryBox/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                     Jetzt entdecken
                   </Link>
                   <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">

@@ -7,7 +7,7 @@ const products = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/mysterybox-tech.jpg',
+		image: 'mysterybox-tech.jpg',
 		price: 'Surprise!',
 		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
@@ -16,7 +16,7 @@ const products = [
 		id: 2,
 		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		image: '/mysteryBox/mysterybox-fashion.jpg',
+		image: 'mysterybox-fashion.jpg',
 		price: 'Surprise!',
 		description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker',
 		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
@@ -25,7 +25,7 @@ const products = [
 		id: 3,
 		category: 'Food',
 		name: 'Mystery Food Box',
-		image: '/mysteryBox/placeholder-box1.jpg',
+		image: 'placeholder-box1.jpg',
 		price: 'Surprise!',
 		description: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -34,16 +34,16 @@ const products = [
 		id: 4,
 		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		image: '/mysteryBox/mysterybox-deluxe.jpeg',
+		image: 'mysterybox-deluxe.jpeg',
 		price: 'Surprise!',
 		description: 'Ein Hauch von Luxus und Überraschung..',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
 	{
 		id: 5,
-		category: 'Mega ',
+		category: 'Mega',
 		name: 'Mystery Mega Box',
-		image: '/mysteryBox/mysterybox-mega.jpg',
+		image: 'mysterybox-mega.jpg',
 		price: 'Surprise!',
 		description: 'Große Überraschungen für große Freude.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -52,7 +52,7 @@ const products = [
 		id: 6,
 		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		image: '/mysteryBox/mysterybox-ultimate.jpg',
+		image: 'mysterybox-ultimate.jpg',
 		price: 'Surprise!',
 		description: 'Die ultimative Überraschungserfahrung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -82,10 +82,11 @@ export default function ShopPage() {
 									<div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
 										<div className="relative h-64 overflow-hidden">
 											<Image
-												src={product.image}
+												src={`/mysteryBox/${product.image}`}
 												alt={product.name}
 												fill
 												className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+												priority
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 												<div className="absolute bottom-4 left-4 right-4">

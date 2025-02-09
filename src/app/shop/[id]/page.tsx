@@ -15,16 +15,16 @@ export function generateStaticParams() {
 }
 
 const products = [
-
   {
     id: 1,
     category: 'Tech',
     name: 'Mystery Tech Box',
-    image: '/mysteryBox/mysterybos-tech.jpg',
+    image: 'mysterybox-tech.jpg',
     price: 'Surprise!',
     description: 'What tech treasures await? Only one kind of person will find out: YOU!',
     detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
   },
+
   {
     id: 2,
     category: 'Fashion',
@@ -93,11 +93,11 @@ export default function Page({ params }: PageProps) {
             <div className="md:flex">
               <div className="md:flex-shrink-0 relative h-[500px] md:w-[500px] group">
                 <Image
-                  src={product.image}
+                  src={`/mysteryBox/${product.image}`}
                   alt={product.name}
                   fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    priority
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
