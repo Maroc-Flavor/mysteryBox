@@ -183,7 +183,7 @@ export default function Home() {
                   </p>
                   <div className="flex justify-center gap-6">
                     <a
-                    href="https://www.tiktok.com/@mysterybox"
+                    href="https://www.tiktok.com/simo4287"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-900 transition-colors"
@@ -194,7 +194,7 @@ export default function Home() {
                     TikTok Live
                     </a>
                     <a
-                    href="https://www.instagram.com/mysterybox"
+                    href="https://www.instagram.com/simo4287"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-opacity"
@@ -205,7 +205,7 @@ export default function Home() {
                     Instagram Live
                     </a>
                     <a
-                    href="https://www.facebook.com/mysterybox"
+                    href="#"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
