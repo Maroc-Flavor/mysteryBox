@@ -32,9 +32,9 @@ export default function Home() {
                     <Link href="/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                     Jetzt entdecken
                   </Link>
-                  <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
+                  <Link href="/uber-uns" className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
                     Mehr erfahren
-                  </button>
+                  </Link>
                 </div>
               </div>
 
