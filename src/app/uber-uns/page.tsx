@@ -61,15 +61,15 @@ export default function AboutUs() {
 									Von der Idee zur Innovation
 								</h2>
 								<p className="text-xl text-gray-600 leading-relaxed">
-									"Als leidenschaftlicher Online-Shopper war ich oft von der Monotonie des 
+									&quot;Als leidenschaftlicher Online-Shopper war ich oft von der Monotonie des 
 									digitalen Einkaufens gelangweilt. Ich träumte von einem Shoppingerlebnis, 
 									das Spannung und Überraschung vereint. So entstand MysteryBox - ein Konzept, 
-									das das klassische Online-Shopping revolutioniert."
+									das das klassische Online-Shopping revolutioniert.&quot;
 								</p>
 								<p className="text-xl text-gray-600 leading-relaxed">
-									"Heute sind wir stolz darauf, tausenden Menschen täglich ein Lächeln ins 
+									&quot;Heute sind wir stolz darauf, tausenden Menschen täglich ein Lächeln ins 
 									Gesicht zu zaubern. Jede Box ist ein neues Abenteuer, jede Überraschung 
-									sorgfältig ausgewählt."
+									sorgfältig ausgewählt.&quot;
 								</p>
 								<div className="flex items-center space-x-4">
 									<div className="h-16 w-16 relative">
