@@ -29,7 +29,7 @@ const products = [
     id: 2,
     category: 'Fashion',
     name: 'Mystery Fashion Box',
-    image: '/mysteryBox/mysterybox-fashion.jpg',
+    image: '/mysterybox-fashion.jpg',
     price: 'Surprise!',
     description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.',
     detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
@@ -38,7 +38,7 @@ const products = [
     id: 3,
     category: 'Food',
     name: 'Mystery Food Box',
-    image: '/mysteryBox/placeholder-box1.jpg',
+    image: '/placeholder-box1.jpg',
     price: 'Surprise!',
     description: 'A culinary adventure awaits! Taste the unexpected.',
     detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -47,7 +47,7 @@ const products = [
     id: 4,
     category: 'Deluxe',
     name: 'Mystery Deluxe Box',
-    image: '/mysteryBox/mysterybox-deluxe.jpeg',
+    image: '/mysterybox-deluxe.jpeg',
     price: 'Surprise!',
     description: 'Ein Hauch von Luxus und Überraschung.',
     detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -56,7 +56,7 @@ const products = [
     id: 5,
     category: 'Mega',
     name: 'Mystery Mega Box',
-    image: '/mysteryBox/mysterybox-mega.jpg',
+    image: '/mysterybox-mega.jpg',
     price: 'Surprise!',
     description: 'Große Überraschungen für große Freude.',
     detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -65,7 +65,7 @@ const products = [
     id: 6,
     category: 'Ultimate',
     name: 'Mystery Ultimate Box',
-    image: '/mysteryBox/mysterybox-ultimate.jpg',
+    image: '/mysterybox-ultimate.jpg',
     price: 'Surprise!',
     description: 'Die ultimative Überraschungserfahrung.',
     detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -93,7 +93,7 @@ export default function Page({ params }: PageProps) {
             <div className="md:flex">
               <div className="md:flex-shrink-0 relative h-[500px] md:w-[500px] group">
                 <Image
-                  src={`/mysteryBox/${product.image}`}
+                  src={`/${product.image}`}
                   alt={product.name}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -147,7 +147,7 @@ export default function Page({ params }: PageProps) {
                 </div>
 
                 <Link
-                  href="/mysteryBox/shop"
+                  href="/shop"
                   className="mt-auto w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-8 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 font-medium text-lg"
                 >
                   <span>Zurück zum Shop</span>

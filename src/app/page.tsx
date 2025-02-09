@@ -11,7 +11,7 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center">
           {/* Background with gradient and pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/file.svg')]"></div>
+            <div className="absolute inset-0 opacity-10 bg-[url('/file.svg')]"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -29,7 +29,7 @@ export default function Home() {
                   Jedes Paket erzählt eine einzigartige Geschichte.
                 </p>
                 <div className="flex gap-4">
-                    <Link href="/mysteryBox/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    <Link href="/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                     Jetzt entdecken
                   </Link>
                   <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
@@ -42,7 +42,7 @@ export default function Home() {
               <div className="relative">
                 <div className="relative h-[600px] rounded-2xl overflow-hidden">
                     <Image
-                    src="/mysteryBox/founder-image.jpg"
+                    src="/founder-image.jpg"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -65,7 +65,7 @@ export default function Home() {
         <div className="hidden lg:block fixed right-6 bottom-6 z-50">
           <div className="bg-white/10 backdrop-blur-xl p-4 rounded-full border border-white/20 shadow-xl">
             <Image
-                src="/mysteryBox/founder-floating.jpg"
+                src="/founder-floating.jpg"
               alt="Gründer"
               width={60}
               height={60}
@@ -81,7 +81,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                    src="/mysteryBox/founder-portrait.jpg"
+                    src="/founder-portrait.jpg"
                   alt="Gründer Portrait"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -123,7 +123,7 @@ export default function Home() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                 <div className="relative h-72">
                     <Image
-                    src="/mysteryBox/mysterybox-premium1.jpg"
+                    src="/mysterybox-premium1.jpg"
                     alt="10 KG Überraschungsbox"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -146,7 +146,7 @@ export default function Home() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                 <div className="relative h-72">
                     <Image
-                    src="/mysteryBox/starterbox.jpg"
+                    src="/starterbox.jpg"
                     alt="3 KG Überraschungskarton"
                     fill
                     style={{ objectFit: 'cover' }}
