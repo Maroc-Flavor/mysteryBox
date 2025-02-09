@@ -1,44 +1,34 @@
-import Layout from '@/components/layout';
+import StaticLayout from '@/components/StaticLayout';
 
 export default function Datenschutz() {
 	return (
-		<Layout>
-			<main className="flex-grow">
-				<div className="max-w-4xl mx-auto px-4 py-16">
-					<h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-						Datenschutzerklärung
-					</h1>
-					<div className="prose max-w-none space-y-6">
-						{[
-							{
-								title: "Datenschutz auf einen Blick",
-								content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-							},
-							{
-								title: "Allgemeine Hinweise",
-								content: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-							},
-							{
-								title: "Datenerfassung auf unserer Website",
-								content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-							},
-							{
-								title: "Analyse-Tools und Werbe-Tools",
-								content: "Duis aute irure dolor in reprehenderit in voluptate velit esse."
-							},
-							{
-								title: "Newsletter",
-								content: "Excepteur sint occaecat cupidatat non proident."
-							}
-						].map((section, index) => (
-							<div key={index} className="bg-white p-8 rounded-xl shadow-sm">
-								<h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
-								<p className="text-gray-600">{section.content}</p>
-							</div>
-						))}
+		<StaticLayout>
+			<main className="flex-grow py-12 px-4">
+				<div className="max-w-4xl mx-auto">
+					<h1 className="text-4xl font-bold mb-8">Datenschutzerklärung</h1>
+					<div className="prose prose-lg">
+						<h2>1. Datenschutz auf einen Blick</h2>
+						<p>
+							Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen.
+						</p>
+						
+						<h2>2. Erhebung und Verarbeitung von Daten</h2>
+						<p>
+							Wenn Sie auf unserer Webseite Mystery Boxes bestellen, erheben wir nur die Daten, die für die Abwicklung Ihrer Bestellung notwendig sind.
+						</p>
+
+						<h2>3. Cookies</h2>
+						<p>
+							Unsere Website verwendet Cookies, um Ihnen ein optimales Einkaufserlebnis zu bieten. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden.
+						</p>
+
+						<h2>4. Newsletter</h2>
+						<p>
+							Mit Ihrer Einwilligung nutzen wir Ihre E-Mail-Adresse zum Versand unseres Newsletters. Die Abmeldung ist jederzeit möglich.
+						</p>
 					</div>
 				</div>
 			</main>
-		</Layout>
+		</StaticLayout>
 	);
 }
