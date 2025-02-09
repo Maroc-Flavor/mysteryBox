@@ -19,6 +19,7 @@ export default function Footer() {
 							<li><a href="#" className="hover:text-indigo-400">Facebook</a></li>
 							<li><a href="#" className="hover:text-indigo-400">Instagram</a></li>
 							<li><a href="#" className="hover:text-indigo-400">Twitter</a></li>
+							<li><a href="https://www.tiktok.com/@simo4287/" className="hover:text-indigo-400">TikTok</a></li>
 						</ul>
 					</div>
 				</div>

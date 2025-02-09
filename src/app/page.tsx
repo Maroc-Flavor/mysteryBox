@@ -183,7 +183,7 @@ export default function Home() {
                   </p>
                   <div className="flex justify-center gap-6">
                     <a
-                    href="https://www.tiktok.com/@simo4287"
+                    href="https://www.tiktok.com/@simo4287/live?enter_from_merge=others_homepage&enter_method=video_live_cell"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-900 transition-colors"
