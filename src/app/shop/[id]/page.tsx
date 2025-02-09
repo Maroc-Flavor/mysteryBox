@@ -1,88 +1,69 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout';
-import { Metadata } from 'next';
-
-type PageProps = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export function generateStaticParams() {
-  return products.map((product) => ({
-    id: product.id.toString(),
-  }));
-}
 
 const products = [
+	{
+		id: 1,
+		category: 'Tech',
+		name: 'Mystery Tech Box',
+		image: '/images/mysterybos-tech.jpg',
+		price: 'Surprise!',
+		description: 'What tech treasures await? Only one kind of person will find out: YOU!',
+		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
+	},
+	{
+		id: 2,
+		category: 'Fashion',
+		name: 'Mystery Fashion Box',
+		image: '/images/mysterybox-fashion.jpg',
+		price: 'Surprise!',
+		description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.',
+		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
+	},
+	{
+		id: 3,
+		category: 'Food',
+		name: 'Mystery Food Box',
+		image: '/images/placeholder-box1.jpg',
+		price: 'Surprise!',
+		description: 'A culinary adventure awaits! Taste the unexpected.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
   {
-    id: 1,
-    category: 'Tech',
-    name: 'Mystery Tech Box',
-    image: '/mysteryBox/mysterybox-tech.jpg',
-    price: 'Surprise!',
-    description: 'What tech treasures await? Only one kind of person will find out: YOU!',
-    detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
-  },
-
+		id: 4,
+		category: 'Deluxe',
+		name: 'Mystery Deluxe Box',
+		image: '/images/mysterybox-deluxe.jpeg',
+		price: 'Surprise!',
+		description: 'Ein Hauch von Luxus und Überraschung.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
   {
-    id: 2,
-    category: 'Fashion',
-    name: 'Mystery Fashion Box',
-    image: '/mysteryBox/mysterybox-fashion.jpg',
-    price: 'Surprise!',
-    description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.',
-    detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
-  },
+		id: 5,
+		category: 'Mega',
+		name: 'Mystery Mega Box',
+		image: '/images/mysterybox-mega.jpg',
+		price: 'Surprise!',
+		description: 'Große Überraschungen für große Freude.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
   {
-    id: 3,
-    category: 'Food',
-    name: 'Mystery Food Box',
-    image: '/mysteryBox/placeholder-box1.jpg',
-    price: 'Surprise!',
-    description: 'A culinary adventure awaits! Taste the unexpected.',
-    detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-  },
-  {
-    id: 4,
-    category: 'Deluxe',
-    name: 'Mystery Deluxe Box',
-    image: '/mysteryBox/mysterybox-deluxe.jpeg',
-    price: 'Surprise!',
-    description: 'Ein Hauch von Luxus und Überraschung.',
-    detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-  },
-  {
-    id: 5,
-    category: 'Mega',
-    name: 'Mystery Mega Box',
-    image: '/mysteryBox/mysterybox-mega.jpg',
-    price: 'Surprise!',
-    description: 'Große Überraschungen für große Freude.',
-    detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-  },
-  {
-    id: 6,
-    category: 'Ultimate',
-    name: 'Mystery Ultimate Box',
-    image: '/mysteryBox/mysterybox-ultimate.jpg',
-    price: 'Surprise!',
-    description: 'Die ultimative Überraschungserfahrung.',
-    detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-  },
+		id: 6,
+		category: 'Ultimate',
+		name: 'Mystery Ultimate Box',
+		image: '/images/mysterybox-ultimate.jpg',
+		price: 'Surprise!',
+		description: 'Die ultimative Überraschungserfahrung.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
 ];
 
-export default function Page({ params }: PageProps) {
+export default function ProductDetail({ params }: { params: { id: string } }) {
   const product = products.find(p => p.id === parseInt(params.id));
 
   if (!product) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-2xl text-gray-600">Product not found</div>
-        </div>
-      </Layout>
-    );
+    return <div>Product not found</div>;
   }
 
   return (
@@ -93,11 +74,10 @@ export default function Page({ params }: PageProps) {
             <div className="md:flex">
               <div className="md:flex-shrink-0 relative h-[500px] md:w-[500px] group">
                 <Image
-                  src={`/${product.image}`}
+                  src={product.image}
                   alt={product.name}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
@@ -110,10 +90,10 @@ export default function Page({ params }: PageProps) {
                     {product.price}
                   </span>
                 </div>
-
+                
                 <h1 className="text-4xl font-bold mb-6">{product.name}</h1>
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">{product.detailDescription}</p>
-
+                
                 <div className="bg-gray-50 p-8 rounded-xl mb-8">
                   <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                     Was erwartet dich?
@@ -145,16 +125,16 @@ export default function Page({ params }: PageProps) {
                     </li>
                   </ul>
                 </div>
-
-                <Link
-                  href="/shop"
-                  className="mt-auto w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-8 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 font-medium text-lg"
-                >
-                  <span>Zurück zum Shop</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </Link>
+                
+<Link 
+  href="/shop"
+  className="mt-auto w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-8 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 font-medium text-lg"
+>
+  <span>Zurück zum Shop</span>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+	<path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+  </svg>
+</Link>
               </div>
             </div>
           </div>
@@ -162,12 +142,4 @@ export default function Page({ params }: PageProps) {
       </main>
     </Layout>
   );
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const product = products.find(p => p.id === parseInt(params.id));
-  return {
-    title: product ? `${product.name} - MysteryBox` : 'Product Not Found',
-    description: product?.description || 'Product not found',
-  };
 }
