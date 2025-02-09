@@ -29,12 +29,10 @@ jobs:
       - name: Create .nojekyll file
         run: touch out/.nojekyll
 
-      - name: Add CNAME
-        run: echo "maroc-flavor.github.io/mysteryBox" > out/CNAME
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           force_orphan: true
+

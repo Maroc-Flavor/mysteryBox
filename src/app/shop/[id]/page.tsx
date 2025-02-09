@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout';
-import { Metadata } from 'next';
 
 type Props = {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
+
 
 const products = [
   {
@@ -65,7 +64,7 @@ const products = [
   },
 ];
 
-export default async function ProductDetail({ params }: Props) {
+export default function ProductDetail({ params }: Props) {
   const product = products.find(p => p.id === parseInt(params.id));
 
   if (!product) {
