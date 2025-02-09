@@ -13,6 +13,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 							</Link>
 						</li>
 						<li>
+							<Link href="/uber-uns" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
+								Über uns
+							</Link>
+						</li>
+						<li>
 							<Link href="/shop" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors">
 								Shop
 							</Link>
