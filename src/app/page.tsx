@@ -11,7 +11,7 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center">
           {/* Background with gradient and pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/grid.svg')]"></div>
+            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/file.svg')]"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
