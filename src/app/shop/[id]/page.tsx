@@ -1,13 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout';
+import { Metadata } from 'next';
 
-type Props = {
+type PageProps = {
   params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export function generateStaticParams() {
+  return products.map((product) => ({
+    id: product.id.toString(),
+  }));
 }
 
-
 const products = [
+
   {
     id: 1,
     category: 'Tech',
@@ -64,11 +72,17 @@ const products = [
   },
 ];
 
-export default function ProductDetail({ params }: Props) {
+export default function Page({ params }: PageProps) {
   const product = products.find(p => p.id === parseInt(params.id));
 
   if (!product) {
-    return <div>Product not found</div>;
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-2xl text-gray-600">Product not found</div>
+        </div>
+      </Layout>
+    );
   }
 
   return (
@@ -148,4 +162,12 @@ export default function ProductDetail({ params }: Props) {
       </main>
     </Layout>
   );
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const product = products.find(p => p.id === parseInt(params.id));
+  return {
+    title: product ? `${product.name} - MysteryBox` : 'Product Not Found',
+    description: product?.description || 'Product not found',
+  };
 }
