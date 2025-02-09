@@ -157,7 +157,7 @@ export default function Checkout() {
 													});
 												}}
 												onApprove={(data, actions) => {
-													return actions.order!.capture().then((details) => {
+													return actions.order!.capture().then(() => {
 														clearCart();
 														// Handle successful payment
 													});

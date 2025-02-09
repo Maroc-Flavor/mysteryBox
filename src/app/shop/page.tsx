@@ -6,7 +6,15 @@ import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { motion } from 'framer-motion';
 
-const products = [
+interface Product {
+	id: number;
+	name: string;
+	price: number;
+	image: string;
+	description: string;
+}
+
+const products: Product[] = [
 	{
 		id: 1,
 		name: 'Mystery Tech Box',
@@ -54,7 +62,7 @@ const products = [
 export default function Shop() {
 	const { addItem } = useCart();
 
-	const handleAddToCart = (product: any) => {
+	const handleAddToCart = (product: Product) => {
 		addItem({
 			id: product.id,
 			name: product.name,
