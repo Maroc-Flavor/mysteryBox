@@ -1,9 +1,51 @@
+'use client';
+
 import Image from "next/image";
 import Layout from '../components/layout';
 import Link from 'next/link';
+import { useCart } from '@/context/CartContext';
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  description: string;
+}
 
 export default function Home() {
+  const { addItem } = useCart();
+
+  const products: Product[] = [
+    {
+      id: 1,
+      name: 'XXL Premium Mystery Box',
+      price: 99.99,
+      originalPrice: 279.99,
+      image: '/mysteryBox/mysterybox-premium1.jpg',
+      description: '10 KG Überraschungsbox'
+    },
+    {
+      id: 2,
+      name: 'Starter Mystery Box',
+      price: 39.99,
+      originalPrice: 120.00,
+      image: '/mysteryBox/starterbox.jpg',
+      description: '3 KG Überraschungskarton'
+    }
+  ];
+
+  const handleAddToCart = (product: Product) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  };
+
   return (
     <Layout>
       <main className="flex-grow">
@@ -115,58 +157,48 @@ export default function Home() {
         {/* Current Offers Section */}
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Exklusive Angebote
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Product Card 1 */}
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                <div className="relative h-72">
-                    <Image
-                    src="/mysteryBox/mysterybox-premium1.jpg"
-                    alt="10 KG Überraschungsbox"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    priority
-                    />
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-semibold mb-4">XXL Premium Mystery Box </h3>
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="text-3xl font-bold text-indigo-600">99,99 €</span>
-                    <span className="text-lg text-gray-400 line-through">279,99 €</span>
-                  </div>
-                  <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium">
-                    Jetzt sichern
-                  </button>
-                </div>
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            Exklusive Angebote
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {products.map((product) => (
+            <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative h-72">
+              <Image
+                src={product.image}
+                alt={product.description}
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
               </div>
-
-              {/* Product Card 2 */}
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                <div className="relative h-72">
-                    <Image
-                    src="/mysteryBox/starterbox.jpg"
-                    alt="3 KG Überraschungskarton"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    priority
-                    />
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-semibold mb-4">Starter Mystery Box</h3>
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="text-3xl font-bold text-indigo-600">39,99 €</span>
-                    <span className="text-lg text-gray-400 line-through">120,00 €</span>
-                  </div>
-                  <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium">
-                    Jetzt sichern
-                  </button>
-                </div>
+              <div className="p-8">
+              <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
+                <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
+              </div>
+              <div className="flex gap-4">
+                <Link
+                href={`/shop/${product.id}`}
+                className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium"
+                >
+                Mehr Details
+                </Link>
+                <button
+                onClick={() => handleAddToCart(product)}
+                className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
+                >
+                In den Warenkorb
+                </button>
+              </div>
               </div>
             </div>
+            ))}
+          </div>
           </div>
         </section>
+
 
         {/* Special Actions Section */}
         <section className="py-24 px-4 bg-gray-50">
