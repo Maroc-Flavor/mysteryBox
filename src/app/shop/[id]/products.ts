@@ -53,4 +53,13 @@ export const products = [
 		description: 'Die ultimative Überraschungserfahrung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
+	{
+		id: 6,
+		category: 'Ultimate',
+		name: 'Mystery Ultimate Box',
+		image: '/mysteryBox/mysterybox-ultimate.jpg',
+		price: 299.99,
+		description: 'Die ultimative Überraschungserfahrung.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
 ];
