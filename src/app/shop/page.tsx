@@ -57,6 +57,7 @@ const products: Product[] = [
 		image: '/mysteryBox/mysterybox-ultimate.jpg',
 		description: 'Die ultimative Überraschungserfahrung.'
 	}
+	
 ];
 
 export default function Shop() {
