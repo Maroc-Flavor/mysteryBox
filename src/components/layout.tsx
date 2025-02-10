@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="min-h-screen flex flex-col bg-gray-50">
 			<header className="bg-white shadow-md">
-				<div className="container mx-auto px-4 py-3 md:py-6 flex justify-between items-center">
+				<div className="container mx-auto px-4 py-3 md:py-6 flex justify-between items-center w-full">
 					<Link href="/" className="relative flex-shrink-0">
 						<Image 
 							className="w-[150px] md:w-[200px] h-auto rounded-full transition-all duration-300 hover:opacity-90"
