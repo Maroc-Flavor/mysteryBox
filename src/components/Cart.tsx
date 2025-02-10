@@ -121,7 +121,7 @@ export default function Cart({ onClose }: CartProps) {
 							<div className="border-t pt-4 mt-4">
 								<div className="flex justify-between items-center mb-4">
 									<span className="font-medium">Gesamt:</span>
-									<span className="text-2xl font-bold">{totalPrice.toFixed(2)} €</span>
+									<span className="text-2xl font-bold text-green-900">{totalPrice.toFixed(2)} €</span>
 								</div>
 								<Link
 									href="/checkout"
