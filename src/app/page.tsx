@@ -209,14 +209,14 @@ export default function Home() {
         <section className="py-24 px-4 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Live Auction Card */}
-              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
-                <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+                {/* Live Auction Card */}
+                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+                <h2 className="text-3xl font-bold text-center mb-8 text-red-600">
                   LIVE-AUKTION
                 </h2>
                 <div className="text-center space-y-6">
-                  <p className="text-xl mb-6">
-                    Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
+                  <p className="text-xl text-gray-800 font-medium mb-6">
+                  Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
                   </p>
                   <div className="flex justify-center gap-6">
                     <a
@@ -259,16 +259,16 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Contest Card */}
-              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
-                <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                {/* Contest Card */}
+                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+                <h2 className="text-3xl font-bold text-center mb-8 text-emerald-600">
                   GEWINNSPIEL
                 </h2>
                 <div className="text-center">
-                  <p className="text-xl mb-8">
-                    Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
+                  <p className="text-xl text-gray-800 font-medium mb-8">
+                  Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
                   </p>
-                  <button className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-10 py-4 rounded-xl hover:opacity-90 transition-opacity font-medium">
+                  <button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl hover:opacity-90 transition-opacity font-medium">
                     VERSAND BEZAHLEN
                   </button>
                 </div>
