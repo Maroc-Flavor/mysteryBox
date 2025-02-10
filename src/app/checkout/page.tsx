@@ -91,54 +91,67 @@ export default function Checkout() {
 					
 					{/* Steps */}
 					<div className="relative flex justify-between">
-					  {steps.map((s, idx) => (
-						<div key={s.id} className="flex flex-col items-center">
-						  <div 
-							className={`
-							  relative z-10 flex items-center justify-center w-16 h-16 rounded-full 
-							  transition-all duration-700 ease-out transform
-							  ${step >= s.id 
-								? 'bg-gradient-to-br from-indigo-500 via-purple-500 to-purple-600 scale-110 shadow-[0_0_15px_rgba(99,102,241,0.3)] ring-4 ring-purple-100' 
-								: 'bg-white border-2 border-gray-300 hover:border-indigo-300 hover:shadow-md'
-							  }
-							  ${step === s.id ? 'animate-pulse-subtle' : ''}
-							  group
-							`}
-						  >
-							<svg 
-							  className={`w-7 h-7 transition-all duration-700 transform group-hover:scale-110 ${
-								step >= s.id ? 'text-white filter drop-shadow-md' : 'text-gray-400'
-							  }`} 
-							  fill="none" 
-							  viewBox="0 0 24 24" 
-							  stroke="currentColor"
+					  {steps.map((s, _idx) => (
+						<div key={s.id} className="flex items-center">
+						  <div className="flex flex-col items-center">
+							<div 
+							  className={`
+								relative z-10 flex items-center justify-center w-16 h-16 rounded-full 
+								transition-all duration-700 ease-out transform
+								${step >= s.id 
+								  ? 'bg-gradient-to-br from-indigo-500 via-purple-500 to-purple-600 scale-110 shadow-[0_0_15px_rgba(99,102,241,0.3)] ring-4 ring-purple-100' 
+								  : 'bg-white border-2 border-gray-300 hover:border-indigo-300 hover:shadow-md'
+								}
+								${step === s.id ? 'animate-pulse-subtle' : ''}
+								group
+							  `}
 							>
-							  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={s.icon} />
-							</svg>
+							  <svg 
+								className={`w-7 h-7 transition-all duration-700 transform group-hover:scale-110 ${
+								  step >= s.id ? 'text-white filter drop-shadow-md' : 'text-gray-400'
+								}`} 
+								fill="none" 
+								viewBox="0 0 24 24" 
+								stroke="currentColor"
+							  >
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={s.icon} />
+							  </svg>
+							  
+							  {step > s.id && (
+								<div className="absolute inset-0 flex items-center justify-center animate-checkmark">
+								  <svg 
+									className="w-8 h-8 text-white filter drop-shadow-lg" 
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								  >
+									<polyline points="20 6 9 17 4 12" />
+								  </svg>
+								</div>
+							  )}
+							</div>
 							
-							{step > s.id && (
-							  <div className="absolute inset-0 flex items-center justify-center animate-checkmark">
-								<svg 
-								  className="w-8 h-8 text-white filter drop-shadow-lg" 
-								  viewBox="0 0 24 24"
-								  fill="none"
-								  stroke="currentColor"
-								  strokeWidth="2"
-								  strokeLinecap="round"
-								  strokeLinejoin="round"
-								>
-								  <polyline points="20 6 9 17 4 12" />
-								</svg>
-							  </div>
-							)}
+							<div className={`
+							  mt-4 text-sm font-medium transition-all duration-500
+							  ${step >= s.id ? 'text-indigo-600 scale-110' : 'text-gray-500'}
+							`}>
+							  {s.name}
+							</div>
 						  </div>
 						  
-						  <div className={`
-							mt-4 text-sm font-medium transition-all duration-500
-							${step >= s.id ? 'text-indigo-600 scale-110' : 'text-gray-500'}
-						  `}>
-							{s.name}
-						  </div>
+						  {_idx < steps.length - 1 && (
+							<div className="w-full mx-6">
+							  <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+								<div 
+								  className={`h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-700 ease-in-out transform
+									${step > s.id ? 'w-full scale-100' : 'w-0 scale-95'}`}
+								></div>
+							  </div>
+							</div>
+						  )}
 						</div>
 					  ))}
 					</div>
