@@ -15,9 +15,6 @@ export default function Navigation() {
 			<nav className="backdrop-blur-xl bg-white/80 sticky top-0 z-50 border-b border-gray-100 shadow-sm">
 				<div className="container mx-auto px-4">
 					<div className="flex justify-between items-center py-4">
-						<Link href="/" className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-							MysteryBox
-						</Link>
 						<ul className="flex space-x-8">
 							<li>
 								<Link href="/" className="text-gray-800 hover:text-indigo-600 font-medium transition-colors flex items-center gap-2">
