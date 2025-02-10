@@ -118,7 +118,7 @@ export default function ShopPage() {
 													{product.category}
 												</span>
 												<span className="text-xl md:text-2xl font-bold text-indigo-700">
-													{product.price}€
+													{product.price}
 												</span>
 											</div>
 
