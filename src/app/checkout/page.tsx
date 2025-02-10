@@ -2,11 +2,11 @@
 
 import { useCart } from '@/context/CartContext';
 import Layout from '@/components/layout';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Image from 'next/image';
 import { shippingData, type ShippingOption, type CountryShipping } from '@/data/shipping';
-import { motion } from 'framer-motion';
+
 
 const steps = [
 	{ id: 1, name: 'Lieferadresse' },
@@ -250,24 +250,27 @@ export default function Checkout() {
 											<h2 className="text-2xl font-bold mb-6">Zahlung</h2>
 											<PayPalScriptProvider options={initialOptions}>
 											  <PayPalButtons
-												createOrder={(data, actions) => {
-												  return actions.order.create({
-													purchase_units: [
-													  {
-														amount: {
-														  value: finalPrice.toFixed(2),
-														  currency_code: "EUR"
-														},
-													  },
-													],
-												  });
-												}}
-												onApprove={(data, actions) => {
-												  return actions.order!.capture().then(() => {
-													clearCart();
-													// Handle successful payment
-												  });
-												}}
+												createOrder={(_, actions) => {
+                          return actions.order.create({
+                            intent: "CAPTURE",
+                            purchase_units: [
+                              {
+                                amount: {
+                                  value: finalPrice.toFixed(2),
+                                  currency_code: "EUR"
+                                },
+                              },
+                            ],
+                          });
+                        }}
+                        onApprove={async (_, actions) => {
+                          const order = await actions.order?.capture();
+                          if (order) {
+                            clearCart();
+                            // Handle successful payment
+                            window.location.href = '/checkout/success';
+                          }
+                        }}
 											  />
 											</PayPalScriptProvider>
 										  </>
