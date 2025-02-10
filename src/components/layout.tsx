@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Footer from './Footer';
 import Navigation from './Navigation';
+import Cart from './Cart';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -30,6 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			</header>
 			<main className="flex-grow">{children}</main>
 			<Footer />
+			<Cart />
 		</div>
 	);
 }

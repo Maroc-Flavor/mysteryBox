@@ -12,7 +12,7 @@ type PageProps = {
 };
 
 export default function ProductDetail({ params }: PageProps) {
-  const { addItem } = useCart();
+  const { addItem, setIsCartOpen } = useCart();
   const product = products.find(p => p.id === parseInt(params.id));
 
   const handleAddToCart = () => {
@@ -24,6 +24,7 @@ export default function ProductDetail({ params }: PageProps) {
         image: product.image,
         quantity: 1
       });
+      setIsCartOpen(true); // Open cart after adding item
     }
   };
 

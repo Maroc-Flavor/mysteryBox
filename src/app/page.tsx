@@ -19,7 +19,7 @@ interface Product {
 }
 
 export default function Home() {
-  const { addItem } = useCart();
+  const { addItem, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -53,13 +53,16 @@ export default function Home() {
   ];
 
   const handleAddToCart = (product: Product) => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: 1
-    });
+    if (product) {
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
+      setIsCartOpen(true); // Open cart after adding item
+    }
   };
 
   return (

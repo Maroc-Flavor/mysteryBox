@@ -18,6 +18,8 @@ interface CartContextType {
 	clearCart: () => void;
 	totalItems: number;
 	totalPrice: number;
+	isCartOpen: boolean;
+	setIsCartOpen: (isOpen: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -32,6 +34,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 	});
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
+	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	useEffect(() => {
 		// Update totals whenever items change
@@ -85,7 +88,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 			updateQuantity,
 			clearCart,
 			totalItems,
-			totalPrice
+			totalPrice,
+			isCartOpen,
+			setIsCartOpen
 		}}>
 			{children}
 		</CartContext.Provider>
