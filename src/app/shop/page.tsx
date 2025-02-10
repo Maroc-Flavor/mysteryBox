@@ -1,128 +1,126 @@
-'use client';
-
 import Image from 'next/image';
-import Layout from '@/components/layout';
 import Link from 'next/link';
-import { useCart } from '@/context/CartContext';
-import { motion } from 'framer-motion';
+import Layout from '@/components/layout';
 
-interface Product {
-	id: number;
-	name: string;
-	price: number;
-	image: string;
-	description: string;
-}
-
-const products: Product[] = [
+const products = [
 	{
 		id: 1,
+		category: 'Tech',
 		name: 'Mystery Tech Box',
-		price: 99.99,
 		image: '/mysteryBox/mysterybos-tech.jpg',
-		description: 'What tech treasures await? Only one kind of person will find out: YOU!'
+		price: 'Surprise!',
+		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
+		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 	},
 	{
 		id: 2,
+		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		price: 79.99,
 		image: '/mysteryBox/mysterybox-fashion.jpg',
-		description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.'
+		price: 'Surprise!',
+		description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker',
+		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
 	},
 	{
 		id: 3,
+		category: 'Food',
 		name: 'Mystery Food Box',
-		price: 49.99,
 		image: '/mysteryBox/placeholder-box1.jpg',
-		description: 'A culinary adventure awaits! Taste the unexpected.'
+		price: 'Surprise!',
+		description: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
 	{
 		id: 4,
+		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		price: 149.99,
 		image: '/mysteryBox/mysterybox-deluxe.jpeg',
-		description: 'Ein Hauch von Luxus und Überraschung.'
+		price: 'Surprise!',
+		description: 'Ein Hauch von Luxus und Überraschung..',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
 	{
 		id: 5,
+		category: 'Mega ',
 		name: 'Mystery Mega Box',
-		price: 199.99,
 		image: '/mysteryBox/mysterybox-mega.jpg',
-		description: 'Große Überraschungen für große Freude.'
+		price: 'Surprise!',
+		description: 'Große Überraschungen für große Freude.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
 	{
 		id: 6,
+		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		price: 299.99,
 		image: '/mysteryBox/mysterybox-ultimate.jpg',
-		description: 'Die ultimative Überraschungserfahrung.'
-	}
-	
+		price: 'Surprise!',
+		description: 'Die ultimative Überraschungserfahrung.',
+		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+	},
 ];
 
-export default function Shop() {
-	const { addItem } = useCart();
-
-	const handleAddToCart = (product: any) => {
-		addItem({
-			id: product.id,
-			name: product.name,
-			price: product.price,
-			image: product.image,
-			quantity: 1
-		});
-	};
-
+export default function ShopPage() {
 	return (
 		<Layout>
-			<main className="min-h-screen py-12 px-4">
-				<div className="max-w-7xl mx-auto">
-					<h1 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-						Entdecke unsere Mystery Boxes
-					</h1>
-
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{products.map((product) => (
-							<motion.div
-								key={product.id}
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.3 }}
-								className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-							>
-								<Link href={`/shop/${product.id}`}>
-									<div className="relative h-72">
-										<Image
-											src={product.image}
-											alt={product.name}
-											fill
-											style={{ objectFit: 'cover' }}
-											className="transition-transform duration-300 hover:scale-105"
-										/>
+			<main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+				{/* Shop Hero Section */}
+				<section className="relative py-24 overflow-hidden">
+					<div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-pink-900/10"></div>
+					<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
+					<div className="container mx-auto px-4 relative z-10">
+						<h1 className="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+							Unsere Mystery Boxes
+						</h1>
+						<p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
+							Entdecke unsere kuratierte Auswahl an Überraschungspaketen. 
+							Jede Box ist ein neues Abenteuer.
+						</p>
+						
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+							{products.map((product) => (
+								<Link href={`/shop/${product.id}`} key={product.id}>
+									<div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+										<div className="relative h-64 overflow-hidden">
+											<Image
+												src={product.image}
+												alt={product.name}
+												fill
+												className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+											/>
+											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+												<div className="absolute bottom-4 left-4 right-4">
+													<span className="text-white text-lg font-medium">Mehr Details</span>
+												</div>
+											</div>
+										</div>
+										
+										<div className="p-6">
+											<div className="flex items-center justify-between mb-4">
+												<span className="px-4 py-1 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+													{product.category}
+												</span>
+												<span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+													{product.price}
+												</span>
+											</div>
+											
+											<h2 className="text-xl font-bold mb-3">{product.name}</h2>
+											<p className="text-gray-600 mb-6">{product.description}</p>
+											
+											<button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+												<span>Jetzt entdecken</span>
+												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+												</svg>
+											</button>
+										</div>
 									</div>
 								</Link>
-								<div className="p-6">
-									<h2 className="text-2xl font-semibold mb-2">{product.name}</h2>
-									<p className="text-gray-600 mb-4">{product.description}</p>
-									<div className="flex items-center justify-between">
-										<span className="text-2xl font-bold text-indigo-600">{product.price} €</span>
-										<button
-											onClick={() => handleAddToCart(product)}
-											className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
-										>
-											<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-											</svg>
-											In den Warenkorb
-										</button>
-									</div>
-								</div>
-							</motion.div>
-						))}
+							))}
+						</div>
 					</div>
-				</div>
+				</section>
 			</main>
 		</Layout>
 	);
 }
-
