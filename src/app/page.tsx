@@ -178,7 +178,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-8">
-                    <h3 className="text-2xl font-semibold mb-4">{product.name}</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
                     <div className="flex items-center gap-4 mb-6">
                       <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
                       <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
