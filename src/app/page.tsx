@@ -4,6 +4,7 @@ import Image from "next/image";
 import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
+import { useState, useEffect } from 'react';
 
 interface Product {
   id: number;
@@ -17,6 +18,16 @@ interface Product {
 
 export default function Home() {
   const { addItem } = useCart();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const products: Product[] = [
     {
@@ -109,16 +120,20 @@ export default function Home() {
         {/* Scroll to Top Button */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="hidden lg:flex fixed right-6 bottom-6 z-50 items-center justify-center w-14 h-14 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 group"
+          className={`fixed left-6 bottom-24 z-40 items-center justify-center w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-lg hover:opacity-90 transition-all duration-500 transform ${
+          showScrollTop 
+            ? 'opacity-100 translate-y-0 flex'
+            : 'opacity-0 translate-y-12 hidden'
+          }`}
           aria-label="Nach oben scrollen"
         >
           <svg
-            className="w-6 h-6 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          className="w-5 h-5 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
 
