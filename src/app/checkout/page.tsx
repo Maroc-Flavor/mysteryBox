@@ -9,9 +9,21 @@ import { shippingData, type ShippingOption, type CountryShipping } from '@/data/
 
 
 const steps = [
-	{ id: 1, name: 'Lieferadresse', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-	{ id: 2, name: 'Versand', icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1z' },
-	{ id: 3, name: 'Zahlung', icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z' }
+	{ 
+		id: 1, 
+		name: 'Lieferadresse', 
+		icon: 'M18.364 17.364A9 9 0 007.636 6.636M18.364 17.364A9 9 0 119 3a9 9 0 019 9 9 9 0 010 .364M15 9l-3-3m0 0l-3 3m3-3v12'
+	},
+	{ 
+		id: 2, 
+		name: 'Versand', 
+		icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
+	},
+	{ 
+		id: 3, 
+		name: 'Zahlung', 
+		icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
+	}
 ];
 
 export default function Checkout() {
@@ -64,55 +76,90 @@ export default function Checkout() {
 	return (
 		<Layout>
 			<main className="min-h-screen bg-gray-50 py-12">
-				<div className="max-w-7xl mx-auto px-4 mb-12">
-					<div className="relative pt-4">
-						<div className="absolute inset-0 flex items-center" aria-hidden="true">
-							<div className="w-full h-1.5 bg-gray-200 rounded-full">
-								<div 
-									className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transition-all duration-700 ease-in-out"
-									style={{ width: `${((step - 1) / (steps.length - 1)) * 100}%` }}
-								></div>
-							</div>
-						</div>
-						<div className="relative flex justify-between">
-							{steps.map((s, idx) => (
-								<div key={s.id} className="flex items-center">
-									<div 
-										className={`relative flex h-14 w-14 items-center justify-center rounded-full 
-											transition-all duration-700 ease-in-out transform
-											${step >= s.id 
-												? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white scale-110 shadow-xl ring-2 ring-indigo-200' 
-												: 'bg-white border-2 border-gray-300 text-gray-500 hover:border-indigo-300'
-											}`}
-									>
-										<svg className={`h-6 w-6 transition-transform duration-700 ${step >= s.id ? 'scale-110' : ''}`} 
-												fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={s.icon} />
-										</svg>
-										<div className={`absolute -bottom-8 w-max text-sm font-medium transition-all duration-700
-											${step >= s.id ? 'text-indigo-600 scale-110 font-semibold' : 'text-gray-500'}`}>
-											{s.name}
-										</div>
-										{step > s.id && (
-											<div className="absolute inset-0 flex items-center justify-center">
-												<div className="h-full w-full rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 animate-pulse opacity-20"></div>
-											</div>
-										)}
-									</div>
-									{idx < steps.length - 1 && (
-										<div className="w-full mx-6">
-											<div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-												<div 
-													className={`h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-700 ease-in-out transform
-														${step > s.id ? 'w-full scale-100' : 'w-0 scale-95'}`}
-												></div>
-											</div>
-										</div>
-									)}
-								</div>
-							))}
-						</div>
+				<div className="max-w-4xl mx-auto px-4 mb-12">
+				  <div className="relative">
+					{/* Progress Line */}
+					<div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 transform -translate-y-1/2 rounded-full overflow-hidden">
+					  <div 
+						className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-purple-600 transition-all duration-700 ease-out shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+						style={{ 
+						  width: `${((step - 1) / (steps.length - 1)) * 100}%`,
+						  filter: 'blur(0.5px)'
+						}}
+					  />
 					</div>
+					
+					{/* Steps */}
+					<div className="relative flex justify-between">
+					  {steps.map((s, idx) => (
+						<div key={s.id} className="flex flex-col items-center">
+						  <div 
+							className={`
+							  relative z-10 flex items-center justify-center w-16 h-16 rounded-full 
+							  transition-all duration-700 ease-out transform
+							  ${step >= s.id 
+								? 'bg-gradient-to-br from-indigo-500 via-purple-500 to-purple-600 scale-110 shadow-[0_0_15px_rgba(99,102,241,0.3)] ring-4 ring-purple-100' 
+								: 'bg-white border-2 border-gray-300 hover:border-indigo-300 hover:shadow-md'
+							  }
+							  ${step === s.id ? 'animate-pulse-subtle' : ''}
+							  group
+							`}
+						  >
+							<svg 
+							  className={`w-7 h-7 transition-all duration-700 transform group-hover:scale-110 ${
+								step >= s.id ? 'text-white filter drop-shadow-md' : 'text-gray-400'
+							  }`} 
+							  fill="none" 
+							  viewBox="0 0 24 24" 
+							  stroke="currentColor"
+							>
+							  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={s.icon} />
+							</svg>
+							
+							{step > s.id && (
+							  <div className="absolute inset-0 flex items-center justify-center animate-checkmark">
+								<svg 
+								  className="w-8 h-8 text-white filter drop-shadow-lg" 
+								  viewBox="0 0 24 24"
+								  fill="none"
+								  stroke="currentColor"
+								  strokeWidth="2"
+								  strokeLinecap="round"
+								  strokeLinejoin="round"
+								>
+								  <polyline points="20 6 9 17 4 12" />
+								</svg>
+							  </div>
+							)}
+						  </div>
+						  
+						  <div className={`
+							mt-4 text-sm font-medium transition-all duration-500
+							${step >= s.id ? 'text-indigo-600 scale-110' : 'text-gray-500'}
+						  `}>
+							{s.name}
+						  </div>
+						</div>
+					  ))}
+					</div>
+				  </div>
+				  <style jsx global>{`
+					@keyframes pulse-subtle {
+					  0%, 100% { transform: scale(1.1); }
+					  50% { transform: scale(1.15); }
+					}
+					@keyframes checkmark {
+					  0% { transform: scale(0); opacity: 0; }
+					  50% { transform: scale(1.2); }
+					  100% { transform: scale(1); opacity: 1; }
+					}
+					.animate-pulse-subtle {
+					  animation: pulse-subtle 2s infinite;
+					}
+					.animate-checkmark {
+					  animation: checkmark 0.5s ease-out forwards;
+					}
+				  `}</style>
 				</div>
 
 				<div className="max-w-7xl mx-auto px-4">
