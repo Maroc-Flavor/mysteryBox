@@ -48,7 +48,7 @@ export default function Cart({ onClose }: CartProps) {
 			>
 				<div className="p-6 h-full flex flex-col">
 					<div className="flex justify-between items-center mb-6">
-						<h2 className="text-2xl font-bold">Warenkorb</h2>
+						<h2 className="text-2xl font-bold text-gray 900">Warenkorb</h2>
 						<button onClick={onClose} className="text-gray-500 hover:text-gray-700">
 							<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -88,7 +88,7 @@ export default function Cart({ onClose }: CartProps) {
 												className="rounded-lg object-cover"
 											/>
 											<div className="flex-grow">
-												<h3 className="font-medium">{item.name}</h3>
+												<h3 className="font-medium text-gray-900">{item.name}</h3>
 												<p className="text-indigo-600 font-bold">{item.price} €</p>
 												<div className="flex items-center gap-2 mt-2">
 													<button
