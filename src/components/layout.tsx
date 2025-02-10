@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from './Footer';
+import Navigation from './Navigation';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (

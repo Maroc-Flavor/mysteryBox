@@ -5,12 +5,8 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Wundertüten.de',
-  description: 'Entdecke spannende Überraschungspakete und einzigartige Shopping-Erlebnisse.',
-};
+
 
 interface Product {
   id: number;

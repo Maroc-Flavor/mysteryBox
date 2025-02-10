@@ -67,7 +67,7 @@ export default function ProductDetail({ params }: PageProps) {
                   </span>
                 </div>
 
-                <h1 className="text-4xl font-bold mb-6">{product.name}</h1>
+                <h1 className="text-4xl font-bold text-gray-900 mb-6">{product.name}</h1>
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">{product.detailDescription}</p>
 
                 <div className="mt-auto flex gap-4">
