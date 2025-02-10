@@ -9,9 +9,9 @@ import { shippingData, type ShippingOption, type CountryShipping } from '@/data/
 
 
 const steps = [
-	{ id: 1, name: 'Lieferadresse' },
-	{ id: 2, name: 'Versand' },
-	{ id: 3, name: 'Zahlung' }
+	{ id: 1, name: 'Lieferadresse', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+	{ id: 2, name: 'Versand', icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1z' },
+	{ id: 3, name: 'Zahlung', icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z' }
 ];
 
 export default function Checkout() {
@@ -55,7 +55,7 @@ export default function Checkout() {
 	const finalPrice = totalPrice + selectedShipping.price;
 
 	const initialOptions = {
-		clientId: "YOUR_PAYPAL_CLIENT_ID",
+		clientId: "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS",
 		currency: "EUR",
 		intent: "capture",
 	};
@@ -63,26 +63,34 @@ export default function Checkout() {
 	return (
 		<Layout>
 			<main className="min-h-screen bg-gray-50 py-12">
-				{/* Process Line */}
-				<div className="max-w-7xl mx-auto px-4 mb-8">
-					<div className="flex justify-between">
-						{steps.map((s, idx) => (
-							<div key={s.id} className="flex items-center">
-								<div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-									step >= s.id ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-500'
-								}`}>
-									{s.id}
+				<div className="max-w-7xl mx-auto px-4 mb-12">
+					<div className="relative">
+						<div className="absolute inset-0 flex items-center" aria-hidden="true">
+							<div className="w-full border-t border-gray-200"></div>
+						</div>
+						<div className="relative flex justify-between">
+							{steps.map((s, idx) => (
+								<div key={s.id} className="flex items-center">
+									<div className={`relative flex h-12 w-12 items-center justify-center rounded-full ${
+										step >= s.id 
+											? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' 
+											: 'bg-white border-2 border-gray-300 text-gray-500'
+									} transition-all duration-300`}>
+										<svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={s.icon} />
+										</svg>
+										<span className="absolute -bottom-8 w-max text-sm font-medium text-gray-900">
+											{s.name}
+										</span>
+									</div>
+									{idx < steps.length - 1 && (
+										<div className={`h-0.5 w-full ${
+											step > s.id ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gray-200'
+										} transition-all duration-300`}></div>
+									)}
 								</div>
-								<div className="ml-4">
-									<p className="text-sm font-medium text-gray-900">{s.name}</p>
-								</div>
-								{idx < steps.length - 1 && (
-									<div className={`flex-1 h-0.5 mx-4 ${
-										step > s.id ? 'bg-indigo-600' : 'bg-gray-200'
-									}`}></div>
-								)}
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 				</div>
 
@@ -246,74 +254,83 @@ export default function Checkout() {
 										)}
 
 										{step === 3 && (
-										  <>
-											<h2 className="text-2xl font-bold mb-6">Zahlung</h2>
-											<PayPalScriptProvider options={initialOptions}>
-											  <PayPalButtons
-												createOrder={(_, actions) => {
-                          return actions.order.create({
-                            intent: "CAPTURE",
-                            purchase_units: [
-                              {
-                                amount: {
-                                  value: finalPrice.toFixed(2),
-                                  currency_code: "EUR"
-                                },
-                              },
-                            ],
-                          });
-                        }}
-                        onApprove={async (_, actions) => {
-                          const order = await actions.order?.capture();
-                          if (order) {
-                            clearCart();
-                            // Handle successful payment
-                            window.location.href = '/checkout/success';
-                          }
-                        }}
-											  />
-											</PayPalScriptProvider>
-										  </>
+											<div className="space-y-6">
+												<h2 className="text-2xl font-bold mb-6 text-gray-900">Zahlung</h2>
+												<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl mb-6">
+													<p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
+													<p className="text-gray-600">Bitte wählen Sie Ihre bevorzugte Zahlungsmethode:</p>
+												</div>
+												<div className="bg-white border border-gray-200 rounded-xl p-6">
+													<PayPalScriptProvider options={initialOptions}>
+														<PayPalButtons
+															style={{
+																color: "blue",
+																shape: "rect",
+																label: "pay",
+																height: 50
+															}}
+															createOrder={(_, actions) => {
+																return actions.order.create({
+																	purchase_units: [{
+																		amount: {
+																			value: finalPrice.toFixed(2),
+																			currency_code: "EUR"
+																		},
+																		description: `MysteryBox Bestellung - ${items.map(item => item.name).join(', ')}`
+																	}]
+																});
+															}}
+															onApprove={async (_, actions) => {
+																const order = await actions.order?.capture();
+																if (order) {
+																	clearCart();
+																	window.location.href = '/checkout/success';
+																}
+															}}
+														/>
+													</PayPalScriptProvider>
+												</div>
+											</div>
 										)}
 							</div>
 						</div>
 
 						{/* Order Summary */}
 						<div className="bg-white p-6 rounded-xl shadow-lg h-fit">
-						  <h2 className="text-2xl font-bold mb-6">Zusammenfassung</h2>
-						  <div className="space-y-4">
-							{items.map((item) => (
-							  <div key={item.id} className="flex gap-4">
-								<div className="relative w-20 h-20">
-								  <Image
-									src={item.image}
-									alt={item.name}
-									fill
-									className="rounded-lg object-cover"
-								  />
+							<h2 className="text-2xl font-bold mb-6 text-gray-900">Zusammenfassung</h2>
+							<div className="space-y-4">
+								{items.map((item) => (
+									<div key={item.id} className="flex gap-4">
+										<div className="relative w-20 h-20">
+											<Image
+												src={item.image}
+												alt={item.name}
+												fill
+												className="rounded-lg object-cover"
+											/>
+										</div>
+										<div className="flex-grow">
+											<h3 className="font-medium text-gray-900">{item.name}</h3>
+											<p className="text-gray-600">Anzahl: {item.quantity}</p>
+											<p className="text-indigo-600 font-bold">{item.price} €</p>
+										</div>
+									</div>
+								))}
+								<div className="border-t pt-4 mt-4">
+									<div className="flex justify-between items-center mb-2 text-gray-700">
+										<span>Zwischensumme</span>
+										<span>{totalPrice.toFixed(2)} €</span>
+									</div>
+									<div className="flex justify-between items-center mb-2 text-gray-700">
+										<span>Versand</span>
+										<span>{selectedShipping.price.toFixed(2)} €</span>
+									</div>
+									<div className="flex justify-between items-center text-lg font-bold text-gray-900">
+										<span>Gesamt</span>
+										<span>{finalPrice.toFixed(2)} €</span>
+									</div>
 								</div>
-								<div className="flex-grow">
-								  <h3 className="font-medium">{item.name}</h3>
-								  <p className="text-gray-600">Anzahl: {item.quantity}</p>
-								  <p className="text-indigo-600 font-bold">{item.price} €</p>
-								</div>
-							  </div>
-							))}
-							<div className="border-t pt-4 mt-4">
-							  <div className="flex justify-between items-center mb-2">
-								<span>Zwischensumme</span>
-								<span>{totalPrice.toFixed(2)} €</span>
-							  </div>
-							  <div className="flex justify-between items-center mb-2">
-								<span>Versand</span>
-								<span>{selectedShipping.price.toFixed(2)} €</span>
-							  </div>
-							  <div className="flex justify-between items-center text-lg font-bold">
-								<span>Gesamt</span>
-								<span>{finalPrice.toFixed(2)} €</span>
-							  </div>
 							</div>
-						  </div>
 						</div>
 					</div>
 				</div>

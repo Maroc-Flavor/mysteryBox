@@ -12,6 +12,7 @@ interface Product {
   originalPrice: number;
   image: string;
   description: string;
+  detailDescription: string;
 }
 
 export default function Home() {
@@ -24,7 +25,8 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       image: '/mysteryBox/mysterybox-premium1.jpg',
-      description: '10 KG Überraschungsbox'
+      description: '10 KG Überraschungsbox',
+      detailDescription: '10 KG Überraschungsbox'
     },
     {
       id: 8,
@@ -32,7 +34,8 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       image: '/mysteryBox/starterbox.jpg',
-      description: '3 KG Überraschungskarton'
+      description: '3 KG Überraschungskarton',
+      detailDescription: '10 KG Überraschungsbox'
     }
   ];
 
