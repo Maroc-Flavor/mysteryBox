@@ -2,8 +2,28 @@
 
 import Layout from '@/components/layout';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Success() {
+	const router = useRouter();
+	const [isValid, setIsValid] = useState(false);
+
+	useEffect(() => {
+		// Check if we came from a successful payment
+		const hasValidOrder = sessionStorage.getItem('orderComplete');
+		if (!hasValidOrder) {
+			router.replace('/shop');
+			return;
+		}
+		sessionStorage.removeItem('orderComplete');
+		setIsValid(true);
+	}, [router]);
+
+	if (!isValid) {
+		return null;
+	}
+
 	return (
 		<Layout>
 			<main className="min-h-screen bg-gray-50 py-24">

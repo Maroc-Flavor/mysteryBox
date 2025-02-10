@@ -17,6 +17,7 @@ const steps = [
 export default function Checkout() {
 	const { items, totalPrice, clearCart } = useCart();
 	const [step, setStep] = useState(1);
+	const [isProcessing, setIsProcessing] = useState(false);
 	const [selectedCountry, setSelectedCountry] = useState<CountryShipping>(shippingData[0]);
 	const [selectedShipping, setSelectedShipping] = useState<ShippingOption>(shippingData[0].options[0]);
 	const [formData, setFormData] = useState({
@@ -260,7 +261,12 @@ export default function Checkout() {
 													<p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
 													<p className="text-gray-600">Bitte wählen Sie Ihre bevorzugte Zahlungsmethode:</p>
 												</div>
-												<div className="bg-white border border-gray-200 rounded-xl p-6">
+												<div className="bg-white border border-gray-200 rounded-xl p-6 relative">
+													{isProcessing && (
+														<div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+															<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+														</div>
+													)}
 													<PayPalScriptProvider options={initialOptions}>
 														<PayPalButtons
 															style={{
@@ -269,8 +275,10 @@ export default function Checkout() {
 																label: "pay",
 																height: 50
 															}}
+															disabled={isProcessing}
 															createOrder={(_, actions) => {
 																return actions.order.create({
+																	intent: "CAPTURE",
 																	purchase_units: [{
 																		amount: {
 																			value: finalPrice.toFixed(2),
@@ -281,10 +289,38 @@ export default function Checkout() {
 																});
 															}}
 															onApprove={async (_, actions) => {
-																const order = await actions.order?.capture();
-																if (order) {
-																	clearCart();
-																	window.location.href = '/checkout/success';
+																try {
+																	setIsProcessing(true);
+																	const order = await actions.order?.capture();
+																	if (order) {
+																		const response = await fetch('/api/orders', {
+																			method: 'POST',
+																			headers: {
+																				'Content-Type': 'application/json',
+																			},
+																			body: JSON.stringify({
+																				orderDetails: {
+																					items,
+																					totalPrice: finalPrice,
+																					paypalOrderId: order.id,
+																				},
+																				customerInfo: formData
+																			}),
+																		});
+
+																		if (!response.ok) {
+																			throw new Error('Failed to process order');
+																		}
+
+																		sessionStorage.setItem('orderComplete', 'true');
+																		clearCart();
+																		window.location.href = '/checkout/success';
+																	}
+																} catch (error) {
+																	console.error('Error processing order:', error);
+																	alert('There was an error processing your order. Please try again.');
+																} finally {
+																	setIsProcessing(false);
 																}
 															}}
 														/>
