@@ -66,56 +66,56 @@ export default function Home() {
     <Layout>
       <main className="flex-grow">
         {/* Hero Section with Founder */}
-        <section className="min-h-screen relative flex items-center">
+        <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient and pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/file.svg')]"></div>
+          <div className="absolute inset-0 opacity-10 bg-[url('/file.svg')]"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left side - Text content */}
-              <div className="text-white space-y-8">
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                    Die Zukunft der<br />
-                    <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
-                    Wundertüten
-                    </span>
-                </h1>
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  Revolutionäre Überraschungspakete, kuratiert für moderne Entdecker.
-                  Jedes Paket erzählt eine einzigartige Geschichte.
-                </p>
-                <div className="flex gap-4">
-                  <Link href="/shop" className="bg-white text-indigo-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                    Jetzt entdecken
-                  </Link>
-                  <Link href="/uber-uns" className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
-                    Mehr erfahren
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right side - Founder image */}
-              <div className="relative">
-                <div className="relative h-[600px] rounded-2xl overflow-hidden">
-                  <Image
-                    src="/mysteryBox/founder-image.jpg"
-                    alt="Gründer"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="transform hover:scale-105 transition-transform duration-500"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                {/* Floating info card */}
-                <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl p-6 rounded-xl border border-white/20">
-                  <h3 className="text-white text-2xl font-bold mb-2">Don Simo</h3>
-                  <p className="text-gray-300">Gründer & CEO</p>
-                </div>
-              </div>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left side - Text content */}
+            <div className="text-white space-y-6 md:space-y-8">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+              Die Zukunft der<br />
+              <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
+              Wundertüten
+              </span>
+            </h1>
+            <p className="text-base md:text-xl text-gray-300 leading-relaxed">
+              Revolutionäre Überraschungspakete, kuratiert für moderne Entdecker.
+              Jedes Paket erzählt eine einzigartige Geschichte.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/shop" className="w-full sm:w-auto text-center bg-white text-indigo-900 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+              Jetzt entdecken
+              </Link>
+              <Link href="/uber-uns" className="w-full sm:w-auto text-center border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
+              Mehr erfahren
+              </Link>
             </div>
+            </div>
+
+            {/* Right side - Founder image */}
+            <div className="relative mt-8 md:mt-0">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
+              <Image
+              src="/mysteryBox/founder-image.jpg"
+              alt="Gründer"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="transform hover:scale-105 transition-transform duration-500"
+              priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            {/* Floating info card */}
+            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/10 backdrop-blur-xl p-4 sm:p-6 rounded-xl border border-white/20">
+              <h3 className="text-white text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Don Simo</h3>
+              <p className="text-gray-300 text-sm sm:text-base">Gründer & CEO</p>
+            </div>
+            </div>
+          </div>
           </div>
         </section>
 

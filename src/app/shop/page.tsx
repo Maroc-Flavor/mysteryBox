@@ -83,28 +83,26 @@ export default function ShopPage() {
 	return (
 		<Layout>
 			<main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-				{/* Shop Hero Section */}
-				<section className="relative py-24 overflow-hidden">
+				<section className="relative py-12 md:py-24 overflow-hidden">
 					<div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-pink-900/10"></div>
 					<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
 					<div className="container mx-auto px-4 relative z-10">
-						<h1 className="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 							Unsere Mystery Boxes
 						</h1>
-						<p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
-							Entdecke unsere kuratierte Auswahl an Überraschungspaketen. 
-							Jede Box ist ein neues Abenteuer.
+						<p className="text-lg md:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-16">
+							Entdecke unsere kuratierte Auswahl an Überraschungspaketen.
 						</p>
-						
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
 							{products.map((product) => (
 								<Link href={`/shop/${product.id}`} key={product.id}>
 									<div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-										<div className="relative h-64 overflow-hidden">
+										<div className="relative h-48 sm:h-64 overflow-hidden">
 											<Image
+												fill
 												src={product.image}
 												alt={product.name}
-												fill
 												className="object-cover transform transition-transform duration-500 group-hover:scale-110"
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -113,21 +111,21 @@ export default function ShopPage() {
 												</div>
 											</div>
 										</div>
-										
-										<div className="p-6">
-											<div className="flex items-center justify-between mb-4">
-												<span className="px-4 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+
+										<div className="p-4 md:p-6">
+											<div className="flex items-center justify-between mb-3 md:mb-4">
+												<span className="px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
 													{product.category}
 												</span>
-												<span className="text-2xl font-bold text-indigo-700">
-													{product.price}
+												<span className="text-xl md:text-2xl font-bold text-indigo-700">
+													{product.price}€
 												</span>
 											</div>
-											
-											<h2 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h2>
-											<p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
-											
-											<button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 font-semibold">
+
+											<h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">{product.name}</h2>
+											<p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">{product.description}</p>
+
+											<button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 md:py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 font-semibold">
 												<span>Jetzt entdecken</span>
 												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 													<path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -138,6 +136,7 @@ export default function ShopPage() {
 								</Link>
 							))}
 						</div>
+
 					</div>
 				</section>
 			</main>
