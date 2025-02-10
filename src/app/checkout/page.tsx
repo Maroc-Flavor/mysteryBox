@@ -276,12 +276,12 @@ export default function Checkout() {
 
 										{step === 2 && (
 										  <form onSubmit={handleShippingSubmit} className="space-y-6">
-											<h2 className="text-2xl font-bold mb-6">Versandoptionen</h2>
+											<h2 className="text-2xl font-bold test-gray-900 mb-6">Versandoptionen</h2>
 											<div className="space-y-4">
 											  <div>
-												<label className="block text-sm font-medium text-gray-700 mb-2">Land</label>
+												<label className="block text-sm font-medium text-gray-900 mb-2">Land</label>
 												<select
-												  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+												  className="w-full px-4 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500"
 												  value={selectedCountry.id}
 												  onChange={(e) => handleCountryChange(e.target.value)}
 												>
