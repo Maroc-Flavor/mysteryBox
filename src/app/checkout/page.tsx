@@ -65,29 +65,49 @@ export default function Checkout() {
 		<Layout>
 			<main className="min-h-screen bg-gray-50 py-12">
 				<div className="max-w-7xl mx-auto px-4 mb-12">
-					<div className="relative">
+					<div className="relative pt-4">
 						<div className="absolute inset-0 flex items-center" aria-hidden="true">
-							<div className="w-full border-t border-gray-200"></div>
+							<div className="w-full h-1.5 bg-gray-200 rounded-full">
+								<div 
+									className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transition-all duration-700 ease-in-out"
+									style={{ width: `${((step - 1) / (steps.length - 1)) * 100}%` }}
+								></div>
+							</div>
 						</div>
 						<div className="relative flex justify-between">
 							{steps.map((s, idx) => (
 								<div key={s.id} className="flex items-center">
-									<div className={`relative flex h-12 w-12 items-center justify-center rounded-full ${
-										step >= s.id 
-											? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' 
-											: 'bg-white border-2 border-gray-300 text-gray-500'
-									} transition-all duration-300`}>
-										<svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<div 
+										className={`relative flex h-14 w-14 items-center justify-center rounded-full 
+											transition-all duration-700 ease-in-out transform
+											${step >= s.id 
+												? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white scale-110 shadow-xl ring-2 ring-indigo-200' 
+												: 'bg-white border-2 border-gray-300 text-gray-500 hover:border-indigo-300'
+											}`}
+									>
+										<svg className={`h-6 w-6 transition-transform duration-700 ${step >= s.id ? 'scale-110' : ''}`} 
+												fill="none" viewBox="0 0 24 24" stroke="currentColor">
 											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={s.icon} />
 										</svg>
-										<span className="absolute -bottom-8 w-max text-sm font-medium text-gray-900">
+										<div className={`absolute -bottom-8 w-max text-sm font-medium transition-all duration-700
+											${step >= s.id ? 'text-indigo-600 scale-110 font-semibold' : 'text-gray-500'}`}>
 											{s.name}
-										</span>
+										</div>
+										{step > s.id && (
+											<div className="absolute inset-0 flex items-center justify-center">
+												<div className="h-full w-full rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 animate-pulse opacity-20"></div>
+											</div>
+										)}
 									</div>
 									{idx < steps.length - 1 && (
-										<div className={`h-0.5 w-full ${
-											step > s.id ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gray-200'
-										} transition-all duration-300`}></div>
+										<div className="w-full mx-6">
+											<div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+												<div 
+													className={`h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-700 ease-in-out transform
+														${step > s.id ? 'w-full scale-100' : 'w-0 scale-95'}`}
+												></div>
+											</div>
+										</div>
 									)}
 								</div>
 							))}
