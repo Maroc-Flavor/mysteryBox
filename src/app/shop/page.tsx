@@ -16,20 +16,19 @@ interface Product {
 
 const products: Product[] = [
 	{
-		id: 2,
-		name: 'Mystery Fashion Box',
-		price: 79.99,
-		image: '/mysteryBox/mysterybox-fashion.jpg',
-		description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.'
-	},
-	{
 		id: 1,
 		name: 'Mystery Tech Box',
 		price: 99.99,
 		image: '/mysteryBox/mysterybos-tech.jpg',
 		description: 'What tech treasures await? Only one kind of person will find out: YOU!'
 	},
-
+	{
+		id: 2,
+		name: 'Mystery Fashion Box',
+		price: 79.99,
+		image: '/mysteryBox/mysterybox-fashion.jpg',
+		description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.'
+	},
 	{
 		id: 3,
 		name: 'Mystery Food Box',
@@ -63,7 +62,7 @@ const products: Product[] = [
 export default function Shop() {
 	const { addItem } = useCart();
 
-	const handleAddToCart = (product: Product) => {
+	const handleAddToCart = (product: any) => {
 		addItem({
 			id: product.id,
 			name: product.name,

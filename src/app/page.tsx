@@ -19,7 +19,7 @@ export default function Home() {
 
   const products: Product[] = [
     {
-      id: 1,
+      id: 7,
       name: 'XXL Premium Mystery Box',
       price: 99.99,
       originalPrice: 279.99,
@@ -27,7 +27,7 @@ export default function Home() {
       description: '10 KG Überraschungsbox'
     },
     {
-      id: 2,
+      id: 8,
       name: 'Starter Mystery Box',
       price: 39.99,
       originalPrice: 120.00,

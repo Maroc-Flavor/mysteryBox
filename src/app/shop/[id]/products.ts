@@ -53,13 +53,20 @@ export const products = [
 		description: 'Die ultimative Überraschungserfahrung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
-	{
-		id: 6,
-		category: 'Ultimate',
-		name: 'Mystery Ultimate Box',
-		image: '/mysteryBox/mysterybox-ultimate.jpg',
-		price: 299.99,
-		description: 'Die ultimative Überraschungserfahrung.',
-		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-	},
+    {
+		id: 7,
+		name: 'XXL Premium Mystery Box',
+		price: 99.99,
+		originalPrice: 279.99,
+		image: '/mysteryBox/mysterybox-premium1.jpg',
+		description: '10 KG Überraschungsbox'
+	  },
+	  {
+		id: 8,
+		name: 'Starter Mystery Box',
+		price: 39.99,
+		originalPrice: 120.00,
+		image: '/mysteryBox/starterbox.jpg',
+		description: '3 KG Überraschungskarton'
+	  }
 ];
