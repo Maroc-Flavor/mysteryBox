@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<header className="bg-white shadow-md">
 				<div className="container mx-auto px-4 py-6 flex justify-between items-center">
 					<Link href="/">
-						<Image src="/public/mysteryBox/logo.jpg" alt="Wundertüten.de" width={150} height={50} />
+						<Image src="/mysteryBox/logo.jpg" alt="Wundertüten.de" width={150} height={50} />
 					</Link>
 					<Navigation />
 				</div>
