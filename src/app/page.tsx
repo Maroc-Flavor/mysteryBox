@@ -5,6 +5,12 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Wundertüten.de',
+  description: 'Entdecke spannende Überraschungspakete und einzigartige Shopping-Erlebnisse.',
+};
 
 interface Product {
   id: number;
@@ -31,8 +37,8 @@ export default function Home() {
 
   const products: Product[] = [
     {
-      id: 7,
-      name: 'XXL Premium Mystery Box',
+        id: 7,
+        name: 'XXL Premium Wundertüten.de',
       price: 99.99,
       originalPrice: 279.99,
       image: '/mysteryBox/mysterybox-premium1.jpg',
@@ -40,8 +46,8 @@ export default function Home() {
       detailDescription: '10 KG Überraschungsbox'
     },
     {
-      id: 8,
-      name: 'Starter Mystery Box',
+        id: 8,
+        name: 'Starter Wundertüten.de',
       price: 39.99,
       originalPrice: 120.00,
       image: '/mysteryBox/starterbox.jpg',
@@ -75,10 +81,10 @@ export default function Home() {
               {/* Left side - Text content */}
               <div className="text-white space-y-8">
                 <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                  Die Zukunft des<br />
-                  <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
-                    Shopping-Erlebnisses
-                  </span>
+                    Die Zukunft der<br />
+                    <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
+                    Wundertüten
+                    </span>
                 </h1>
                 <p className="text-xl text-gray-300 leading-relaxed">
                   Revolutionäre Überraschungspakete, kuratiert für moderne Entdecker.
@@ -178,7 +184,7 @@ export default function Home() {
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Exklusive Angebote
+              Exklusive Wundertüten
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {products.map((product) => (
@@ -377,7 +383,7 @@ export default function Home() {
               {[
                 {
                   title: "Verkauf über Live-Auktionen",
-                  content: "Interessenten können während unserer Live-Streams auf spannende Überraschungspakete bieten.",
+                    content: "Interessenten können während unserer Live-Streams auf spannende Wundertüten bieten.",
                   icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
                 },
                 {
