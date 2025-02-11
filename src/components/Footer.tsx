@@ -24,6 +24,9 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
+			<div>
+				<p>Made with lot of </p>
+			</div>
 		</footer>
 	);
 }
