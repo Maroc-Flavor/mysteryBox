@@ -36,7 +36,7 @@ const products = [
 		name: 'Mystery Deluxe Box',
 		image: '/mysteryBox/mysterybox-deluxe.jpeg',
 		price: 'Surprise!',
-		description: 'Ein Hauch von Luxus und Überraschung..',
+		description: 'Ein Hauch von Luxus und Überraschung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 	},
 	{

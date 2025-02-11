@@ -114,7 +114,7 @@ export default function Footer() {
 							© 2025 Almoukramin. Alle Rechte vorbehalten.
 						</p>
 						<div className="flex items-center gap-2 text-sm text-gray-400">
-							<span>Made with</span>
+							<span>Made with a lot</span>
 							<Heart className="w-4 h-4 text-pink-500 animate-pulse" />
 							<span>&</span>
 							<Coffee className="w-4 h-4 text-amber-500" />
