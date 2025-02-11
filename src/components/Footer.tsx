@@ -111,7 +111,7 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-gray-400 text-sm">
-                            © 2024 Almoukramin. Alle Rechte vorbehalten.
+                            © 2025 Almoukramin. Alle Rechte vorbehalten.
                         </p>
                         <div className="flex items-center gap-2 text-sm text-gray-400">
                             <span>Made with</span>
@@ -121,7 +121,7 @@ export default function Footer() {
                             <span>by</span>
                             <a href="https://almoukramin.com" 
                                className="text-white hover:text-indigo-400 font-medium transition-colors duration-200">
-                                Almoukramin.com
+                                almoukramin.com
                             </a>
                         </div>
                     </div>
