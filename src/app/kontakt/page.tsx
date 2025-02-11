@@ -74,11 +74,11 @@ export default function Contact() {
 
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-8 md:mt-12">
 								<div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-									<h3 className="text-lg font-semibold mb-2">E-Mail Support</h3>
+									<h3 className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 rounded-xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02] font-medium flex items-center justify-center space-x-2">E-Mail Support</h3>
 									<p className="text-gray-600">support@mysterybox.de</p>
 								</div>
 								<div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-									<h3 className="text-lg font-semibold mb-2">Telefon</h3>
+									<h3 className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 rounded-xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02] font-medium flex items-center justify-center space-x-2">Telefon</h3>
 									<p className="text-gray-600">+49 (0) 123 456789</p>
 								</div>
 							</div>
