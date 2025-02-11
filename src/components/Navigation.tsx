@@ -22,7 +22,8 @@ export default function Navigation() {
 			isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
 		}`}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex items-center justify-between h-16 md:h-20">
+				{/* Hauptnavigation */}
+				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link href="/" className="relative flex items-center">
@@ -91,8 +92,8 @@ export default function Navigation() {
 				</div>
 			</div>
 
-			{/* Mobile menu */}
-			<div className={`lg:hidden transition-all duration-300 ${
+			{/* Mobile menu - Now absolute instead of part of the fixed header */}
+			<div className={`lg:hidden absolute w-full transition-all duration-300 ${
 				isMenuOpen 
 					? 'opacity-100 translate-y-0' 
 					: 'opacity-0 -translate-y-2 pointer-events-none'
@@ -131,4 +132,3 @@ export default function Navigation() {
 		</nav>
 	);
 }
-
