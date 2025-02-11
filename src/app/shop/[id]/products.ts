@@ -55,6 +55,7 @@ export const products = [
 	},
     {
 		id: 7,
+		category: 'XXL',
 		name: 'XXL Premium Mystery Box',
 		price: 99.99,
 		originalPrice: 279.99,
@@ -64,6 +65,7 @@ export const products = [
 	  },
 	  {
 		id: 8,
+		category: 'Starter',
 		name: 'Starter Mystery Box',
 		price: 39.99,
 		originalPrice: 120.00,
