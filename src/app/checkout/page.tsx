@@ -185,7 +185,7 @@ export default function Checkout() {
 
 											<div className="grid md:grid-cols-2 gap-4">
 												<div>
-													<label className="block text-sm font-medium text-gray-700 mb-1">
+													<label className="block text-sm text-gray-600 font-medium text-gray-700 mb-1">
 														Vorname
 													</label>
 													<input
@@ -198,7 +198,7 @@ export default function Checkout() {
 													/>
 												</div>
 												<div>
-													<label className="block text-sm font-medium text-gray-700 mb-1">
+													<label className="block text-sm text-gray-600 font-medium text-gray-700 mb-1">
 														Nachname
 													</label>
 													<input
@@ -207,7 +207,7 @@ export default function Checkout() {
 														required
 														value={formData.lastName}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 											</div>
@@ -221,7 +221,7 @@ export default function Checkout() {
 													required
 													value={formData.email}
 													onChange={handleInputChange}
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
 												/>
 											</div>
 											<div>
@@ -234,7 +234,7 @@ export default function Checkout() {
 													required
 													value={formData.address}
 													onChange={handleInputChange}
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
 												/>
 											</div>
 											<div className="grid md:grid-cols-2 gap-4">
@@ -248,7 +248,7 @@ export default function Checkout() {
 														required
 														value={formData.city}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 												<div>
@@ -261,7 +261,7 @@ export default function Checkout() {
 														required
 														value={formData.postalCode}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 											</div>
@@ -276,7 +276,7 @@ export default function Checkout() {
 
 										{step === 2 && (
 										  <form onSubmit={handleShippingSubmit} className="space-y-6">
-											<h2 className="text-2xl font-bold test-gray-900 mb-6">Versandoptionen</h2>
+											<h2 className="text-2xl font-bold text-gray-700 mb-6">Versandoptionen</h2>
 											<div className="space-y-4">
 											  <div>
 												<label className="block text-sm font-medium text-gray-900 mb-2">Land</label>
@@ -306,12 +306,12 @@ export default function Checkout() {
 												  >
 													<div className="flex justify-between items-center">
 													  <div>
-														<h3 className="font-medium">{option.name}</h3>
+														<h3 className="font-medium text-gray-600">{option.name}</h3>
 														<p className="text-sm text-gray-600">{option.description}</p>
 														<p className="text-sm text-gray-600">{option.estimatedDays}</p>
 													  </div>
 													  <div className="flex items-center">
-														<span className="font-bold text-lg">{option.price} €</span>
+														<span className="font-bold text-lg text-gray-600">{option.price} €</span>
 														{selectedShipping.id === option.id && (
 														  <div className="ml-4 h-5 w-5 text-indigo-600">
 															<svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
