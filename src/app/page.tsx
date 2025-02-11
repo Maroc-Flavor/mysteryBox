@@ -234,6 +234,13 @@ export default function Home() {
                           Mehr Details
                         </Link>
                       )}
+                      <button
+                        onClick={() => handleAddToCart(product)}
+                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
+                        disabled={product.price === ''}
+                      >
+                        In den Warenkorb
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -23,7 +23,7 @@ export default function Contact() {
 											type="text"
 											id="name"
 											required
-											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+											className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
 											placeholder="Dein Name"
 										/>
 									</div>
@@ -32,7 +32,7 @@ export default function Contact() {
 										<select
 											id="subject"
 											required
-											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+											className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
 										>
 											<option value="">Bitte wählen Sie einen Betreff</option>
 											<option value="individual">Individuelle Mystery Box Anfrage</option>
@@ -46,7 +46,7 @@ export default function Contact() {
 											type="email"
 											id="email"
 											required
-											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+											className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
 											placeholder="deine@email.com"
 										/>
 									</div>
@@ -56,7 +56,7 @@ export default function Contact() {
 											id="message"
 											rows={4}
 											required
-											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+											className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
 											placeholder="Wie können wir dir helfen?"
 										></textarea>
 									</div>
