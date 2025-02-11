@@ -21,7 +21,11 @@ export const shippingData: CountryShipping[] = [
 		id: 'de',
 		name: 'Deutschland',
 		code: 'DE',
-		flag: '🇩🇪',
+		flag: `<svg viewBox="0 0 24 16">
+      <rect width="24" height="5.33" y="0" fill="#000000" />
+      <rect width="24" height="5.33" y="5.33" fill="#DD0000" />
+      <rect width="24" height="5.33" y="10.66" fill="#FFCE00" />
+    </svg>`,
 		basePrice: 5.99,
 		options: [
 			{
@@ -54,7 +58,11 @@ export const shippingData: CountryShipping[] = [
 		id: 'at',
 		name: 'Österreich',
 		code: 'AT',
-		flag: '🇦🇹',
+		flag: `<svg viewBox="0 0 24 16">
+      <rect width="24" height="5.33" y="0" fill="#ED2939" />
+      <rect width="24" height="5.33" y="5.33" fill="#FFFFFF" />
+      <rect width="24" height="5.33" y="10.66" fill="#ED2939" />
+    </svg>`,
 		basePrice: 9.99,
 		options: [
 			{
@@ -79,7 +87,11 @@ export const shippingData: CountryShipping[] = [
 		id: 'ch',
 		name: 'Schweiz',
 		code: 'CH',
-		flag: '🇨🇭',
+		flag: `<svg viewBox="0 0 16 16">
+      <rect width="16" height="16" fill="#FF0000" />
+      <rect x="6.5" y="3" width="3" height="10" fill="white" />
+      <rect x="3" y="6.5" width="10" height="3" fill="white" />
+    </svg>`,
 		basePrice: 14.99,
 		options: [
 			{
