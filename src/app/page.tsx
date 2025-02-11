@@ -11,8 +11,9 @@ import { useState, useEffect } from 'react';
 interface Product {
   id: number;
   name: string;
-  price: number;
-  originalPrice: number;
+  price: number | string;
+  originalPrice: number | string;
+  offer: string;
   image: string;
   description: string;
   detailDescription: string;
@@ -33,35 +34,48 @@ export default function Home() {
 
   const products: Product[] = [
     {
-        id: 7,
-        name: 'XXL Premium Wundertüten.de',
+      id: 7,
+      name: 'XXL Premium Wundertüten.de',
       price: 99.99,
       originalPrice: 279.99,
+      offer: '',
       image: '/mysteryBox/mysterybox-premium1.jpg',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
     {
-        id: 8,
-        name: 'Starter Wundertüten.de',
+      id: 8,
+      name: 'Starter Wundertüten.de',
       price: 39.99,
       originalPrice: 120.00,
+      offer: '',
       image: '/mysteryBox/starterbox.jpg',
       description: '3 KG Überraschungskarton',
-      detailDescription: '10 KG Überraschungsbox'
+      detailDescription: '3 KG Überraschungsbox'
+    },
+    {
+      id: 9,
+      name: 'Individuelle Mystery Box',
+      price: '',
+      originalPrice: '',
+      offer: 'Flexible',
+      image: '/mysteryBox/starterbox.jpg',
+      description: 'individuell anpassbar. Sprich mit uns.',
+      detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
   ];
 
   const handleAddToCart = (product: Product) => {
-    if (product) {
+    if (product && typeof product.price === 'number') {
       addItem({
         id: product.id,
         name: product.name,
         price: product.price,
+        originalPrice: product.originalPrice || '',
         image: product.image,
         quantity: 1
       });
-      setIsCartOpen(true); // Open cart after adding item
+      setIsCartOpen(true);
     }
   };
 
@@ -72,73 +86,72 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient and pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-          <div className="absolute inset-0 opacity-10 bg-[url('/file.svg')]"></div>
+            <div className="absolute inset-0 opacity-10 bg-[url('/file.svg')]"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left side - Text content */}
-            <div className="text-white space-y-6 md:space-y-8">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-              Die Zukunft der<br />
-              <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
-              Wundertüten
-              </span>
-            </h1>
-            <p className="text-base md:text-xl text-gray-300 leading-relaxed">
-              Revolutionäre Überraschungspakete, kuratiert für moderne Entdecker.
-              Jedes Paket erzählt eine einzigartige Geschichte.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/shop" className="w-full sm:w-auto text-center bg-white text-indigo-900 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-              Jetzt entdecken
-              </Link>
-              <Link href="/uber-uns" className="w-full sm:w-auto text-center border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
-              Mehr erfahren
-              </Link>
-            </div>
-            </div>
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Left side - Text content */}
+              <div className="text-white space-y-6 md:space-y-8">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+                  Die Zukunft der<br />
+                  <span className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">
+                    Wundertüten
+                  </span>
+                </h1>
+                <p className="text-base md:text-xl text-gray-300 leading-relaxed">
+                  Revolutionäre Überraschungspakete, kuratiert für moderne Entdecker.
+                  Jedes Paket erzählt eine einzigartige Geschichte.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/shop" className="w-full sm:w-auto text-center bg-white text-indigo-900 px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    Jetzt entdecken
+                  </Link>
+                  <Link href="/uber-uns" className="w-full sm:w-auto text-center border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all duration-300">
+                    Mehr erfahren
+                  </Link>
+                </div>
+              </div>
 
-            {/* Right side - Founder image */}
-            <div className="relative mt-8 md:mt-0">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
-              <Image
-              src="/mysteryBox/founder-image.jpg"
-              alt="Gründer"
-              fill
-              style={{ objectFit: 'cover' }}
-              className="transform hover:scale-105 transition-transform duration-500"
-              priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              {/* Right side - Founder image */}
+              <div className="relative mt-8 md:mt-0">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
+                  <Image
+                    src="/mysteryBox/founder-image.jpg"
+                    alt="Gründer"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transform hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                {/* Floating info card */}
+                <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/10 backdrop-blur-xl p-4 sm:p-6 rounded-xl border border-white/20">
+                  <h3 className="text-white text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Don Simo</h3>
+                  <p className="text-gray-300 text-sm sm:text-base">Gründer & CEO</p>
+                </div>
+              </div>
             </div>
-            {/* Floating info card */}
-            <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/10 backdrop-blur-xl p-4 sm:p-6 rounded-xl border border-white/20">
-              <h3 className="text-white text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Don Simo</h3>
-              <p className="text-gray-300 text-sm sm:text-base">Gründer & CEO</p>
-            </div>
-            </div>
-          </div>
           </div>
         </section>
 
         {/* Scroll to Top Button */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className={`fixed left-6 bottom-24 z-40 items-center justify-center w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-lg hover:opacity-90 transition-all duration-500 transform ${
-          showScrollTop 
-            ? 'opacity-100 translate-y-0 flex'
-            : 'opacity-0 translate-y-12 hidden'
-          }`}
+          className={`fixed left-6 bottom-24 z-40 items-center justify-center w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-lg hover:opacity-90 transition-all duration-500 transform ${showScrollTop
+              ? 'opacity-100 translate-y-0 flex'
+              : 'opacity-0 translate-y-12 hidden'
+            }`}
           aria-label="Nach oben scrollen"
         >
           <svg
-          className="w-5 h-5 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+            className="w-5 h-5 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
 
@@ -182,40 +195,52 @@ export default function Home() {
         {/* Current Offers Section */}
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Exklusive Wundertüten
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {products.map((product) => (
-                <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                  <div className="relative h-72">
-                    <Image
-                      src={product.image}
-                      alt={product.description}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      priority
-                    />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
-                      <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
-                    </div>
-                    <div className="flex gap-4">
-                      <Link
-                        href={`/shop/${product.id}`}
-                        className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium"
-                      >
-                        Mehr Details
-                      </Link>
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
-                      >
-                        In den Warenkorb
-                      </button>
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            Exklusive Wundertüten
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {products.map((product) => (
+            <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative h-72">
+              <Image
+                src={product.image}
+                alt={product.description}
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+              </div>
+              <div className="p-8">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
+                <div className="flex items-center gap-4 mb-6">
+                {product.price !== '' ? (
+                  <>
+                  <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
+                  {product.originalPrice && (
+                    <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
+                  )}
+                  </>
+                ) : (
+                  <span className="text-lg text-gray-600">Individuell</span>
+                )}
+                </div>
+                <div className="flex gap-4">
+                {product.id === 9 ? (
+                  <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                  Angebot anfordern
+                  </Link>
+                ) : (
+                  <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                  Mehr Details
+                  </Link>
+                )}
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
+                  disabled={product.price === ''}
+                >
+                  In den Warenkorb
+                </button>
                     </div>
                   </div>
                 </div>
@@ -229,14 +254,14 @@ export default function Home() {
         <section className="py-24 px-4 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* Live Auction Card */}
-                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+              {/* Live Auction Card */}
+              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-8 text-red-600">
                   LIVE-AUKTION
                 </h2>
                 <div className="text-center space-y-6">
                   <p className="text-xl text-gray-800 font-medium mb-6">
-                  Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
+                    Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
                   </p>
                   <div className="flex justify-center gap-6">
                     <a
@@ -279,14 +304,14 @@ export default function Home() {
                 </div>
               </div>
 
-                {/* Contest Card */}
-                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+              {/* Contest Card */}
+              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-8 text-emerald-600">
                   GEWINNSPIEL
                 </h2>
                 <div className="text-center">
                   <p className="text-xl text-gray-800 font-medium mb-8">
-                  Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
+                    Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
                   </p>
                   <button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl hover:opacity-90 transition-opacity font-medium">
                     VERSAND BEZAHLEN
@@ -382,7 +407,7 @@ export default function Home() {
               {[
                 {
                   title: "Verkauf über Live-Auktionen",
-                    content: "Interessenten können während unserer Live-Streams auf spannende Wundertüten bieten.",
+                  content: "Interessenten können während unserer Live-Streams auf spannende Wundertüten bieten.",
                   icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
                 },
                 {

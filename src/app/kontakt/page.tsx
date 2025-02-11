@@ -11,7 +11,7 @@ export default function Contact() {
 							Kontaktiere uns
 						</h1>
 						<p className="text-base md:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-16">
-							Hast du Fragen zu unseren Mystery Boxes? Wir sind hier, um dir zu helfen!
+							Hast du Interesse an einer individuellen Mystery Box oder andere Fragen? Wir sind hier, um dir zu helfen!
 						</p>
 
 						<div className="max-w-2xl mx-auto">
@@ -26,6 +26,19 @@ export default function Contact() {
 											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
 											placeholder="Dein Name"
 										/>
+									</div>
+									<div>
+										<label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Betreff</label>
+										<select
+											id="subject"
+											required
+											className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+										>
+											<option value="">Bitte wählen Sie einen Betreff</option>
+											<option value="individual">Individuelle Mystery Box Anfrage</option>
+											<option value="support">Allgemeine Anfrage</option>
+											<option value="other">Sonstiges</option>
+										</select>
 									</div>
 									<div>
 										<label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">E-Mail-Adresse</label>

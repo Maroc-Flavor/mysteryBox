@@ -6,6 +6,7 @@ interface CartItem {
 	id: number;
 	name: string;
 	price: number;
+	originalPrice: number | string; // Allow string for cases where price is not available
 	image: string;
 	quantity: number;
 }

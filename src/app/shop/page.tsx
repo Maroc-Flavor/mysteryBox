@@ -76,6 +76,16 @@ const products = [
 		image: '/mysteryBox/starterbox.jpg',
 		description: '3 KG Überraschungskarton',
 		detailDescription: '3 KG Überraschungskarton.',
+	  },
+	  {
+		id: 9,
+		category: 'Individuell',
+		name: 'Individuelle Mystery Box',
+		price: 'Individuell',
+		offer: 'Flexible',
+		image: '/mysteryBox/starterbox.jpg',
+		description: 'individuell anpassbar. Sprich mit uns.',
+		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	  }
 ];
 
@@ -96,7 +106,7 @@ export default function ShopPage() {
 
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
 							{products.map((product) => (
-								<Link href={`/shop/${product.id}`} key={product.id}>
+								<Link href={product.id === 9 ? '/kontakt' : `/shop/${product.id}`} key={product.id}>
 									<div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
 										<div className="relative h-48 sm:h-64 overflow-hidden">
 											<Image
@@ -117,16 +127,33 @@ export default function ShopPage() {
 												<span className="px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
 													{product.category}
 												</span>
-												<span className="text-xl md:text-2xl font-bold text-indigo-700">
-													{product.price}
-												</span>
+												<div className="text-right">
+													{product.id === 9 ? (
+														<span className="text-xl md:text-2xl font-bold text-indigo-700">
+															Individuell
+														</span>
+													) : (
+														<>
+															<span className="text-xl md:text-2xl font-bold text-indigo-700">
+																{typeof product.price === 'number' ? `${product.price} €` : product.price}
+															</span>
+															{product.originalPrice && (
+																<span className="ml-2 text-sm text-gray-500 line-through">
+																	{product.originalPrice} €
+																</span>
+															)}
+														</>
+													)}
+												</div>
 											</div>
 
 											<h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">{product.name}</h2>
 											<p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">{product.description}</p>
 
-											<button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 md:py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 font-semibold">
-												<span>Jetzt entdecken</span>
+											<button 
+												className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 md:py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 font-semibold"
+											>
+												<span>{product.id === 9 ? 'Angebot anfordern' : 'Jetzt entdecken'}</span>
 												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 													<path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
 												</svg>
@@ -136,10 +163,10 @@ export default function ShopPage() {
 								</Link>
 							))}
 						</div>
-
 					</div>
 				</section>
 			</main>
 		</Layout>
 	);
 }
+
