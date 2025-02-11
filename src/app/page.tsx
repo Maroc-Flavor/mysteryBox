@@ -140,8 +140,8 @@ export default function Home() {
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className={`fixed left-6 bottom-24 z-40 items-center justify-center w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-lg hover:opacity-90 transition-all duration-500 transform ${showScrollTop
-              ? 'opacity-100 translate-y-0 flex'
-              : 'opacity-0 translate-y-12 hidden'
+            ? 'opacity-100 translate-y-0 flex'
+            : 'opacity-0 translate-y-12 hidden'
             }`}
           aria-label="Nach oben scrollen"
         >
@@ -195,52 +195,45 @@ export default function Home() {
         {/* Current Offers Section */}
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-            Exklusive Wundertüten
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-              <div className="relative h-72">
-              <Image
-                src={product.image}
-                alt={product.description}
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
-              </div>
-              <div className="p-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
-                <div className="flex items-center gap-4 mb-6">
-                {product.price !== '' ? (
-                  <>
-                  <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
-                  {product.originalPrice && (
-                    <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
-                  )}
-                  </>
-                ) : (
-                  <span className="text-lg text-gray-600">Individuell</span>
-                )}
-                </div>
-                <div className="flex gap-4">
-                {product.id === 9 ? (
-                  <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
-                  Angebot anfordern
-                  </Link>
-                ) : (
-                  <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
-                  Mehr Details
-                  </Link>
-                )}
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
-                  disabled={product.price === ''}
-                >
-                  In den Warenkorb
-                </button>
+            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Exklusive Wundertüten
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {products.map((product) => (
+                <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                  <div className="relative h-72">
+                    <Image
+                      src={product.image}
+                      alt={product.description}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      priority
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
+                    <div className="flex items-center gap-4 mb-6">
+                      {product.price !== '' ? (
+                        <>
+                          <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
+                          {product.originalPrice && (
+                            <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
+                          )}
+                        </>
+                      ) : (
+                        <span className="text-lg text-gray-600">Individuell</span>
+                      )}
+                    </div>
+                    <div className="flex gap-4">
+                      {product.id === 9 ? (
+                        <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                          Angebot anfordern
+                        </Link>
+                      ) : (
+                        <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                          Mehr Details
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
