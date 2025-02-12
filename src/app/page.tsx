@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 
 interface Product {
   id: number;
+  category: string;
   name: string;
   price: number | string;
   originalPrice: number | string;
@@ -35,7 +36,8 @@ export default function Home() {
   const products: Product[] = [
     {
       id: 7,
-      name: 'XXL Premium Wundertüten.de',
+      category: 'XXL',
+      name: 'XXL Premium Mystery Box',
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
@@ -45,7 +47,8 @@ export default function Home() {
     },
     {
       id: 8,
-      name: 'Starter Wundertüten.de',
+      category: 'Starter',
+      name: 'Starter Mystery Box',
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
@@ -55,11 +58,12 @@ export default function Home() {
     },
     {
       id: 9,
+      category: 'Individuell',
       name: 'Individuelle Mystery Box',
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-      image: '/mysteryBox/starterbox.jpg',
+      image: '/mysteryBox/placeholder-box.jpg',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }

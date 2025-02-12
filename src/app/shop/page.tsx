@@ -7,7 +7,7 @@ const products = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/mysterybos-tech.jpg',
+		image: '/mysteryBox/mysterybox-tech.jpg',
 		price: 'Surprise!',
 		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
@@ -95,8 +95,8 @@ export default function ShopPage() {
 			<main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
 				<section className="relative py-12 md:py-24 overflow-hidden">
 					<div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-pink-900/10"></div>
-					<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
 					<div className="container mx-auto px-4 relative z-10">
+
 						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 							Unsere Mystery Boxes
 						</h1>

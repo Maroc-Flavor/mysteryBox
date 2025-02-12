@@ -15,7 +15,7 @@ export const products: Product[] = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysterybox-tech.jpg',
+		image: '/mysteryBox/mysterybos-tech.jpg',
 		price: 99.99,
 		originalPrice: 129.99,
 		offer: '',
@@ -106,7 +106,7 @@ export const products: Product[] = [
 		price: '',
 		originalPrice: '',
 		offer: 'Flexible',
-		image: '/mysteryBox/starterbox.jpg',
+		image: '/mysteryBox/placeholder-box.jpg',
 		description: 'individuell anpassbar. Sprich mit uns.',
 		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	}
