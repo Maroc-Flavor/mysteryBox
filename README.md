@@ -2,50 +2,37 @@
 
 A modern online shop for Mystery Boxes built with Next.js.
 
-## GitHub Pages Deployment Setup
+## Deployment auf GitHub Pages
 
-### 1. Environment Setup
-1. Go to your repository settings
-2. Navigate to "Environments"
-3. Create a new environment called "github-pages"
-4. Add the following secrets:
-   - `NEXT_PUBLIC_PAYPAL_CLIENT_ID`: Your PayPal client ID
-   - `NEXT_PUBLIC_API_URL`: Your API endpoint URL
+1. Repository klonen:
+```bash
+git clone https://github.com/[your-username]/mysteryBox.git
+cd mysteryBox
+```
 
-### 2. Environment Protection Rules
-1. In the github-pages environment settings:
-   - Enable "Required reviewers" and add team members
-   - Set "Deployment branches" to main/master only
-   - Configure "Wait timer" if needed (e.g., 10 minutes)
+2. Dependencies installieren:
+```bash
+npm install
+```
 
-### 3. Repository Settings
-1. Go to "Pages" settings
-2. Set source to "GitHub Actions"
+3. Lokale Entwicklung:
+```bash
+npm run dev
+```
 
-### 4. Development
-- Use environment variables in your code:
-  ```js
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
-  const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
-  ```
+4. Für GitHub Pages deployen:
+```bash
+npm run deploy
+```
 
-### 5. Local Development
-1. Create a `.env.local` file:
-   ```
-   NEXT_PUBLIC_PAYPAL_CLIENT_ID=your_paypal_client_id
-   NEXT_PUBLIC_API_URL=your_api_url
-   ```
-2. Run development server:
-   ```bash
-   npm run dev
-   ```
+5. In den GitHub Repository Einstellungen:
+   - Gehe zu "Settings" > "Pages"
+   - Unter "Source", wähle "gh-pages" Branch
+   - Speichere die Änderungen
 
-### 6. Build and Deploy
-- Push to main branch to trigger automatic deployment
-- GitHub Actions will handle the build and deployment process
-- Check Actions tab for deployment status
+Die Seite wird dann unter `https://[your-username].github.io/mysteryBox` verfügbar sein.
 
-## Technologies
+## Technologien
 
 - Next.js
 - Tailwind CSS

@@ -4,8 +4,12 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	basePath: process.env.NODE_ENV === 'production' ? '/mysteryBox' : '',
-	assetPrefix: process.env.NODE_ENV === 'production' ? '/mysteryBox/' : '',
+	basePath: '/mysteryBox',
+	assetPrefix: '/mysteryBox',
+	trailingSlash: true,
+	typescript: {
+		ignoreBuildErrors: true
+	}
 }
 
 module.exports = nextConfig

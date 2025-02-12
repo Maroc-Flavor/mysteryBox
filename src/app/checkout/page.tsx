@@ -3,11 +3,17 @@
 import { useCart } from '@/context/CartContext';
 import Layout from '@/components/layout';
 import { useState } from 'react';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+
+const CountryFlag = ({ flag }: { flag: string }) => (
+	<span 
+		dangerouslySetInnerHTML={{ __html: flag }} 
+		className="w-6 h-4 inline-block align-middle mr-2"
+		style={{ verticalAlign: '-2px' }}
+	/>
+);
 import { shippingData, type ShippingOption, type CountryShipping } from '@/data/shipping';
-
-
 
 
 const steps = [
@@ -23,15 +29,15 @@ const steps = [
 	},
 	{
 		id: 3,
-		name: 'Bestätigung',
+		name: 'Zahlung',
 		icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
 	}
 ];
 
 export default function Checkout() {
-	const router = useRouter();
 	const { items, totalPrice, clearCart } = useCart();
 	const [step, setStep] = useState(1);
+	const [isProcessing, setIsProcessing] = useState(false);
 	const [selectedCountry, setSelectedCountry] = useState<CountryShipping>(shippingData[0]);
 	const [selectedShipping, setSelectedShipping] = useState<ShippingOption>(shippingData[0].options[0]);
 	const [formData, setFormData] = useState({
@@ -43,7 +49,6 @@ export default function Checkout() {
 		postalCode: '',
 		country: 'Deutschland'
 	});
-
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
@@ -68,14 +73,13 @@ export default function Checkout() {
 		setStep(3);
 	};
 
-	const handleOrderComplete = () => {
-		clearCart();
-		sessionStorage.setItem('orderComplete', 'true');
-		router.push('/checkout/success');
-	};
-
 	const finalPrice = totalPrice + selectedShipping.price;
 
+	const initialOptions = {
+		clientId: "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS",
+		currency: "EUR",
+		intent: "capture",
+	};
 
 	return (
 		<Layout>
@@ -141,25 +145,25 @@ export default function Checkout() {
 							  mt-4 text-sm font-medium transition-all duration-500
 							  ${step >= s.id ? 'text-indigo-600 scale-110' : 'text-gray-500'}
 							`}>
-											{s.name}
-										</div>
-									</div>
-
-									{_idx < steps.length - 1 && (
-										<div className="w-full mx-6">
-											<div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-												<div
-													className={`h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-700 ease-in-out transform
+							  {s.name}
+							</div>
+						  </div>
+						  
+						  {_idx < steps.length - 1 && (
+							<div className="w-full mx-6">
+							  <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+								<div 
+								  className={`h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-700 ease-in-out transform
 									${step > s.id ? 'w-full scale-100' : 'w-0 scale-95'}`}
-												></div>
-											</div>
-										</div>
-									)}
-								</div>
-							))}
+								></div>
+							  </div>
+							</div>
+						  )}
 						</div>
+					  ))}
 					</div>
-					<style jsx global>{`
+				  </div>
+				  <style jsx global>{`
 					@keyframes pulse-subtle {
 					  0%, 100% { transform: scale(1.1); }
 					  50% { transform: scale(1.15); }
@@ -184,180 +188,233 @@ export default function Checkout() {
 						<div className="md:col-span-2">
 							<div className="bg-white p-6 rounded-xl shadow-lg">
 								{step === 1 && (
-									<form onSubmit={handleSubmit} className="space-y-4">
+								  <form onSubmit={handleSubmit} className="space-y-4">
 
-										<div className="grid md:grid-cols-2 gap-4">
-											<div>
-												<label className="block text-sm text-gray-600 font-medium text-gray-700 mb-1">
-													Vorname
-												</label>
-												<input
-													type="text"
-													name="firstName"
-													required
-													value={formData.firstName}
-													onChange={handleInputChange}
-													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
-												/>
+											<div className="grid md:grid-cols-2 gap-4">
+												<div>
+													<label className="block text-sm font-medium text-gray-700 mb-1">
+														Vorname
+													</label>
+													<input
+														type="text"
+														name="firstName"
+														required
+														value={formData.firstName}
+														onChange={handleInputChange}
+														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													/>
+												</div>
+												<div>
+													<label className="block text-sm font-medium text-gray-700 mb-1">
+														Nachname
+													</label>
+													<input
+														type="text"
+														name="lastName"
+														required
+														value={formData.lastName}
+														onChange={handleInputChange}
+														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													/>
+												</div>
 											</div>
-											<div>
-												<label className="block text-sm text-gray-600 font-medium text-gray-700 mb-1">
-													Nachname
-												</label>
-												<input
-													type="text"
-													name="lastName"
-													required
-													value={formData.lastName}
-													onChange={handleInputChange}
-													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
-												/>
-											</div>
-										</div>
-										<div>
-											<label className="block text-sm font-medium text-gray-700 mb-1">
-												E-Mail
-											</label>
-											<input
-												type="email"
-												name="email"
-												required
-												value={formData.email}
-												onChange={handleInputChange}
-												className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
-											/>
-										</div>
-										<div>
-											<label className="block text-sm font-medium text-gray-700 mb-1">
-												Adresse
-											</label>
-											<input
-												type="text"
-												name="address"
-												required
-												value={formData.address}
-												onChange={handleInputChange}
-												className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
-											/>
-										</div>
-										<div className="grid md:grid-cols-2 gap-4">
 											<div>
 												<label className="block text-sm font-medium text-gray-700 mb-1">
-													Stadt
+													E-Mail
 												</label>
 												<input
-													type="text"
-													name="city"
+													type="email"
+													name="email"
 													required
-													value={formData.city}
+													value={formData.email}
 													onChange={handleInputChange}
-													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
+													className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
 												/>
 											</div>
 											<div>
 												<label className="block text-sm font-medium text-gray-700 mb-1">
-													PLZ
+													Adresse
 												</label>
 												<input
 													type="text"
-													name="postalCode"
+													name="address"
 													required
-													value={formData.postalCode}
+													value={formData.address}
 													onChange={handleInputChange}
-													className="w-full px-4 py-2 border text-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500"
+													className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
 												/>
 											</div>
-										</div>
-										<button
-											type="submit"
-											className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
-										>
-											Weiter zur Zahlung
-										</button>
-									</form>
-								)}
+											<div className="grid md:grid-cols-2 gap-4">
+												<div>
+													<label className="block text-sm font-medium text-gray-700 mb-1">
+														Stadt
+													</label>
+													<input
+														type="text"
+														name="city"
+														required
+														value={formData.city}
+														onChange={handleInputChange}
+														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													/>
+												</div>
+												<div>
+													<label className="block text-sm font-medium text-gray-700 mb-1">
+														PLZ
+													</label>
+													<input
+														type="text"
+														name="postalCode"
+														required
+														value={formData.postalCode}
+														onChange={handleInputChange}
+														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													/>
+												</div>
+											</div>
+											<button
+												type="submit"
+												className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+											>
+												Weiter zur Zahlung
+											</button>
+										  </form>
+										)}
 
-								{step === 2 && (
-									<form onSubmit={handleShippingSubmit} className="space-y-6">
-										<h2 className="text-2xl font-bold text-gray-700 mb-6">Versandoptionen</h2>
-										<div className="space-y-4">
-											<div>
+										{step === 2 && (
+										  <form onSubmit={handleShippingSubmit} className="space-y-6">
+											<h2 className="text-2xl font-bold test-gray-900 mb-6">Versandoptionen</h2>
+											<div className="space-y-4">
+											  <div>
 												<label className="block text-sm font-medium text-gray-900 mb-2">Land</label>
 												<select
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500"
-													value={selectedCountry.id}
-													onChange={(e) => handleCountryChange(e.target.value)}
+												  className="w-full px-4 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500"
+												  value={selectedCountry.id}
+												  onChange={(e) => handleCountryChange(e.target.value)}
 												>
-													{shippingData.map((country) => (
-														<option key={country.id} value={country.id}>
-															{country.name}
-														</option>
-													))}
+												  {shippingData.map((country) => (
+													<option key={country.id} value={country.id}>
+													  {country.flag} {country.name}
+													</option>
+												  ))}
 												</select>
-											</div>
+											  </div>
 
-											<div className="space-y-4">
+											  <div className="space-y-4">
 												{selectedCountry.options.map((option) => (
-													<div
-														key={option.id}
-														className={`border rounded-lg p-4 cursor-pointer transition-all ${selectedShipping.id === option.id
-																? 'border-indigo-600 bg-indigo-50'
-																: 'hover:border-gray-400'
-															}`}
-														onClick={() => setSelectedShipping(option)}
-													>
-														<div className="flex justify-between items-center">
-															<div>
-																<h3 className="font-medium text-gray-600">{option.name}</h3>
-																<p className="text-sm text-gray-600">{option.description}</p>
-																<p className="text-sm text-gray-600">{option.estimatedDays}</p>
-															</div>
-															<div className="flex items-center">
-																<span className="font-bold text-lg text-gray-600">{option.price} €</span>
-																{selectedShipping.id === option.id && (
-																	<div className="ml-4 h-5 w-5 text-indigo-600">
-																		<svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-																			<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-																		</svg>
-																	</div>
-																)}
-															</div>
-														</div>
+												  <div
+													key={option.id}
+													className={`border rounded-lg p-4 cursor-pointer transition-all ${
+													  selectedShipping.id === option.id
+														? 'border-indigo-600 bg-indigo-50'
+														: 'hover:border-gray-400'
+													}`}
+													onClick={() => setSelectedShipping(option)}
+												  >
+													<div className="flex justify-between items-center">
+													  <div>
+														<h3 className="font-medium">{option.name}</h3>
+														<p className="text-sm text-gray-600">{option.description}</p>
+														<p className="text-sm text-gray-600">{option.estimatedDays}</p>
+													  </div>
+													  <div className="flex items-center">
+														<span className="font-bold text-lg">{option.price} €</span>
+														{selectedShipping.id === option.id && (
+														  <div className="ml-4 h-5 w-5 text-indigo-600">
+															<svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+															  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+															</svg>
+														  </div>
+														)}
+													  </div>
 													</div>
+												  </div>
 												))}
+											  </div>
 											</div>
-										</div>
-										<button
-											type="submit"
-											className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
-										>
-											Weiter zur Zahlung
-										</button>
-									</form>
-								)}
+											<button
+											  type="submit"
+											  className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+											>
+											  Weiter zur Zahlung
+											</button>
+										  </form>
+										)}
 
-								{step === 3 && (
-								  <div className="space-y-6">
-									<h2 className="text-2xl font-bold mb-6 text-gray-900">Bestellübersicht</h2>
-									<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl mb-6">
-									  <p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
-									  <p className="text-gray-600 mb-4">Ihre Bestellung wird an folgende Adresse geliefert:</p>
-									  <div className="text-gray-700">
-										<p>{formData.firstName} {formData.lastName}</p>
-										<p>{formData.address}</p>
-										<p>{formData.postalCode} {formData.city}</p>
-										<p>{formData.country}</p>
-									  </div>
-									</div>
-									<button
-									  onClick={handleOrderComplete}
-									  className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
-									>
-									  Bestellung abschließen
-									</button>
-								  </div>
-								)}
+										{step === 3 && (
+											<div className="space-y-6">
+												<h2 className="text-2xl font-bold mb-6 text-gray-900">Zahlung</h2>
+												<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl mb-6">
+													<p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
+													<p className="text-gray-600">Bitte wählen Sie Ihre bevorzugte Zahlungsmethode:</p>
+												</div>
+												<div className="bg-white border border-gray-200 rounded-xl p-6 relative">
+													{isProcessing && (
+														<div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+															<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+														</div>
+													)}
+													<PayPalScriptProvider options={initialOptions}>
+														<PayPalButtons
+															style={{
+																color: "blue",
+																shape: "rect",
+																label: "pay",
+																height: 50
+															}}
+															disabled={isProcessing}
+															createOrder={(_, actions) => {
+																return actions.order.create({
+																	intent: "CAPTURE",
+																	purchase_units: [{
+																		amount: {
+																			value: finalPrice.toFixed(2),
+																			currency_code: "EUR"
+																		},
+																		description: `MysteryBox Bestellung - ${items.map(item => item.name).join(', ')}`
+																	}]
+																});
+															}}
+															onApprove={async (_, actions) => {
+																try {
+																	setIsProcessing(true);
+																	const order = await actions.order?.capture();
+																	if (order) {
+																		const response = await fetch('/api/orders', {
+																			method: 'POST',
+																			headers: {
+																				'Content-Type': 'application/json',
+																			},
+																			body: JSON.stringify({
+																				orderDetails: {
+																					items,
+																					totalPrice: finalPrice,
+																					paypalOrderId: order.id,
+																				},
+																				customerInfo: formData
+																			}),
+																		});
 
+																		if (!response.ok) {
+																			throw new Error('Failed to process order');
+																		}
+
+																		sessionStorage.setItem('orderComplete', 'true');
+																		clearCart();
+																		window.location.href = '/checkout/success';
+																	}
+																} catch (error) {
+																	console.error('Error processing order:', error);
+																	alert('There was an error processing your order. Please try again.');
+																} finally {
+																	setIsProcessing(false);
+																}
+															}}
+														/>
+													</PayPalScriptProvider>
+												</div>
+											</div>
+										)}
 							</div>
 						</div>
 

@@ -106,7 +106,7 @@ export const products: Product[] = [
 		price: '',
 		originalPrice: '',
 		offer: 'Flexible',
-		image: '/mysteryBox/placeholder-box.jpg',
+		image: '/mysteryBox/starterbox.jpg',
 		description: 'individuell anpassbar. Sprich mit uns.',
 		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	}
