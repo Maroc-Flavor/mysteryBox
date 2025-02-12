@@ -23,20 +23,19 @@ jobs:
           
       - name: Install dependencies
         run: |
-          cd mysterybox
           npm install
           npm run build
         
       - name: Add .nojekyll file
         run: |
-          cd mysterybox
           touch out/.nojekyll
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: mysterybox/out
+          folder: out
           branch: gh-pages
           clean: true
+
 
 
