@@ -1,13 +1,17 @@
 import { CartProvider } from '@/context/CartContext';
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import { Metadata } from 'next';
 import "./globals.css";
 
 const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
-  variable: "--font-inter",
 });
 
+const robotoMono = Roboto_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "MysteryBox - Überraschungen Online Shopping",
@@ -21,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-        <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
         <CartProvider>
           {children}
         </CartProvider>
