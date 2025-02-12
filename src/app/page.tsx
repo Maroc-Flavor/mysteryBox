@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
-import { getImagePath } from '@/utils/getImagePath';
+
 
 
 
@@ -42,7 +42,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-        image: getImagePath('/mysteryBox/mysterybox-premium1.jpg'),
+        image: '/mysteryBox/mysterybox-premium1.jpg',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -53,7 +53,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: getImagePath('/mysteryBox/starterbox.jpg'),
+        image: '/mysteryBox/starterbox.jpg',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -64,7 +64,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: getImagePath('/mysteryBox/placeholder-box.jpg'),
+        image: '/mysteryBox/placeholder-box.jpg',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -122,12 +122,13 @@ export default function Home() {
               <div className="relative mt-8 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
                   <Image
-                    src={getImagePath('/mysteryBox/founder-image.jpg')}
+                    src="/mysteryBox/founder-image.jpg"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
                     className="transform hover:scale-105 transition-transform duration-500"
                     priority
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
@@ -166,12 +167,13 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                    src={getImagePath('/mysteryBox/founder-portrait.jpg')}
-                  alt="Gründer Portrait"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="hover:scale-105 transition-transform duration-500"
-                  priority
+                    src="/mysteryBox/founder-portrait.jpg"
+                    alt="Gründer Portrait"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="hover:scale-105 transition-transform duration-500"
+                    priority
+                    quality={75}
                 />
               </div>
               <div className="space-y-6">

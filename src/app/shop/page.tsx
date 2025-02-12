@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout';
-import { getImagePath } from '@/utils/getImagePath';
+
 
 const products = [
 	{
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: getImagePath('/mysteryBox/mysterybos-tech.jpg'),
+		image: '/mysteryBox/mysterybox-tech.jpg',
 		price: 'Surprise!',
 		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
@@ -17,7 +17,7 @@ const products = [
 		id: 2,
 		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		image: getImagePath('/mysteryBox/mysterybox-fashion.jpg'),
+		image: '/mysteryBox/mysterybox-fashion.jpg',
 		price: 'Surprise!',
 		description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker',
 		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
@@ -26,7 +26,7 @@ const products = [
 		id: 3,
 		category: 'Food',
 		name: 'Mystery Food Box',
-		image: getImagePath('/mysteryBox/placeholder-box1.jpg'),
+		image: '/mysteryBox/placeholder-box1.jpg',
 		price: 'Surprise!',
 		description: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -35,7 +35,7 @@ const products = [
 		id: 4,
 		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		image: getImagePath('/mysteryBox/mysterybox-deluxe.jpeg'),
+		image: '/mysteryBox/mysterybox-deluxe.jpeg',
 		price: 'Surprise!',
 		description: 'Ein Hauch von Luxus und Überraschung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -44,7 +44,7 @@ const products = [
 		id: 5,
 		category: 'Mega ',
 		name: 'Mystery Mega Box',
-		image: getImagePath('/mysteryBox/mysterybox-mega.jpg'),
+		image: '/mysteryBox/mysterybox-mega.jpg',
 		price: 'Surprise!',
 		description: 'Große Überraschungen für große Freude.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -53,7 +53,7 @@ const products = [
 		id: 6,
 		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		image: getImagePath('/mysteryBox/mysterybox-ultimate.jpg'),
+		image: '/mysteryBox/mysterybox-ultimate.jpg',
 		price: 'Surprise!',
 		description: 'Die ultimative Überraschungserfahrung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -64,7 +64,7 @@ const products = [
 		name: 'XXL Premium Mystery Box',
 		price: 99.99,
 		originalPrice: 279.99,
-		image: getImagePath('/mysteryBox/mysterybox-premium1.jpg'),
+		image: '/mysteryBox/mysterybox-premium1.jpg',
 		description: '10 KG Überraschungsbox',
 		detailDescription: '10 KG Überraschungsbox',
 	  },
@@ -74,7 +74,7 @@ const products = [
 		name: 'Starter Mystery Box',
 		price: 39.99,
 		originalPrice: 120.00,
-		image: getImagePath('/mysteryBox/starterbox.jpg'),
+		image: '/mysteryBox/starterbox.jpg',
 		description: '3 KG Überraschungskarton',
 		detailDescription: '3 KG Überraschungskarton.',
 	  },
@@ -84,7 +84,7 @@ const products = [
 		name: 'Individuelle Mystery Box',
 		price: 'Individuell',
 		offer: 'Flexible',
-		image: getImagePath('/mysteryBox/starterbox.jpg'),
+		image: '/mysteryBox/starterbox.jpg',
 		description: 'individuell anpassbar. Sprich mit uns.',
 		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	  }
@@ -112,9 +112,13 @@ export default function ShopPage() {
 										<div className="relative h-48 sm:h-64 overflow-hidden">
 											<Image
 												fill
+
 												src={product.image}
 												alt={product.name}
+												sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 												className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+												loading="eager"
+												quality={75}
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 												<div className="absolute bottom-4 left-4 right-4">

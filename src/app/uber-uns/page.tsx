@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Layout from '@/components/layout';
-import { getImagePath } from '@/utils/getImagePath';
+
 
 export default function AboutUs() {
 	const milestones = [
@@ -49,7 +49,7 @@ export default function AboutUs() {
 						<div className="grid md:grid-cols-2 gap-16 items-center">
 							<div className="relative h-[600px] rounded-2xl overflow-hidden">
 								<Image
-									src={getImagePath('/mysteryBox/founder-portrait.jpg')}
+									src="/mysteryBox/founder-portrait.jpg"
 									alt="Unser Gründer"
 									fill
 									sizes="(max-width: 768px) 100vw, 50vw"
@@ -77,10 +77,11 @@ export default function AboutUs() {
 								<div className="flex items-center space-x-4">
 									<div className="h-16 w-16 relative">
 										<Image
-											src={getImagePath('/mysteryBox/founder-floating.jpg')}
+											src="/mysteryBox/founder-floating.jpg"
 											alt="Don Simo"
 											fill
 											className="rounded-full object-cover"
+											quality={75}
 										/>
 									</div>
 									<div>

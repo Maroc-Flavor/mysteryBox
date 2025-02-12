@@ -1,6 +1,5 @@
-import { getImagePath } from '@/utils/getImagePath';
-
 interface Product {
+
 	id: number;
 	category: string;
 	name: string;
@@ -17,7 +16,7 @@ export const products: Product[] = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: getImagePath('/mysteryBox/mysterybox-tech.jpg'),
+		image: '/mysteryBox/mysterybox-tech.jpg',
 		price: 99.99,
 		originalPrice: 129.99,
 		offer: '',
@@ -28,7 +27,7 @@ export const products: Product[] = [
 		id: 2,
 		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		image: getImagePath('/mysteryBox/mysterybox-fashion.jpg'),
+		image: '/mysteryBox/mysterybox-fashion.jpg',
 		price: 79.99,
 		originalPrice: 99.99,
 		offer: '',
@@ -39,7 +38,7 @@ export const products: Product[] = [
 		id: 3,
 		category: 'Food',
 		name: 'Mystery Food Box',
-		image: getImagePath('/mysteryBox/placeholder-box1.jpg'),
+		image: '/mysteryBox/placeholder-box1.jpg',
 		price: 49.99,
 		originalPrice: 69.99,
 		offer: '',
@@ -50,7 +49,7 @@ export const products: Product[] = [
 		id: 4,
 		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		image: getImagePath('/mysteryBox/mysterybox-deluxe.jpeg'),
+		image: '/mysteryBox/mysterybox-deluxe.jpeg',
 		price: 149.99,
 		originalPrice: 199.99,
 		offer: '',
@@ -61,7 +60,7 @@ export const products: Product[] = [
 		id: 5,
 		category: 'Mega',
 		name: 'Mystery Mega Box',
-		image: getImagePath('/mysteryBox/mysterybox-mega.jpg'),
+		image: '/mysteryBox/mysterybox-mega.jpg',
 		price: 199.99,
 		originalPrice: 249.99,
 		offer: '',
@@ -72,7 +71,7 @@ export const products: Product[] = [
 		id: 6,
 		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		image: getImagePath('/mysteryBox/mysterybox-ultimate.jpg'),
+		image: '/mysteryBox/mysterybox-ultimate.jpg',
 		price: 299.99,
 		originalPrice: 399.99,
 		offer: '',
@@ -86,7 +85,7 @@ export const products: Product[] = [
 		price: 99.99,
 		originalPrice: 279.99,
 		offer: '',
-		image: getImagePath('/mysteryBox/mysterybox-premium1.jpg'),
+		image: '/mysteryBox/mysterybox-premium1.jpg',
 		description: '10 KG Überraschungsbox',
 		detailDescription: '10 KG Überraschungsbox.',
 	},
@@ -97,7 +96,7 @@ export const products: Product[] = [
 		price: 39.99,
 		originalPrice: 120.00,
 		offer: 'Flexible',
-		image: getImagePath('/mysteryBox/starterbox.jpg'),
+		image: '/mysteryBox/starterbox.jpg',
 		description: '3 KG Überraschungskarton',
 		detailDescription: '3 KG Überraschungsbox.',
 	},
@@ -108,7 +107,7 @@ export const products: Product[] = [
 		price: '',
 		originalPrice: '',
 		offer: 'Flexible',
-		image: getImagePath('/mysteryBox/starterbox.jpg'),
+		image: '/mysteryBox/starterbox.jpg',
 		description: 'individuell anpassbar. Sprich mit uns.',
 		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	}
