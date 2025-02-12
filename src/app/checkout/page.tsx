@@ -5,15 +5,8 @@ import Layout from '@/components/layout';
 import { useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Image from 'next/image';
-
-const CountryFlag = ({ flag }: { flag: string }) => (
-	<span 
-		dangerouslySetInnerHTML={{ __html: flag }} 
-		className="w-6 h-4 inline-block align-middle mr-2"
-		style={{ verticalAlign: '-2px' }}
-	/>
-);
 import { shippingData, type ShippingOption, type CountryShipping } from '@/data/shipping';
+
 
 
 const steps = [
@@ -76,7 +69,7 @@ export default function Checkout() {
 	const finalPrice = totalPrice + selectedShipping.price;
 
 	const initialOptions = {
-		clientId: "AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS",
+		clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
 		currency: "EUR",
 		intent: "capture",
 	};
@@ -294,7 +287,7 @@ export default function Checkout() {
 												>
 													{shippingData.map((country) => (
 														<option key={country.id} value={country.id}>
-															{country.flag} {country.name}
+															{country.name}
 														</option>
 													))}
 												</select>
