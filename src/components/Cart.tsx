@@ -64,7 +64,7 @@ export default function Cart() {
 										className="text-gray-500 hover:text-gray-700 p-2"
 										aria-label="Warenkorb schließen"
 									>
-										<svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
 										</svg>
 									</button>
@@ -111,7 +111,7 @@ export default function Cart() {
 																	className="text-gray-500 hover:text-gray-700 p-1"
 																	aria-label="Menge reduzieren"
 																>
-																	<svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																	<svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 																		<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
 																	</svg>
 																</button>
@@ -121,7 +121,7 @@ export default function Cart() {
 																	className="text-gray-500 hover:text-gray-700 p-1"
 																	aria-label="Menge erhöhen"
 																>
-																	<svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																	<svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 																		<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
 																	</svg>
 																</button>
@@ -132,7 +132,7 @@ export default function Cart() {
 															className="text-red-500 hover:text-red-700 p-2"
 															aria-label="Artikel entfernen"
 														>
-															<svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
 															</svg>
 														</button>
@@ -151,7 +151,7 @@ export default function Cart() {
 												onClick={() => setIsCartOpen(false)}
 											>
 												Zur Kasse
-												<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
 												</svg>
 											</Link>

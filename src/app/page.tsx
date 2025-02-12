@@ -150,12 +150,12 @@ export default function Home() {
             }`}
           aria-label="Nach oben scrollen"
         >
-          <svg
-            className="w-5 h-5 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
+            <svg
+            className="w-4 h-4 text-white transform group-hover:-translate-y-1 transition-transform duration-300"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-          >
+            >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
@@ -275,7 +275,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition-opacity"
                     >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                       </svg>
                       Instagram Live
@@ -286,7 +286,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-900 transition-colors"
                     >
-                      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 015.2-1.74V11a8.55 8.55 0 006.33 2.62V10.2a4.83 4.83 0 01-3.77-4.25V5.5a4.83 4.83 0 003.77 4.25v3.38z" />
                       </svg>
                       TikTok Live
@@ -297,7 +297,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
                     >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                       Facebook Live
@@ -337,13 +337,18 @@ export default function Home() {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="mb-4">
-                    <svg className="w-12 h-12 mx-auto" viewBox="0 0 24 16">
-                      {/* Schwarz */}
+                    <svg className="w-12 h-8 mx-auto" viewBox="0 0 24 16">
+                      <defs>
+                      <clipPath id="flagClipDE">
+                        <rect width="24" height="16" rx="2" />
+                      </clipPath>
+                      </defs>
+                      <g clipPath="url(#flagClipDE)">
                       <rect width="24" height="5.33" y="0" fill="#000000" />
-                      {/* Rot */}
                       <rect width="24" height="5.33" y="5.33" fill="#DD0000" />
-                      {/* Gold */}
                       <rect width="24" height="5.33" y="10.66" fill="#FFCE00" />
+                      </g>
+                      <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-800">Deutschland</h3>
@@ -351,7 +356,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <div className="mb-4">
-                    <svg className="w-12 h-12 mx-auto" viewBox="0 0 24 16">
+                    <svg className="w-12 h-8 mx-auto" viewBox="0 0 24 16">
                       <defs>
                         <clipPath id="flagClip">
                           <rect width="24" height="16" rx="2" />
@@ -372,20 +377,19 @@ export default function Home() {
                 <div className="text-center">
                   <div className="mb-4">
                     {/* Schweizer Flagge */}
-                    <svg className="w-12 h-12 mx-auto" viewBox="0 0 16 16">
+                    <svg className="w-12 h-8 mx-auto" viewBox="0 0 24 16">
                       <defs>
-                        <clipPath id="flagClipCH">
-                          <rect width="16" height="16" rx="2" />
-                        </clipPath>
+                      <clipPath id="flagClipCH">
+                        <rect width="24" height="16" rx="2" />
+                      </clipPath>
                       </defs>
                       <g clipPath="url(#flagClipCH)">
-                        {/* Roter Hintergrund */}
-                        <rect width="16" height="16" fill="#FF0000" />
-                        {/* Weißes Kreuz */}
-                        <rect x="6.5" y="3" width="3" height="10" fill="white" />
-                        <rect x="3" y="6.5" width="10" height="3" fill="white" />
+                      <rect width="24" height="16" fill="#FF0000" />
+                      <rect x="9" y="4" width="6" height="8" fill="white" />
+                      <rect x="6" y="7" width="12" height="2" fill="white" />
                       </g>
-                      <rect width="16" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
+                      <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
+
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-800">Schweiz</h3>
@@ -439,7 +443,7 @@ export default function Home() {
                 <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start">
                     <div className="flex-shrink-0">
-                      <svg className="h-8 w-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={rule.icon} />
                       </svg>
                     </div>
