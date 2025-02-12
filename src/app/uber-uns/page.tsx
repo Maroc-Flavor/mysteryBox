@@ -56,7 +56,7 @@ export default function AboutUs() {
 									style={{ objectFit: 'cover' }}
 									className="hover:scale-105 transition-transform duration-500"
 									priority
-									quality={75}
+									quality={85}
 								/>
 							</div>
 							<div className="space-y-8">
@@ -80,8 +80,10 @@ export default function AboutUs() {
 											src="/mysteryBox/founder-floating.jpg"
 											alt="Don Simo"
 											fill
+											sizes="64px"
 											className="rounded-full object-cover"
-											quality={75}
+											quality={85}
+											style={{ objectFit: 'cover' }}
 										/>
 									</div>
 									<div>

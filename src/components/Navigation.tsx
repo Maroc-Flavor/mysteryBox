@@ -36,7 +36,8 @@ export default function Navigation() {
 									className="object-contain rounded-full transition-all duration-300 hover:opacity-90"
 									priority
 									sizes="(max-width: 768px) 60px, 100px"
-									quality={75}
+									quality={85}
+									style={{ objectFit: 'contain' }}
 								/>
 
 							</div>

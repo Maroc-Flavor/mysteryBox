@@ -112,14 +112,14 @@ export default function ShopPage() {
 										<div className="relative h-48 sm:h-64 overflow-hidden">
 											<Image
 												fill
-
 												src={product.image}
 												alt={product.name}
 												sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 												className="object-cover transform transition-transform duration-500 group-hover:scale-110"
-												loading="eager"
-												quality={75}
+												priority={product.id <= 3}
+												quality={85}
 											/>
+
 											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 												<div className="absolute bottom-4 left-4 right-4">
 													<span className="text-white text-lg font-medium">Mehr Details</span>

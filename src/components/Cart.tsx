@@ -100,6 +100,9 @@ export default function Cart() {
 																alt={item.name}
 																fill
 																className="rounded-lg object-cover"
+																sizes="(max-width: 640px) 64px, 80px"
+																quality={85}
+																style={{ objectFit: 'cover' }}
 															/>
 														</div>
 														<div className="flex-grow min-w-0">
