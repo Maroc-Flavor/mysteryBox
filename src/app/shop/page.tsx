@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout';
+import { getImagePath } from '@/utils/getImagePath';
 
 const products = [
 	{
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/mysterybos-tech.jpg',
+		image: getImagePath('/mysteryBox/mysterybos-tech.jpg'),
 		price: 'Surprise!',
 		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
@@ -16,7 +17,7 @@ const products = [
 		id: 2,
 		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		image: '/mysteryBox/mysterybox-fashion.jpg',
+		image: getImagePath('/mysteryBox/mysterybox-fashion.jpg'),
 		price: 'Surprise!',
 		description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker',
 		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
@@ -25,7 +26,7 @@ const products = [
 		id: 3,
 		category: 'Food',
 		name: 'Mystery Food Box',
-		image: '/mysteryBox/placeholder-box1.jpg',
+		image: getImagePath('/mysteryBox/placeholder-box1.jpg'),
 		price: 'Surprise!',
 		description: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -34,7 +35,7 @@ const products = [
 		id: 4,
 		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		image: '/mysteryBox/mysterybox-deluxe.jpeg',
+		image: getImagePath('/mysteryBox/mysterybox-deluxe.jpeg'),
 		price: 'Surprise!',
 		description: 'Ein Hauch von Luxus und Überraschung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -43,7 +44,7 @@ const products = [
 		id: 5,
 		category: 'Mega ',
 		name: 'Mystery Mega Box',
-		image: '/mysteryBox/mysterybox-mega.jpg',
+		image: getImagePath('/mysteryBox/mysterybox-mega.jpg'),
 		price: 'Surprise!',
 		description: 'Große Überraschungen für große Freude.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -52,7 +53,7 @@ const products = [
 		id: 6,
 		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		image: '/mysteryBox/mysterybox-ultimate.jpg',
+		image: getImagePath('/mysteryBox/mysterybox-ultimate.jpg'),
 		price: 'Surprise!',
 		description: 'Die ultimative Überraschungserfahrung.',
 		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
@@ -63,7 +64,7 @@ const products = [
 		name: 'XXL Premium Mystery Box',
 		price: 99.99,
 		originalPrice: 279.99,
-		image: '/mysteryBox/mysterybox-premium1.jpg',
+		image: getImagePath('/mysteryBox/mysterybox-premium1.jpg'),
 		description: '10 KG Überraschungsbox',
 		detailDescription: '10 KG Überraschungsbox',
 	  },
@@ -73,7 +74,7 @@ const products = [
 		name: 'Starter Mystery Box',
 		price: 39.99,
 		originalPrice: 120.00,
-		image: '/mysteryBox/starterbox.jpg',
+		image: getImagePath('/mysteryBox/starterbox.jpg'),
 		description: '3 KG Überraschungskarton',
 		detailDescription: '3 KG Überraschungskarton.',
 	  },
@@ -83,7 +84,7 @@ const products = [
 		name: 'Individuelle Mystery Box',
 		price: 'Individuell',
 		offer: 'Flexible',
-		image: '/mysteryBox/starterbox.jpg',
+		image: getImagePath('/mysteryBox/starterbox.jpg'),
 		description: 'individuell anpassbar. Sprich mit uns.',
 		detailDescription: 'individuell anpassbar. Sprich mit uns.',
 	  }
@@ -95,7 +96,7 @@ export default function ShopPage() {
 			<main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
 				<section className="relative py-12 md:py-24 overflow-hidden">
 					<div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-pink-900/10"></div>
-					<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
+					<div className="absolute inset-0 bg-[url('/mysteryBox/file.svg')] opacity-5"></div>
 					<div className="container mx-auto px-4 relative z-10">
 						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 							Unsere Mystery Boxes

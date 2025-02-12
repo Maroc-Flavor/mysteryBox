@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import CartButton from './CartButton';
+import { getImagePath } from '@/utils/getImagePath';
 
 export default function Navigation() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function Navigation() {
 						<Link href="/" className="relative flex items-center">
 							<div className="relative w-[80px] h-[32px] md:w-[120px] md:h-[48px] bg-white/80 rounded-full p-1">
 								<Image
-									src="/mysteryBox/logo.jpg"
+									src={getImagePath('/mysteryBox/logo.jpg')}
 									alt="Wundertüten.de"
 									fill
 									className="object-contain rounded-full transition-all duration-300 hover:opacity-90"

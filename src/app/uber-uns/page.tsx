@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Layout from '@/components/layout';
+import { getImagePath } from '@/utils/getImagePath';
 
 export default function AboutUs() {
 	const milestones = [
@@ -30,7 +31,7 @@ export default function AboutUs() {
 			<main className="flex-grow">
 				{/* Hero Section */}
 				<section className="relative py-24 bg-gradient-to-b from-indigo-900 to-purple-900">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+					<div className="absolute inset-0 bg-[url('/mysteryBox/file.svg')] opacity-10"></div>
 					<div className="container mx-auto px-4 relative z-10">
 						<div className="max-w-3xl mx-auto text-center text-white">
 							<h1 className="text-5xl font-bold mb-8">Unsere Geschichte</h1>
@@ -48,7 +49,7 @@ export default function AboutUs() {
 						<div className="grid md:grid-cols-2 gap-16 items-center">
 							<div className="relative h-[600px] rounded-2xl overflow-hidden">
 								<Image
-									src="/mysteryBox/founder-portrait.jpg"
+									src={getImagePath('/mysteryBox/founder-portrait.jpg')}
 									alt="Unser Gründer"
 									fill
 									style={{ objectFit: 'cover' }}
@@ -74,7 +75,7 @@ export default function AboutUs() {
 								<div className="flex items-center space-x-4">
 									<div className="h-16 w-16 relative">
 										<Image
-											src="/mysteryBox/founder-floating.jpg"
+											src={getImagePath('/mysteryBox/founder-floating.jpg')}
 											alt="Don Simo"
 											fill
 											className="rounded-full object-cover"
