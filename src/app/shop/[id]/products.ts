@@ -15,7 +15,7 @@ export const products: Product[] = [
 		id: 1,
 		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/mysterybos-tech.jpg',
+		image: '/mysteryBox/mysterybox-tech.jpg',
 		price: 99.99,
 		originalPrice: 129.99,
 		offer: '',
