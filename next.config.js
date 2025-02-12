@@ -4,8 +4,6 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	basePath: process.env.NODE_ENV === 'production' ? '/MysteryBox-Aide-NEXTJS' : '',
-	assetPrefix: process.env.NODE_ENV === 'production' ? '/MysteryBox-Aide-NEXTJS/' : '',
 	trailingSlash: true,
 	typescript: {
 		ignoreBuildErrors: true
