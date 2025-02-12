@@ -20,6 +20,31 @@ module.exports = {
 			height: {
 				'screen-90': '90vh',
 			},
+			keyframes: {
+				'wing-left': {
+					'0%, 100%': { transform: 'rotate(-20deg)' },
+					'50%': { transform: 'rotate(20deg)' },
+				},
+				'wing-right': {
+					'0%, 100%': { transform: 'rotate(20deg)' },
+					'50%': { transform: 'rotate(-20deg)' },
+				},
+				'particle-explosion': {
+					'0%': {
+						transform: 'translate(-50%, -50%) rotate(var(--angle)) translateY(-20px)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-50%, -50%) rotate(var(--angle)) translateY(-100px)',
+						opacity: '0'
+					}
+				}
+			},
+			animation: {
+				'wing-left': 'wing-left 1s ease-in-out infinite',
+				'wing-right': 'wing-right 1s ease-in-out infinite',
+				'particle-explosion': 'particle-explosion 0.5s ease-out forwards'
+			}
 		},
 	},
 	plugins: [],

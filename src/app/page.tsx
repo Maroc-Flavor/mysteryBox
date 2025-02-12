@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
+import FlyingBox from '@/components/FlyingBox';
 
 
 
@@ -24,6 +25,12 @@ interface Product {
 export default function Home() {
   const { addItem, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [score, setScore] = useState(0);
+  const [boxes, setBoxes] = useState([1, 2, 3]); // 3 fliegende Boxen
+
+  const handleCatch = () => {
+    setScore(prev => prev + 1);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,9 +96,16 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Section with Founder */}
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
-          {/* Background with gradient and pattern */}
+          {/* Background with gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.jpg')]"></div>
+          {boxes.map((box) => (
+            <FlyingBox key={box} onCatch={handleCatch} />
+          ))}
+          </div>
+
+          {/* Score Anzeige */}
+          <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-lg px-4 py-2 rounded-full">
+          <span className="text-white font-bold">Score: {score}</span>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
