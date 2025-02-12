@@ -122,7 +122,7 @@ export default function Home() {
               <div className="relative mt-8 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/founder-image.jpg"
+                    src="/founder-image.jpg"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
