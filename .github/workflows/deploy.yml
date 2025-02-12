@@ -20,23 +20,23 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: './mysterybox/package-lock.json'
           
       - name: Install dependencies
-        working-directory: ./mysterybox
-        run: npm install
-        
-      - name: Build
-        working-directory: ./mysterybox
-        run: npm run build
+        run: |
+          cd mysterybox
+          npm install
+          npm run build
         
       - name: Add .nojekyll file
-        run: touch ./mysterybox/out/.nojekyll
+        run: |
+          cd mysterybox
+          touch out/.nojekyll
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: mysterybox/out
           branch: gh-pages
+          clean: true
+
 
