@@ -12,7 +12,19 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      maxWidth: {
+        '8xl': '88rem',
+      },
+      aspectRatio: {
+        'product': '3/4',
+      },
+      height: {
+        'screen-90': '90vh',
+      },
     },
   },
   plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 } satisfies Config;

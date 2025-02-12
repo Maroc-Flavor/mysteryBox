@@ -52,16 +52,18 @@ export default function ProductDetail({ params }: PageProps) {
             className="bg-white rounded-2xl shadow-xl overflow-hidden backdrop-blur-lg border border-gray-100"
           >
             <div className="flex flex-col md:flex-row">
-              <div className="w-full md:w-[500px] h-[300px] md:h-[500px] relative group">
+                <div className="w-full md:w-[500px] h-[300px] md:h-[500px] relative group">
                 <Image
                   fill
                   src={product.image}
                   alt={product.name}
+                  sizes="(max-width: 768px) 100vw, 500px"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   priority
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+                </div>
 
               <div className="p-6 md:p-10 flex flex-col flex-grow">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">

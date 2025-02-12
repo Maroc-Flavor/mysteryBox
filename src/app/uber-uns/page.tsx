@@ -52,9 +52,11 @@ export default function AboutUs() {
 									src={getImagePath('/mysteryBox/founder-portrait.jpg')}
 									alt="Unser Gründer"
 									fill
+									sizes="(max-width: 768px) 100vw, 50vw"
 									style={{ objectFit: 'cover' }}
 									className="hover:scale-105 transition-transform duration-500"
 									priority
+									quality={75}
 								/>
 							</div>
 							<div className="space-y-8">

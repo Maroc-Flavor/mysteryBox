@@ -28,13 +28,15 @@ export default function Navigation() {
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link href="/" className="relative flex items-center">
-							<div className="relative w-[80px] h-[32px] md:w-[120px] md:h-[48px] bg-white/80 rounded-full p-1">
+							<div className="relative w-[60px] h-[24px] md:w-[100px] md:h-[40px] bg-white/80 rounded-full p-1">
 								<Image
 									src={getImagePath('/mysteryBox/logo.jpg')}
 									alt="Wundertüten.de"
 									fill
 									className="object-contain rounded-full transition-all duration-300 hover:opacity-90"
 									priority
+									sizes="(max-width: 768px) 60px, 100px"
+									quality={75}
 								/>
 							</div>
 						</Link>
@@ -72,11 +74,11 @@ export default function Navigation() {
 					<div className="flex items-center gap-4">
 						{/* Mobile menu button */}
 						<button 
-							className="lg:hidden p-2 rounded-lg hover:bg-gray-100/50 transition-colors"
+							className="lg:hidden p-1.5 rounded-lg hover:bg-gray-100/50 transition-colors"
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
 							aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
 						>
-							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
 									d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} 
 								/>
