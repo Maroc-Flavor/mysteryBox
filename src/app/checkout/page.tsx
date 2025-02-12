@@ -293,24 +293,11 @@ export default function Checkout() {
 													onChange={(e) => handleCountryChange(e.target.value)}
 												>
 													{shippingData.map((country) => (
-														<option key={country.id} value={country.id} className="flex items-center gap-2">
-															<CountryFlag flag={country.flag} />
-															{country.name}
+														<option key={country.id} value={country.id}>
+															{country.flag} {country.name}
 														</option>
 													))}
 												</select>
-												<style jsx>{`
-													option {
-														display: flex;
-														align-items: center;
-														padding: 8px;
-													}
-													svg {
-														width: 24px;
-														height: 16px;
-														margin-right: 8px;
-													}
-												`}</style>
 											</div>
 
 											<div className="space-y-4">
