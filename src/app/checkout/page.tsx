@@ -11,17 +11,26 @@ interface CountryFlagProps {
 	countryCode: string;
 }
 
-const CountryFlag = ({ countryCode }: CountryFlagProps) => (
-	<Image
-		src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`}
-		alt={`${countryCode} flag`}
-		width={24}
-		height={16}
-		className="inline-block align-middle mr-2"
-		style={{ verticalAlign: '-2px' }}
-		loading="lazy"
-	/>
-);
+const CountryFlag = ({ countryCode }: CountryFlagProps) => {
+	const [error, setError] = useState(false);
+
+	if (error) {
+		return <span className="inline-block w-6 h-4 bg-gray-200 rounded mr-2" />;
+	}
+
+	return (
+		<Image
+			src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`}
+			alt={`${countryCode} flag`}
+			width={24}
+			height={16}
+			className="inline-block align-middle mr-2"
+			style={{ verticalAlign: '-2px' }}
+			loading="lazy"
+			onError={() => setError(true)}
+		/>
+	);
+};
 
 
 const steps = [
@@ -67,20 +76,45 @@ export default function Checkout() {
 		country: selectedCountry.name
 	});
 
-	// Calculate final price directly from total price and shipping
-	const finalPrice = totalPrice + selectedShipping.price;
+	const [finalPrice, setFinalPrice] = useState(totalPrice);
+
+	// Update final price when shipping or total price changes
+	useEffect(() => {
+		if (selectedShipping) {
+			setFinalPrice(totalPrice + selectedShipping.price);
+		}
+	}, [totalPrice, selectedShipping]);
 
 	// Form validation with error messages
 	const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
 	const validateField = useCallback((name: string, value: string): string => {
+		if (!value.trim()) return 'Pflichtfeld';
+
 		switch (name) {
 			case 'email':
-				return !value.includes('@') ? 'Ungültige E-Mail-Adresse' : '';
+				return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) 
+					? 'Bitte geben Sie eine gültige E-Mail-Adresse ein' 
+					: '';
 			case 'postalCode':
-				return !/^\d{5}$/.test(value) ? 'Ungültige PLZ' : '';
+				return !/^\d{5}$/.test(value) 
+					? 'Die PLZ muss aus 5 Ziffern bestehen' 
+					: '';
+			case 'firstName':
+			case 'lastName':
+				return value.length < 2 
+					? 'Muss mindestens 2 Zeichen lang sein' 
+					: '';
+			case 'address':
+				return value.length < 5 
+					? 'Bitte geben Sie eine vollständige Adresse ein' 
+					: '';
+			case 'city':
+				return value.length < 2 
+					? 'Bitte geben Sie einen gültigen Ort ein' 
+					: '';
 			default:
-				return !value.trim() ? 'Pflichtfeld' : '';
+				return '';
 		}
 	}, []);
 
@@ -92,17 +126,29 @@ export default function Checkout() {
 	}, [validateField]);
 
 	const handleCountryChange = useCallback((countryId: string) => {
-		const country = shippingData.find(c => c.id === countryId);
-		if (!country) {
-			setFormErrors(prev => ({ ...prev, country: 'Ungültige Länderauswahl' }));
-			return;
-		}
+		try {
+			if (!shippingData || shippingData.length === 0) {
+				throw new Error('Keine Versanddaten verfügbar');
+			}
 
-		setSelectedCountry(country);
-		const defaultShipping = country.options[0];
-		setSelectedShipping(defaultShipping);
-		setFormData(prev => ({ ...prev, country: country.name }));
-		setFormErrors(prev => ({ ...prev, country: '' }));
+			const country = shippingData.find(c => c.id === countryId);
+			if (!country) {
+				throw new Error('Ungültige Länderauswahl');
+			}
+
+			if (!country.options || country.options.length === 0) {
+				throw new Error('Keine Versandoptionen für dieses Land verfügbar');
+			}
+
+			setSelectedCountry(country);
+			const defaultShipping = country.options[0];
+			setSelectedShipping(defaultShipping);
+			setFormData(prev => ({ ...prev, country: country.name }));
+			setFormErrors(prev => ({ ...prev, country: '' }));
+		} catch (error) {
+			const errorMessage = error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten';
+			setFormErrors(prev => ({ ...prev, country: errorMessage }));
+		}
 	}, []);
 
 	const handleShippingChange = useCallback((option: ShippingOption) => {
