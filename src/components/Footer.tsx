@@ -115,9 +115,9 @@ export default function Footer() {
 						</p>
 						<div className="flex items-center gap-3 text-sm text-gray-400">
 							<span>Made with a lot</span>
-							<Heart className="w-3.5 h-3.5 text-pink-500 animate-pulse" />
+							<Heart className="w-4 h-4 text-pink-500 animate-pulse" />
 							<span>&</span>
-							<Coffee className="w-3.5 h-3.5 text-amber-500" />
+							<Coffee className="w-4 h-4 text-amber-500" />
 							<span>by</span>
 							<a href="https://almoukramin.com"
 								className="text-white hover:text-indigo-400 font-medium transition-colors duration-200">
