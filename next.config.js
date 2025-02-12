@@ -4,12 +4,11 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	trailingSlash: true,
-	typescript: {
-		ignoreBuildErrors: true
-	}
+	basePath: process.env.NODE_ENV === 'production' ? '/MysteryBox-Aide-NEXTJS' : '',
+	assetPrefix: process.env.NODE_ENV === 'production' ? '/MysteryBox-Aide-NEXTJS/' : '',
 }
 
 module.exports = nextConfig
+
 
 
