@@ -4,10 +4,12 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	basePath: '/mysteryBox',
-	assetPrefix: '/mysteryBox/',
+	basePath: '',
+	assetPrefix: '',
 	trailingSlash: true,
 }
 
 module.exports = nextConfig
+
+
 

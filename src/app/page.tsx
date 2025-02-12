@@ -42,7 +42,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-        image: '/mysteryBox/mysterybox-premium1.jpg',
+        image: '/images/mysterybox-premium1.jpg',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -53,7 +53,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: '/mysteryBox/starterbox.jpg',
+        image: '/images/starterbox.jpg',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -64,7 +64,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: '/mysteryBox/placeholder-box.jpg',
+        image: '/images/placeholder-box.jpg',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -91,7 +91,7 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient and pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/file.svg')]"></div>
+            <div className="absolute inset-0 opacity-10 bg-[url('/images/file.svg')]"></div>
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -122,7 +122,7 @@ export default function Home() {
               <div className="relative mt-8 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
                   <Image
-                    src="/mysteryBox/founder-image.jpg"
+                    src="/images/founder-image.jpg"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -167,7 +167,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                    src="/mysteryBox/founder-portrait.jpg"
+                    src="/images/founder-portrait.jpg"
                     alt="Gründer Portrait"
                     fill
                     style={{ objectFit: 'cover' }}
