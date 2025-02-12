@@ -3,16 +3,9 @@ const nextConfig = {
 	output: 'export',
 	images: {
 		unoptimized: true,
-		domains: ['flagcdn.com'],
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'flagcdn.com',
-			},
-		],
 	},
 	basePath: '/mysteryBox',
-	assetPrefix: '/mysteryBox',
+	assetPrefix: '/mysteryBox/',
 	trailingSlash: true,
 }
 
