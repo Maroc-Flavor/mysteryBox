@@ -198,7 +198,7 @@ export default function Checkout() {
 
 	return (
 		<Layout>
-			<main className="min-h-screen bg-gray-50 py-12">
+			<main className="min-h-screen bg-black py-12">
 				<div className="max-w-4xl mx-auto px-4 mb-12">
 					<div className="relative">
 						{/* Progress Line */}
@@ -301,13 +301,13 @@ export default function Checkout() {
 					<div className="grid md:grid-cols-3 gap-8">
 						{/* Main Content */}
 						<div className="md:col-span-2">
-							<div className="bg-white p-6 rounded-xl shadow-lg">
+							<div className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-800">
 								{step === 1 && (
 								  <form onSubmit={handleSubmit} className="space-y-4">
 
 											<div className="grid md:grid-cols-2 gap-4">
 												<div>
-													<label className="block text-sm font-medium text-gray-700 mb-1">
+													<label className="block text-sm font-medium text-gray-300 mb-1">
 														Vorname
 													</label>
 													<input
@@ -316,7 +316,7 @@ export default function Checkout() {
 														required
 														value={formData.firstName}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800/50 text-gray-100 focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 												<div>
@@ -411,7 +411,7 @@ export default function Checkout() {
 												<label className="block text-sm font-medium text-gray-900 mb-2">Land</label>
 												<div className="relative">
 												  <select
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500 appearance-none"
+													className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800/50 text-gray-100 focus:ring-2 focus:ring-indigo-500 appearance-none"
 													value={selectedCountry.id}
 													onChange={(e) => handleCountryChange(e.target.value)}
 												  >
@@ -437,10 +437,10 @@ export default function Checkout() {
 												{selectedCountry.options.map((option) => (
 												  <div
 													key={option.id}
-													className={`border rounded-lg p-4 cursor-pointer transition-all transform hover:scale-[1.01] ${
+													className={`border border-gray-700 rounded-lg p-4 cursor-pointer transition-all transform hover:scale-[1.01] ${
 													  selectedShipping.id === option.id
-														? 'border-indigo-600 bg-indigo-50 shadow-md'
-														: 'hover:border-gray-400 hover:shadow-sm'
+														? 'border-indigo-500 bg-gray-800/50 shadow-md'
+														: 'hover:border-gray-600 hover:shadow-sm'
 													}`}
 													onClick={() => handleShippingChange(option)}
 												  >
@@ -487,7 +487,7 @@ export default function Checkout() {
 										{step === 3 && (
 										  <div className="space-y-6">
 											<h2 className="text-2xl font-bold mb-6 text-gray-900">Bestellübersicht</h2>
-											<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl mb-6">
+											<div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-6 rounded-xl mb-6 border border-gray-700">
 											  <p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
 											  <p className="text-gray-600 mb-4">Ihre Bestellung wird an folgende Adresse geliefert:</p>
 											  <div className="text-gray-700">
@@ -510,8 +510,8 @@ export default function Checkout() {
 						</div>
 
 						{/* Order Summary */}
-						<div className="bg-white p-6 rounded-xl shadow-lg h-fit">
-							<h2 className="text-2xl font-bold mb-6 text-gray-900">Zusammenfassung</h2>
+						<div className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-800 h-fit">
+							<h2 className="text-2xl font-bold mb-6 text-gray-100">Zusammenfassung</h2>
 							<div className="space-y-4">
 								{items.map((item) => (
 									<div key={item.id} className="flex gap-4">

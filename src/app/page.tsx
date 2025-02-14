@@ -89,13 +89,13 @@ export default function Home() {
 
   return (
     <Layout>
-      <main className="flex-grow">
+        <main className="flex-grow bg-black">
         {/* Hero Section with Founder */}
-        <section className="min-h-screen relative flex items-center py-12 md:py-0">
+        <section className="min-h-screen relative flex items-center py-12 md:py-0 hero-gradient">
           {/* Background with gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.jpg')]"></div>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20">
+          <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.jpg')]"></div>
+          </div>
 
 
           <div className="container mx-auto px-4 relative z-10">
@@ -165,8 +165,10 @@ export default function Home() {
           </svg>
         </button>
 
+        <div className="section-divider" />
+
         {/* About Me Section */}
-        <section className="py-24 px-4 bg-gradient-to-b from-indigo-900/5 to-transparent">
+        <section className="section-style">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
@@ -184,7 +186,7 @@ export default function Home() {
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Unsere Vision
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-gray-300 leading-relaxed">
                   Als Pioniere im E-Commerce revolutionieren wir das Online-Shopping-Erlebnis.
                   Unsere Mission ist es, jeden Einkauf zu einem spannenden Abenteuer zu machen.
                 </p>
@@ -203,15 +205,17 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="section-divider" />
+
         {/* Current Offers Section */}
-        <section className="py-24 px-4">
+        <section className="section-style">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Exklusive Wundertüten
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {products.map((product) => (
-                <div key={product.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                <div key={product.id} className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
                   <div className="relative h-72">
                     <Image
                       src={product.image}
@@ -221,27 +225,28 @@ export default function Home() {
                       priority
                     />
                   </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
+                    <div className="p-8">
+                    <h3 className="text-2xl font-semibold text-gray-100 mb-4">{product.name}</h3>
                     <div className="flex items-center gap-4 mb-6">
                       {product.price !== '' ? (
-                        <>
-                          <span className="text-3xl font-bold text-indigo-600">{product.price} €</span>
-                          {product.originalPrice && (
-                            <span className="text-lg text-gray-400 line-through">{product.originalPrice} €</span>
-                          )}
-                        </>
+                      <>
+                        <span className="text-3xl font-bold text-indigo-400">{product.price} €</span>
+                        {product.originalPrice && (
+                        <span className="text-lg text-gray-500 line-through">{product.originalPrice} €</span>
+                        )}
+                      </>
                       ) : (
-                        <span className="text-lg text-gray-600">Individuell</span>
+                      <span className="text-lg text-gray-400">Individuell</span>
                       )}
                     </div>
+                    <p className="text-gray-400 mb-4">{product.description}</p>
                     <div className="flex gap-4">
                       {product.id === 9 ? (
-                        <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                        <Link href="/kontakt" className="flex-1 bg-gray-800 border-2 border-indigo-500 text-gray-100 py-4 px-6 rounded-xl hover:bg-gray-700 transition-colors text-center font-medium">
                           Angebot anfordern
                         </Link>
                       ) : (
-                        <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
+                        <Link href={`/shop/${product.id}`} className="flex-1 bg-gray-800 border-2 border-indigo-500 text-gray-100 py-4 px-6 rounded-xl hover:bg-gray-700 transition-colors text-center font-medium">
                           Mehr Details
                         </Link>
                       )}
@@ -261,17 +266,19 @@ export default function Home() {
         </section>
 
 
+        <div className="section-divider" />
+
         {/* Special Actions Section */}
-        <section className="py-24 px-4 bg-gray-50">
+        <section className="section-style">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Live Auction Card */}
-              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+                <div className="bg-gray-900/50 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
                 <h2 className="text-3xl font-bold text-center mb-8 text-red-600">
                   LIVE-AUKTION
                 </h2>
                 <div className="text-center space-y-6">
-                  <p className="text-xl text-gray-800 font-medium mb-6">
+                    <p className="text-xl text-gray-300 font-medium mb-6">
                     Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
                   </p>
                   <div className="flex justify-center gap-6">
@@ -309,19 +316,19 @@ export default function Home() {
                       Facebook Live
                     </a>
                   </div>
-                  <p className="text-gray-600 mt-6">
+                    <p className="text-gray-400 mt-6">
                     Melde dich an und sei live dabei wenn die nächste Auktion startet!
                   </p>
                 </div>
               </div>
 
               {/* Contest Card */}
-              <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+                <div className="bg-gray-900/50 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
                 <h2 className="text-3xl font-bold text-center mb-8 text-emerald-600">
                   GEWINNSPIEL
                 </h2>
                 <div className="text-center">
-                  <p className="text-xl text-gray-800 font-medium mb-8">
+                    <p className="text-xl text-gray-300 font-medium mb-8">
                     Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
                   </p>
                   <button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl hover:opacity-90 transition-opacity font-medium">
@@ -333,13 +340,15 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="section-divider" />
+
         {/* Shipping Information Section */}
-        <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <section className="section-style">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Versandinformationen
             </h2>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-gray-800">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="mb-4">
@@ -357,8 +366,8 @@ export default function Home() {
                       <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">Deutschland</h3>
-                  <p className="text-lg text-gray-600">5,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-100">Deutschland</h3>
+                    <p className="text-lg text-gray-400">5,99 €</p>
                 </div>
                 <div className="text-center">
                   <div className="mb-4">
@@ -376,8 +385,8 @@ export default function Home() {
                       <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">Österreich</h3>
-                  <p className="text-lg text-gray-600">9,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-100">Österreich</h3>
+                    <p className="text-lg text-gray-400">9,99 €</p>
                 </div>
 
                 <div className="text-center">
@@ -398,13 +407,13 @@ export default function Home() {
 
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">Schweiz</h3>
-                  <p className="text-lg text-gray-600">14,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-100">Schweiz</h3>
+                    <p className="text-lg text-gray-400">14,99 €</p>
                 </div>
 
               </div>
               <div className="mt-8 text-center">
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-gray-400">
                   Premium Versand via DHL, Hermes oder DPD
                 </p>
               </div>
@@ -412,8 +421,10 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="section-divider" />
+
         {/* Auction Rules Section */}
-        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
+        <section className="section-style">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Auktionsregeln
@@ -446,7 +457,7 @@ export default function Home() {
                   icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 }
               ].map((rule, index) => (
-                <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div key={index} className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
                   <div className="flex items-start">
                     <div className="flex-shrink-0">
                         <svg className="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -454,8 +465,8 @@ export default function Home() {
                       </svg>
                     </div>
                     <div className="ml-6">
-                      <h3 className="text-xl font-bold mb-3 text-gray-800">{rule.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{rule.content}</p>
+                        <h3 className="text-xl font-bold mb-3 text-gray-100">{rule.title}</h3>
+                        <p className="text-gray-400 leading-relaxed">{rule.content}</p>
                     </div>
                   </div>
                 </div>

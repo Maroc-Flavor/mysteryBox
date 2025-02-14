@@ -63,13 +63,13 @@ export default function AboutUs() {
 								<h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 									Von der Idee zur Innovation
 								</h2>
-								<p className="text-xl text-gray-600 leading-relaxed">
+								<p className="text-xl text-gray-300 leading-relaxed">
 									&quot;Als leidenschaftlicher Online-Shopper war ich oft von der Monotonie des 
 									digitalen Einkaufens gelangweilt. Ich träumte von einem Shoppingerlebnis, 
 									das Spannung und Überraschung vereint. So entstand MysteryBox - ein Konzept, 
 									das das klassische Online-Shopping revolutioniert.&quot;
 								</p>
-								<p className="text-xl text-gray-600 leading-relaxed">
+								<p className="text-xl text-gray-300 leading-relaxed">
 									&quot;Heute sind wir stolz darauf, tausenden Menschen täglich ein Lächeln ins 
 									Gesicht zu zaubern. Jede Box ist ein neues Abenteuer, jede Überraschung 
 									sorgfältig ausgewählt.&quot;
@@ -114,17 +114,17 @@ export default function AboutUs() {
 										<div className={`w-full md:w-1/2 ${
 											index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
 										}`}>
-											<div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+											<div className="bg-gray-900/50 backdrop-blur-sm p-6 md:p-8 rounded-xl shadow-lg border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
 												<span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 													{milestone.year}
 												</span>
 												<h3 className="text-xl md:text-2xl font-bold mt-4 mb-2">{milestone.title}</h3>
-												<p className="text-gray-600">{milestone.description}</p>
+												<p className="text-gray-300">{milestone.description}</p>
 											</div>
 										</div>
 
 										{/* Timeline dot - hidden on mobile */}
-										<div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-indigo-600"></div>
+										<div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-900 rounded-full border-4 border-indigo-500"></div>
 									</div>
 								))}
 							</div>
@@ -147,11 +147,11 @@ export default function AboutUs() {
 									<input
 										type="email"
 										placeholder="Deine E-Mail Adresse"
-										className="flex-grow px-6 py-4 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+										className="flex-grow px-6 py-4 rounded-xl bg-gray-800/50 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500"
 									/>
 									<button
 										type="submit"
-										className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors duration-300"
+										className="bg-gray-800 text-gray-100 px-8 py-4 rounded-xl font-medium hover:bg-gray-700 transition-colors duration-300"
 									>
 										Anmelden
 									</button>

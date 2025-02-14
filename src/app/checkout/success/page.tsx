@@ -26,9 +26,9 @@ export default function Success() {
 
 	return (
 		<Layout>
-			<main className="min-h-screen bg-gray-50 py-12 md:py-24">
+			<main className="min-h-screen bg-black py-12 md:py-24">
 				<div className="max-w-3xl mx-auto px-4">
-					<div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center">
+					<div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-800 text-center">
 						<div className="mb-6 md:mb-8">
 							<div className="mx-auto w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center">
 								<svg className="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,13 +41,13 @@ export default function Success() {
 							Bestellung erfolgreich!
 						</h1>
 
-						<p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
+						<p className="text-base md:text-lg text-gray-300 mb-6 md:mb-8">
 							Vielen Dank für Ihren Einkauf. Wir haben Ihre Bestellung erhalten und werden sie schnellstmöglich bearbeiten.
 						</p>
 
-						<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-4 md:p-6 rounded-xl mb-6 md:mb-8">
-							<h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-3">Was passiert als Nächstes?</h2>
-							<ul className="text-gray-600 text-left space-y-3">
+						<div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 md:p-6 rounded-xl mb-6 md:mb-8 border border-gray-700">
+							<h2 className="text-lg md:text-xl font-semibold text-gray-100 mb-3">Was passiert als Nächstes?</h2>
+							<ul className="text-gray-300 text-left space-y-3">
 								<li className="flex items-center">
 									<svg className="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
