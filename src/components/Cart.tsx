@@ -58,7 +58,7 @@ export default function Cart() {
 						>
 							<div className="p-4 sm:p-6 h-full flex flex-col">
 								<div className="flex justify-between items-center mb-4 sm:mb-6">
-									<h2 className="text-xl sm:text-2xl font-bold text-gray-100">Warenkorb</h2>
+									<h2 className="text-xl sm:text-2xl font-bold text-gray-900">Warenkorb</h2>
 									<button 
 										onClick={() => setIsCartOpen(false)}
 										className="text-gray-500 hover:text-gray-700 p-2"
@@ -132,7 +132,7 @@ export default function Cart() {
 														</div>
 														<button
 															onClick={() => removeItem(item.id)}
-															className="text-red-500 hover:text-red-400 p-2 hover:bg-gray-800 rounded-lg transition-colors"
+															className="text-red-500 hover:text-red-700 p-2"
 															aria-label="Artikel entfernen"
 														>
 															<svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
