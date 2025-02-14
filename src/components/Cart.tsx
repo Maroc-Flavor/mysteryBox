@@ -92,7 +92,7 @@ export default function Cart() {
 														initial={{ opacity: 0, y: 20 }}
 														animate={{ opacity: 1, y: 0 }}
 														exit={{ opacity: 0, y: -20 }}
-														className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-800/50 rounded-lg mb-3 sm:mb-4"
+														className="bg-transparent flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-800/50 rounded-lg mb-3 sm:mb-4"
 													>
 														<div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
 															<Image
@@ -106,22 +106,22 @@ export default function Cart() {
 															/>
 														</div>
 														<div className="flex-grow min-w-0">
-															<h3 className="font-medium text-gray-100 truncate">{item.name}</h3>
+															<h3 className="font-medium text-gray-800 truncate">{item.name}</h3>
 															<p className="text-indigo-400 font-bold">{item.price} €</p>
 															<div className="flex items-center gap-2 mt-2">
 																<button
 																	onClick={() => updateQuantity(item.id, item.quantity - 1)}
-																	className="text-gray-400 hover:text-gray-200 p-1 hover:bg-gray-800 rounded-lg transition-colors"
+																	className="text-gray-700 hover:text-gray-200 p-1 hover:bg-gray-800 rounded-lg transition-colors"
 																	aria-label="Menge reduzieren"
 																>
 																	<svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 																		<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
 																	</svg>
 																</button>
-																<span className="font-medium text-gray-100 w-8 text-center">{item.quantity}</span>
+																<span className="font-medium text-gray-900 w-8 text-center">{item.quantity}</span>
 																<button
 																	onClick={() => updateQuantity(item.id, item.quantity + 1)}
-																	className="text-gray-500 hover:text-gray-700 p-1"
+																	className="text-gray-700 hover:text-gray-700 p-1"
 																	aria-label="Menge erhöhen"
 																>
 																	<svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
