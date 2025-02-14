@@ -307,7 +307,7 @@ export default function Checkout() {
 
 											<div className="grid md:grid-cols-2 gap-4">
 												<div>
-													<label className="block text-sm font-medium text-gray-300 mb-1">
+													<label className="block text-sm font-medium text-gray-700 mb-1">
 														Vorname
 													</label>
 													<input
@@ -316,7 +316,7 @@ export default function Checkout() {
 														required
 														value={formData.firstName}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-800/50 text-gray-100 focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 												<div>
@@ -411,7 +411,7 @@ export default function Checkout() {
 												<label className="block text-sm font-medium text-gray-900 mb-2">Land</label>
 												<div className="relative">
 												  <select
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500 appearance-none"
+													className="w-full px-10 py-2 border rounded-lg focus:ring-2 text-gray-900 focus:ring-indigo-500 appearance-none"
 													value={selectedCountry.id}
 													onChange={(e) => handleCountryChange(e.target.value)}
 												  >
@@ -439,7 +439,7 @@ export default function Checkout() {
 													key={option.id}
 													className={`border border-gray-700 rounded-lg p-4 cursor-pointer transition-all transform hover:scale-[1.01] ${
 													  selectedShipping.id === option.id
-														? 'border-indigo-500 bg-gray-800/50 shadow-md'
+														? 'border-indigo-500 bg-violet-300/50 shadow-md'
 														: 'hover:border-gray-600 hover:shadow-sm'
 													}`}
 													onClick={() => handleShippingChange(option)}
