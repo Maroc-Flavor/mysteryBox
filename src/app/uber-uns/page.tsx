@@ -77,7 +77,7 @@ export default function AboutUs() {
 								<div className="flex items-center space-x-4">
 									<div className="h-16 w-16 relative">
 										<Image
-											src="/mysteryBox/images/founder-floating.jpg"
+											src="/mysteryBox/images/logo.jpg"
 											alt="Don Simo"
 											fill
 											sizes="64px"
@@ -118,7 +118,7 @@ export default function AboutUs() {
 												<span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
 													{milestone.year}
 												</span>
-												<h3 className="text-xl md:text-2xl font-bold mt-4 mb-2">{milestone.title}</h3>
+												<h3 className="text-xl text-gray-600 md:text-2xl font-bold mt-4 mb-2">{milestone.title}</h3>
 												<p className="text-gray-600">{milestone.description}</p>
 											</div>
 										</div>
