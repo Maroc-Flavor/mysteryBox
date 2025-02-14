@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #C4A484;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
@@ -13,49 +20,4 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Moderne Trennlinie für Sektionen */
-.section-divider {
-  position: relative;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  margin: 4rem 0;
-}
-
-.section-divider::before {
-  content: '';
-  position: absolute;
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, #4f46e5, #9333ea);
-  left: 50%;
-  transform: translateX(-50%);
-  top: -1px;
-}
-
-/* Hero Section Style */
-.hero-gradient {
-  background: linear-gradient(
-    135deg,
-    rgba(79, 70, 229, 0.2) 0%,
-    rgba(147, 51, 234, 0.2) 50%,
-    rgba(236, 72, 153, 0.2) 100%
-  );
-}
-
-/* Gemeinsamer Sektions-Style */
-.section-style {
-  @apply relative py-24;
-  background: linear-gradient(
-    to bottom,
-    rgba(79, 70, 229, 0.05),
-    rgba(147, 51, 234, 0.05)
-  );
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
 

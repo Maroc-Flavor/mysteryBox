@@ -20,7 +20,7 @@ export default function Navigation() {
 
 	return (
 		<nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-			isScrolled ? 'bg-gray-900/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+			isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
 		}`}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Hauptnavigation */}
@@ -28,7 +28,7 @@ export default function Navigation() {
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link href="/" className="relative flex items-center">
-							<div className="relative w-[60px] h-[24px] md:w-[100px] md:h-[40px] bg-gray-800/80 rounded-full p-1">
+							<div className="relative w-[60px] h-[24px] md:w-[100px] md:h-[40px] bg-white/80 rounded-full p-1">
 								<Image
 									src="/mysteryBox/images/logo.jpg"
 									alt="Wundertüten.de"
@@ -50,7 +50,7 @@ export default function Navigation() {
 					<div className="hidden lg:flex lg:items-center lg:space-x-8">
 						<Link 
 							href="/" 
-							className="text-gray-300 hover:text-indigo-400 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50"
+							className="text-gray-800 hover:text-indigo-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-100/50"
 						>
 							Home
 						</Link>
@@ -105,10 +105,10 @@ export default function Navigation() {
 					? 'opacity-100 translate-y-0' 
 					: 'opacity-0 -translate-y-2 pointer-events-none'
 			}`}>
-				<div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900/90 backdrop-blur-lg border-t border-gray-800">
+				<div className="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg border-t border-gray-200">
 					<Link 
 						href="/" 
-						className="block px-3 py-2 rounded-lg text-gray-300 hover:text-indigo-400 hover:bg-gray-800/50 font-medium transition-colors"
+						className="block px-3 py-2 rounded-lg text-gray-800 hover:text-indigo-600 hover:bg-gray-100/50 font-medium transition-colors"
 						onClick={() => setIsMenuOpen(false)}
 					>
 						Home

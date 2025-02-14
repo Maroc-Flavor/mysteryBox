@@ -89,11 +89,11 @@ export default function Home() {
 
   return (
     <Layout>
-        <main className="flex-grow bg-black">
+        <main className="flex-grow">
         {/* Hero Section with Founder */}
-        <section className="min-h-screen relative flex items-center py-12 md:py-0 hero-gradient">
+        <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
           <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.jpg')]"></div>
           </div>
 
@@ -165,10 +165,10 @@ export default function Home() {
           </svg>
         </button>
 
-        <div className="section-divider" />
+
 
         {/* About Me Section */}
-        <section className="section-style">
+        <section className="py-24 px-4 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
@@ -205,17 +205,17 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="section-divider" />
+
 
         {/* Current Offers Section */}
-        <section className="section-style">
+        <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Exklusive Wundertüten
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {products.map((product) => (
-                <div key={product.id} className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+                <div key={product.id} className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
                   <div className="relative h-72">
                     <Image
                       src={product.image}
@@ -226,7 +226,7 @@ export default function Home() {
                     />
                   </div>
                     <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-100 mb-4">{product.name}</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
                     <div className="flex items-center gap-4 mb-6">
                       {product.price !== '' ? (
                       <>
@@ -239,14 +239,14 @@ export default function Home() {
                       <span className="text-lg text-gray-400">Individuell</span>
                       )}
                     </div>
-                    <p className="text-gray-400 mb-4">{product.description}</p>
+                    <p className="text-gray-600 mb-4">{product.description}</p>
                     <div className="flex gap-4">
                       {product.id === 9 ? (
-                        <Link href="/kontakt" className="flex-1 bg-gray-800 border-2 border-indigo-500 text-gray-100 py-4 px-6 rounded-xl hover:bg-gray-700 transition-colors text-center font-medium">
+                        <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
                           Angebot anfordern
                         </Link>
                       ) : (
-                        <Link href={`/shop/${product.id}`} className="flex-1 bg-gray-800 border-2 border-indigo-500 text-gray-100 py-4 px-6 rounded-xl hover:bg-gray-700 transition-colors text-center font-medium">
+                        <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
                           Mehr Details
                         </Link>
                       )}
@@ -269,11 +269,11 @@ export default function Home() {
         <div className="section-divider" />
 
         {/* Special Actions Section */}
-        <section className="section-style">
+        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Live Auction Card */}
-                <div className="bg-gray-900/50 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-8 text-red-600">
                   LIVE-AUKTION
                 </h2>
@@ -323,7 +323,7 @@ export default function Home() {
               </div>
 
               {/* Contest Card */}
-                <div className="bg-gray-900/50 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+                <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-8 text-emerald-600">
                   GEWINNSPIEL
                 </h2>
@@ -343,12 +343,12 @@ export default function Home() {
         <div className="section-divider" />
 
         {/* Shipping Information Section */}
-        <section className="section-style">
+        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Versandinformationen
             </h2>
-            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-gray-800">
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="mb-4">
@@ -366,8 +366,8 @@ export default function Home() {
                       <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
                     </svg>
                   </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-100">Deutschland</h3>
-                    <p className="text-lg text-gray-400">5,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">Deutschland</h3>
+                    <p className="text-lg text-gray-600">5,99 €</p>
                 </div>
                 <div className="text-center">
                   <div className="mb-4">
@@ -385,8 +385,8 @@ export default function Home() {
                       <rect width="24" height="16" rx="2" fill="none" stroke="#E5E7EB" strokeWidth="0.5" />
                     </svg>
                   </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-100">Österreich</h3>
-                    <p className="text-lg text-gray-400">9,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">Österreich</h3>
+                    <p className="text-lg text-gray-600">9,99 €</p>
                 </div>
 
                 <div className="text-center">
@@ -407,13 +407,13 @@ export default function Home() {
 
                     </svg>
                   </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-100">Schweiz</h3>
-                    <p className="text-lg text-gray-400">14,99 €</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">Schweiz</h3>
+                    <p className="text-lg text-gray-600">14,99 €</p>
                 </div>
 
               </div>
               <div className="mt-8 text-center">
-                <p className="text-lg text-gray-400">
+                <p className="text-lg text-gray-600">
                   Premium Versand via DHL, Hermes oder DPD
                 </p>
               </div>
@@ -457,7 +457,7 @@ export default function Home() {
                   icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 }
               ].map((rule, index) => (
-                <div key={index} className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
+                <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start">
                     <div className="flex-shrink-0">
                         <svg className="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
