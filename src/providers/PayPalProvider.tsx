@@ -8,9 +8,10 @@ const paypalOptions = {
 	clientId: PAYPAL_CLIENT_ID,
 	currency: PAYPAL_CURRENCY,
 	intent: 'capture',
-	enableFunding: ['paylater', 'venmo'],
-	disableFunding: ['card', 'sofort'],
+	enableFunding: ['paypal'],
+	disableFunding: ['card', 'sofort', 'sepa', 'venmo', 'paylater'],
 	dataNamespace: 'paypal_sdk',
+	components: 'buttons',
 };
 
 export function PayPalProvider({ children }: { children: React.ReactNode }) {
