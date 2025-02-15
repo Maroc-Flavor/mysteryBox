@@ -33,3 +33,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# PayPal Integration Documentation
+PAYPAL_INTEGRATION.md
+
+# PayPal Configuration
+src/config/paypal.ts
+
+
