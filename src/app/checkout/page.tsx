@@ -187,37 +187,11 @@ export default function Checkout() {
 		}
 	}, [validateForm]);
 
-	const handleOrderComplete = useCallback(async () => {
-		try {
-			const orderData = {
-				items,
-				customerInfo: formData,
-				shippingMethod: selectedShipping,
-				totalPrice: finalPrice
-			};
-
-			const response = await fetch('/api/orders', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(orderData),
-			});
-
-			const result = await response.json();
-
-			if (!response.ok) {
-				throw new Error(result.error || 'Failed to process order');
-			}
-
-			sessionStorage.setItem('orderComplete', 'true');
-			clearCart();
-			router.push('/checkout/success');
-		} catch (error) {
-			console.error('Order submission error:', error);
-			// Here you could show an error message to the user
-		}
-	}, [items, formData, selectedShipping, finalPrice, clearCart, router]);
+	const handleOrderComplete = useCallback(() => {
+		sessionStorage.setItem('orderComplete', 'true');
+		clearCart();
+		router.push('/checkout/success');
+	}, [clearCart, router]);
 
 
 
