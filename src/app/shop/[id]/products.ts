@@ -1,17 +1,7 @@
-interface Product {
-
-	id: number;
-	category: string;
-	name: string;
-	image: string;
-	price: number | string;
-	originalPrice: number | string;
-	offer: string;
-	description: string;
-	detailDescription: string;
-}
+import { Product } from './types';
 
 export const products: Product[] = [
+
 	{
 		id: 1,
 		category: 'Tech',
@@ -20,7 +10,7 @@ export const products: Product[] = [
 		price: 99.99,
 		originalPrice: 129.99,
 		offer: '',
-		description: 'What tech treasures await? Only one kind of person will find out: YOU!',
+		description: 'Entdecke spannende Tech-Überraschungen!',
 		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 	},
 	{
@@ -31,7 +21,7 @@ export const products: Product[] = [
 		price: 79.99,
 		originalPrice: 99.99,
 		offer: '',
-		description: 'Unleash your inner fashion icon! Prepare for a stylish surprise.',
+		description: 'Dein Style-Upgrade wartet!',
 		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
 	},
 	{
@@ -42,8 +32,8 @@ export const products: Product[] = [
 		price: 49.99,
 		originalPrice: 69.99,
 		offer: '',
-		description: 'A culinary adventure awaits! Taste the unexpected.',
-		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+		description: 'Kulinarische Überraschungen warten auf dich!',
+		detailDescription: 'Eine kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Geschmackserlebnissen.',
 	},
 	{
 		id: 4,
@@ -54,7 +44,7 @@ export const products: Product[] = [
 		originalPrice: 199.99,
 		offer: '',
 		description: 'Ein Hauch von Luxus und Überraschung.',
-		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+		detailDescription: 'Premium-Überraschungen der Extraklasse! Hochwertige Produkte für besondere Ansprüche.',
 	},
 	{
 		id: 5,
@@ -65,7 +55,7 @@ export const products: Product[] = [
 		originalPrice: 249.99,
 		offer: '',
 		description: 'Große Überraschungen für große Freude.',
-		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+		detailDescription: 'Eine riesige Box voller hochwertiger Überraschungen! Mehr Inhalt, mehr Freude.',
 	},
 	{
 		id: 6,
@@ -76,7 +66,7 @@ export const products: Product[] = [
 		originalPrice: 399.99,
 		offer: '',
 		description: 'Die ultimative Überraschungserfahrung.',
-		detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
+		detailDescription: 'Das Beste vom Besten! Die ultimative Mystery Box mit exklusiven Produkten.',
 	},
     {
 		id: 7,
@@ -86,8 +76,8 @@ export const products: Product[] = [
 		originalPrice: 279.99,
 		offer: '',
 		image: '/mysteryBox/images/mysterybox-premium1.jpg',
-		description: '10 KG Überraschungsbox',
-		detailDescription: '10 KG Überraschungsbox.',
+		description: '10 KG pure Überraschung!',
+		detailDescription: 'Eine gigantische 10 KG Box voller spannender Überraschungen und Produkte.',
 	},
 	{
 		id: 8,
@@ -97,8 +87,8 @@ export const products: Product[] = [
 		originalPrice: 120.00,
 		offer: 'Flexible',
 		image: '/mysteryBox/images/starterbox.jpg',
-		description: '3 KG Überraschungskarton',
-		detailDescription: '3 KG Überraschungsbox.',
+		description: 'Der perfekte Einstieg in die Welt der Mystery Boxes',
+		detailDescription: 'Eine 3 KG Box voller Überraschungen - ideal für Mystery Box Einsteiger!',
 	},
 	{
 		id: 9,
@@ -108,7 +98,7 @@ export const products: Product[] = [
 		originalPrice: '',
 		offer: 'Flexible',
 		image: '/mysteryBox/images/starterbox.jpg',
-		description: 'individuell anpassbar. Sprich mit uns.',
-		detailDescription: 'individuell anpassbar. Sprich mit uns.',
+		description: 'Deine Box, deine Regeln!',
+		detailDescription: 'Eine komplett individuell anpassbare Mystery Box nach deinen Wünschen und Vorstellungen.',
 	}
 ];
