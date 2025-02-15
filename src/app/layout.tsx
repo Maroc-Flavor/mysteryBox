@@ -1,4 +1,5 @@
 import { CartProvider } from '@/context/CartContext';
+import { PayPalProvider } from '@/providers/PayPalProvider';
 import { Inter, Roboto_Mono } from "next/font/google";
 import { Metadata } from 'next';
 import "./globals.css";
@@ -27,7 +28,9 @@ export default function RootLayout({
     <html lang="de">
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
         <CartProvider>
-          {children}
+          <PayPalProvider>
+            {children}
+          </PayPalProvider>
         </CartProvider>
       </body>
     </html>

@@ -5,6 +5,7 @@ import Layout from '@/components/layout';
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { PayPalCheckoutButton } from '@/components/PayPalCheckoutButton';
 import { shippingData, type ShippingOption, type CountryShipping } from '@/data/shipping';
 
 interface CountryFlagProps {
@@ -497,12 +498,17 @@ export default function Checkout() {
 												<p>{formData.country}</p>
 											  </div>
 											</div>
-											<button
-											  onClick={handleOrderComplete}
-											  className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
-											>
-											  Bestellung bestätigen
-											</button>
+											<div className="space-y-4">
+											  <PayPalCheckoutButton 
+												amount={finalPrice}
+												orderData={{
+												  items,
+												  customerInfo: formData,
+												  shippingMethod: selectedShipping
+												}}
+												onSuccess={handleOrderComplete}
+											  />
+											</div>
 										  </div>
 										)}
 
