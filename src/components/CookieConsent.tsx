@@ -67,13 +67,13 @@ export default function CookieConsent() {
 	return (
 		<div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 p-6">
 			<div className="max-w-6xl mx-auto">
-				<h3 className="text-xl font-bold mb-4">Cookie-Einstellungen</h3>
-				<p className="mb-4">
+				<h3 className="text-xl text-gray-800 font-bold mb-4">Cookie-Einstellungen</h3>
+				<p className="mb-4 text-gray-700">
 					Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
 					Weitere Informationen finden Sie in unserer <a href="/datenschutz" className="text-blue-600 hover:underline">Datenschutzerklärung</a>.
 				</p>
 				
-				<div className="space-y-4 mb-6">
+				<div className="space-y-4 text-gray-600 mb-6">
 					<div className="flex items-center">
 						<input
 							type="checkbox"
