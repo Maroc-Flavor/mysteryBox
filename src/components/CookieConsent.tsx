@@ -1,5 +1,5 @@
 'use client';
-
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { cookieService } from '@/services/cookieService';
 
@@ -57,7 +57,7 @@ export default function CookieConsent() {
 		cookieService.setNecessaryCookies();
 		cookieService.setAnalyticsCookies(consentData.analytics);
 		cookieService.setMarketingCookies(consentData.marketing);
-		
+
 		setConsent(consentData);
 		setShowBanner(false);
 	};
@@ -69,11 +69,13 @@ export default function CookieConsent() {
 			<div className="max-w-6xl mx-auto">
 				<h3 className="text-xl text-gray-800 font-bold mb-4">Cookie-Einstellungen</h3>
 				<p className="mb-4 text-gray-700">
-					Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
-					Weitere Informationen finden Sie in unserer <a href="/datenschutz/page.tsx" 
-					className="text-blue-600 hover:underline">Datenschutzerklärung</a>.
+					Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.
+					Weitere Informationen finden Sie in unserer
+					<Link href="/datenschutz"
+						className="text-blue-600 hover:underline">Datenschutzerklärung
+					</Link>.
 				</p>
-				
+
 				<div className="space-y-4 text-gray-600 mb-6">
 					<div className="flex items-center">
 						<input
@@ -84,22 +86,22 @@ export default function CookieConsent() {
 						/>
 						<label>Notwendige Cookies (erforderlich)</label>
 					</div>
-					
+
 					<div className="flex items-center">
 						<input
 							type="checkbox"
 							checked={consent.analytics}
-							onChange={(e) => setConsent({...consent, analytics: e.target.checked})}
+							onChange={(e) => setConsent({ ...consent, analytics: e.target.checked })}
 							className="mr-2"
 						/>
 						<label>Analyse-Cookies</label>
 					</div>
-					
+
 					<div className="flex items-center">
 						<input
 							type="checkbox"
 							checked={consent.marketing}
-							onChange={(e) => setConsent({...consent, marketing: e.target.checked})}
+							onChange={(e) => setConsent({ ...consent, marketing: e.target.checked })}
 							className="mr-2"
 						/>
 						<label>Marketing-Cookies</label>
