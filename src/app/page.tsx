@@ -226,7 +226,7 @@ export default function Home() {
                     />
                   </div>
                     <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{product.name}</h3>
+                    <h3 className="text-2xl font-semibold text-gray-600 mb-4">{product.name}</h3>
                     <div className="flex items-center gap-4 mb-6">
                       {product.price !== '' ? (
                       <>
@@ -239,7 +239,7 @@ export default function Home() {
                       <span className="text-lg text-gray-400">Individuell</span>
                       )}
                     </div>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
+                    <p className="text-xl text-gray-600 mb-4">{product.description}</p>
                     <div className="flex gap-4">
                       {product.id === 9 ? (
                         <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
