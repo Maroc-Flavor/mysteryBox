@@ -70,7 +70,8 @@ export default function CookieConsent() {
 				<h3 className="text-xl text-gray-800 font-bold mb-4">Cookie-Einstellungen</h3>
 				<p className="mb-4 text-gray-700">
 					Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. 
-					Weitere Informationen finden Sie in unserer <a href="/datenschutz" className="text-blue-600 hover:underline">Datenschutzerklärung</a>.
+					Weitere Informationen finden Sie in unserer <a href="/datenschutz/page.tsx" 
+					className="text-blue-600 hover:underline">Datenschutzerklärung</a>.
 				</p>
 				
 				<div className="space-y-4 text-gray-600 mb-6">
