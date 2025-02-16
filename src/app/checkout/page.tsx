@@ -317,7 +317,7 @@ export default function Checkout() {
 														required
 														value={formData.firstName}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 												<div>
@@ -330,7 +330,7 @@ export default function Checkout() {
 														required
 														value={formData.lastName}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 											</div>
@@ -345,7 +345,7 @@ export default function Checkout() {
 														required
 														value={formData.email}
 														onChange={handleInputChange}
-														className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 ${
+														className={`w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 ${
 															formErrors.email ? 'border-red-500' : ''
 														}`}
 													/>
@@ -364,7 +364,7 @@ export default function Checkout() {
 													required
 													value={formData.address}
 													onChange={handleInputChange}
-													className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+													className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
 												/>
 											</div>
 											<div className="grid md:grid-cols-2 gap-4">
@@ -378,7 +378,7 @@ export default function Checkout() {
 														required
 														value={formData.city}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 												<div>
@@ -391,7 +391,7 @@ export default function Checkout() {
 														required
 														value={formData.postalCode}
 														onChange={handleInputChange}
-														className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+														className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
 													/>
 												</div>
 											</div>
