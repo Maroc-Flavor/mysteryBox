@@ -10,7 +10,7 @@ export default function Impressum() {
 					</h1>
 					<div className="prose max-w-none space-y-6">
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Angaben gemäß § 5 TMG</h2>
+							<h2 className="text-2xl text-gray-500 font-semibold mb-4">Angaben gemäß § 5 TMG</h2>
 							<p className="text-gray-600">
 								MysteryBox GmbH<br />
 								[Straße Nr.]<br />
@@ -20,7 +20,7 @@ export default function Impressum() {
 						</div>
 						
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Kontakt</h2>
+							<h2 className="text-2xl text-gray-500 font-semibold mb-4">Kontakt</h2>
 							<p className="text-gray-600">
 								Telefon: [Ihre Telefonnummer]<br />
 								E-Mail: [Ihre E-Mail]<br />
@@ -30,7 +30,7 @@ export default function Impressum() {
 						</div>
 
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Vertreten durch</h2>
+							<h2 className="text-2xl text-gray-500 font-semibold mb-4">Vertreten durch</h2>
 							<p className="text-gray-600">
 								[Name des Geschäftsführers]<br />
 								Geschäftsführer
@@ -38,7 +38,7 @@ export default function Impressum() {
 						</div>
 
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Aufsichtsbehörde</h2>
+							<h2 className="text-2xl text-gray-500 font-semibold mb-4">Aufsichtsbehörde</h2>
 							<p className="text-gray-600">
 								[Name der zuständigen Aufsichtsbehörde]<br />
 								[Anschrift der Aufsichtsbehörde]
@@ -46,7 +46,7 @@ export default function Impressum() {
 						</div>
 
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Streitschlichtung</h2>
+							<h2 className="text-2xl text-gray-500 font-semibold mb-4">Streitschlichtung</h2>
 							<p className="text-gray-600">
 								Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/.<br />
 								Unsere E-Mail-Adresse finden Sie oben im Impressum.<br /><br />

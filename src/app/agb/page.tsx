@@ -44,7 +44,7 @@ export default function AGB() {
 							}
 						].map((section, index) => (
 							<div key={index} className="bg-white p-8 rounded-xl shadow-sm">
-								<h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
+								<h2 className="text-2xl text-gray-600 font-semibold mb-4">{section.title}</h2>
 								<p className="text-gray-600">{section.content}</p>
 							</div>
 						))}

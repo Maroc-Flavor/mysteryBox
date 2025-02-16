@@ -59,7 +59,7 @@ Sie können Ihre Cookie-Einstellungen jederzeit über unser Cookie-Banner anpass
 							}
 						].map((section, index) => (
 							<div key={index} className="bg-white p-8 rounded-xl shadow-sm">
-								<h2 className="text-2xl text-gray-700 font-semibold mb-4">{section.title}</h2>
+								<h2 className="text-2xl text-gray-500 font-semibold mb-4">{section.title}</h2>
 								<p className="text-gray-600 whitespace-pre-line">{section.content}</p>
 							</div>
 						))}
