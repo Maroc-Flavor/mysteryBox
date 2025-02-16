@@ -12,21 +12,45 @@ export default function Impressum() {
 						<div className="bg-white p-8 rounded-xl shadow-sm">
 							<h2 className="text-2xl font-semibold mb-4">Angaben gemäß § 5 TMG</h2>
 							<p className="text-gray-600">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+								MysteryBox GmbH<br />
+								[Straße Nr.]<br />
+								[PLZ] [Stadt]<br />
+								Deutschland
 							</p>
 						</div>
 						
 						<div className="bg-white p-8 rounded-xl shadow-sm">
 							<h2 className="text-2xl font-semibold mb-4">Kontakt</h2>
 							<p className="text-gray-600">
-								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								Telefon: [Ihre Telefonnummer]<br />
+								E-Mail: [Ihre E-Mail]<br />
+								Handelsregister: [Registergericht] [Registernummer]<br />
+								USt-IdNr.: [Ihre USt-IdNr.]
 							</p>
 						</div>
 
 						<div className="bg-white p-8 rounded-xl shadow-sm">
-							<h2 className="text-2xl font-semibold mb-4">Haftungsausschluss</h2>
+							<h2 className="text-2xl font-semibold mb-4">Vertreten durch</h2>
 							<p className="text-gray-600">
-								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+								[Name des Geschäftsführers]<br />
+								Geschäftsführer
+							</p>
+						</div>
+
+						<div className="bg-white p-8 rounded-xl shadow-sm">
+							<h2 className="text-2xl font-semibold mb-4">Aufsichtsbehörde</h2>
+							<p className="text-gray-600">
+								[Name der zuständigen Aufsichtsbehörde]<br />
+								[Anschrift der Aufsichtsbehörde]
+							</p>
+						</div>
+
+						<div className="bg-white p-8 rounded-xl shadow-sm">
+							<h2 className="text-2xl font-semibold mb-4">Streitschlichtung</h2>
+							<p className="text-gray-600">
+								Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/.<br />
+								Unsere E-Mail-Adresse finden Sie oben im Impressum.<br /><br />
+								Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
 							</p>
 						</div>
 					</div>
