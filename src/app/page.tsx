@@ -186,7 +186,7 @@ export default function Home() {
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Unsere Vision
                 </h2>
-                <p className="text-xl text-gray-300 leading-relaxed">
+                <p className="text-xl text-gray-600 leading-relaxed">
                   Als Pioniere im E-Commerce revolutionieren wir das Online-Shopping-Erlebnis.
                   Unsere Mission ist es, jeden Einkauf zu einem spannenden Abenteuer zu machen.
                 </p>
@@ -278,7 +278,7 @@ export default function Home() {
                   LIVE-AUKTION
                 </h2>
                 <div className="text-center space-y-6">
-                    <p className="text-xl text-gray-300 font-medium mb-6">
+                    <p className="text-xl text-gray-500 font-medium mb-6">
                     Verfolge unsere Live-Auktionen auf deiner bevorzugten Plattform
                   </p>
                   <div className="flex justify-center gap-6">
@@ -328,7 +328,7 @@ export default function Home() {
                   GEWINNSPIEL
                 </h2>
                 <div className="text-center">
-                    <p className="text-xl text-gray-300 font-medium mb-8">
+                    <p className="text-xl text-gray-500 font-medium mb-8">
                     Herzlichen Glückwunsch! Der Gewinn geht auf uns, die Versandkosten auf dich.
                   </p>
                   <button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl hover:opacity-90 transition-opacity font-medium">
@@ -465,7 +465,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <div className="ml-6">
-                        <h3 className="text-xl font-bold mb-3 text-gray-100">{rule.title}</h3>
+                        <h3 className="text-xl font-bold mb-3 text-gray-400">{rule.title}</h3>
                         <p className="text-gray-400 leading-relaxed">{rule.content}</p>
                     </div>
                   </div>
