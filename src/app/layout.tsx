@@ -2,7 +2,12 @@ import { CartProvider } from '@/context/CartContext';
 import { PayPalProvider } from '@/providers/PayPalProvider';
 import { Inter, Roboto_Mono } from "next/font/google";
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import "./globals.css";
+
+const CookieConsent = dynamic(() => import('@/components/CookieConsent'), {
+  ssr: false
+});
 
 const inter = Inter({
   variable: "--font-sans",
@@ -30,7 +35,8 @@ export default function RootLayout({
         <CartProvider>
           <PayPalProvider>
             {children}
-          </PayPalProvider>
+            <CookieConsent />
+            </PayPalProvider>
         </CartProvider>
       </body>
     </html>
