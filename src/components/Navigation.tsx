@@ -30,7 +30,7 @@ export default function Navigation() {
 						<Link href="/" className="relative flex items-center">
 							<div className="relative w-[60px] h-[24px] md:w-[100px] md:h-[40px] bg-white/80 rounded-full p-1">
 								<Image
-									src="/mysteryBox/images/logo.jpg"
+									src="/mysteryBox/images/logo.webp"
 									alt="Wundertüten.de"
 									fill
 									className="object-contain rounded-full transition-all duration-300 hover:opacity-90"

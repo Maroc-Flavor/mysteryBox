@@ -45,7 +45,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-        image: '/mysteryBox/images/mysterybox-premium1.jpg',
+        image: '/mysteryBox/images/mysterybox-premium1.webp',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -56,7 +56,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: '/mysteryBox/images/starterbox.jpg',
+        image: '/mysteryBox/images/starterbox.webp',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -67,7 +67,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: '/mysteryBox/images/placeholder-box.jpg',
+        image: '/mysteryBox/images/placeholder-box.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -94,7 +94,7 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-          <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.jpg')]"></div>
+          <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.webp')]"></div>
           </div>
 
 
@@ -126,7 +126,7 @@ export default function Home() {
               <div className="relative mt-8 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
                   <Image
-                    src="/mysteryBox/images/founder-image.jpg"
+                    src="/mysteryBox/images/founder-image.webp"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -173,7 +173,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                    src="/mysteryBox/images/founder-portrait.jpg"
+                    src="/mysteryBox/images/founder-portrait.webp"
                     alt="Gründer Portrait"
                     fill
                     style={{ objectFit: 'cover' }}

@@ -49,7 +49,7 @@ export default function AboutUs() {
 						<div className="grid md:grid-cols-2 gap-16 items-center">
 							<div className="relative h-[600px] rounded-2xl overflow-hidden">
 								<Image
-									src="/mysteryBox/images/founder-portrait.jpg"
+									src="/mysteryBox/images/founder-portrait.webp"
 									alt="Unser Gründer"
 									fill
 									sizes="(max-width: 768px) 100vw, 50vw"
@@ -77,7 +77,7 @@ export default function AboutUs() {
 								<div className="flex items-center space-x-4">
 									<div className="h-16 w-16 relative">
 										<Image
-											src="/mysteryBox/images/logo.jpg"
+											src="/mysteryBox/images/logo.webp"
 											alt="Don Simo"
 											fill
 											sizes="64px"

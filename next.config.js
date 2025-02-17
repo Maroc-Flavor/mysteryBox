@@ -19,5 +19,14 @@ const nextConfig = {
 
 module.exports = nextConfig
 
-
-
+/** @type {import('next').NextConfig} for tests on localhost:3000
+const nextConfig = {
+	basePath: '',  // Remove any basePath for local development
+	output: 'standalone',
+	images: {
+	  domains: ['flagcdn.com'],  // Keep this if you're using flag images
+	}
+  }
+  
+  module.exports = nextConfig
+*/
