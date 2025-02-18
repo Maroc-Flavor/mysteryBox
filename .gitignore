@@ -22,9 +22,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
+# environment files
 .env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+.env.production.local
 
 # vercel
 .vercel
@@ -33,11 +38,89 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# PayPal Integration Documentation
+# sensitive documentation
 PAYPAL_INTEGRATION.md
+**/credentials.md
+**/secrets.md
+**/keys.md
+**/tokens.md
+**/*secret*.md
+**/*credential*.md
+**/*api*.md
+**/*auth*.md
+**/*private*.md
+**/*sensitive*.md
+**/*confidential*.md
 
-# PayPal Configuration
+# configuration files with sensitive data
 src/config/paypal.ts
+**/config/*credentials*.ts
+**/config/*secrets*.ts
+**/config/*key*.ts
+**/config/*token*.ts
+**/*secret*.{js,ts,json}
+**/*credential*.{js,ts,json}
+**/*password*.{js,ts,json}
+**/*key*.{js,ts,json}
+**/*token*.{js,ts,json}
+**/*api*.{js,ts,json}
+**/*auth*.{js,ts,json}
+**/*private*.{js,ts,json}
+**/*sensitive*.{js,ts,json}
+**/*confidential*.{js,ts,json}
 
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.history/
+*.sublime-*
 
+# logs and databases
+logs/
+*.log
+*.sql
+*.sqlite
+.eslintcache
+.npm
+
+# local certificates and keys
+*.key
+*.pem
+*.cert
+*.crt
+*.keystore
+*.jks
+*.p12
+*.pfx
+
+# backup files
+*.bak
+*~
+*.backup
+.DS_Store
+Thumbs.db
+
+# build artifacts
+dist/
+build/
+.next/
+out/
+coverage/
+.nyc_output/
+
+# package manager files
+yarn.lock
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# authentication and authorization files
+**/auth/
+**/oauth/
+**/*.auth.*
+**/*.oauth.*
 
