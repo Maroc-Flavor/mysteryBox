@@ -216,50 +216,58 @@ export default function Home() {
               Exklusive Wundertüten
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {products.map((product) => (
-                <div key={product.id} className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
-                  <div className="relative h-72">
-                    <Image
-                      src={product.image}
-                      alt={product.description}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      priority
-                    />
+                {products.map((product) => (
+                <div key={product.id} className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden border border-gray-100/20 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                  <div className="relative h-72 overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.description}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transform transition-transform duration-500 group-hover:scale-110"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
                   </div>
                   <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-gray-600 mb-4">{product.name}</h3>
-                    <div className="flex items-center gap-4 mb-6">
-                      {product.price !== '' ? (
-                        <>
-                          <span className="text-3xl font-bold text-indigo-400">{product.price} €</span>
-                          {product.originalPrice && (
-                            <span className="text-lg text-gray-500 line-through">{product.originalPrice} €</span>
-                          )}
-                        </>
-                      ) : (
-                        <span className="text-lg text-gray-400">Individuell</span>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg">
+                    {product.category}
+                    </span>
+                    {product.price !== '' ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{product.price} €</span>
+                      {product.originalPrice && (
+                      <span className="text-sm text-gray-400 line-through">{product.originalPrice} €</span>
                       )}
                     </div>
-                    <p className="text-xl text-gray-600 mb-4">{product.description}</p>
-                    <div className="flex gap-4">
-                      {product.id === 9 ? (
-                        <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
-                          Angebot anfordern
-                        </Link>
-                      ) : (
-                        <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-xl hover:bg-indigo-50 transition-colors text-center font-medium">
-                          Mehr Details
-                        </Link>
-                      )}
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity font-medium"
-                        disabled={product.price === ''}
-                      >
-                        In den Warenkorb
-                      </button>
-                    </div>
+                    ) : (
+                    <span className="text-lg text-gray-400">Individuell</span>
+                    )}
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">{product.name}</h3>
+                  <p className="text-lg text-gray-600 mb-6">{product.description}</p>
+                  <div className="flex gap-4">
+                    {product.id === 9 ? (
+                    <Link href="/kontakt" className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-2xl hover:bg-indigo-50 transition-all duration-300 text-center font-medium shadow-lg">
+                      Angebot anfordern
+                    </Link>
+                    ) : (
+                    <Link href={`/shop/${product.id}`} className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 py-4 px-6 rounded-2xl hover:bg-indigo-50 transition-all duration-300 text-center font-medium shadow-lg">
+                      Mehr Details
+                    </Link>
+                    )}
+                    <button
+                    onClick={() => handleAddToCart(product)}
+                    className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 rounded-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 font-medium"
+                    disabled={product.price === ''}
+                    >
+                    <span>In den Warenkorb</span>
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    </button>
+                  </div>
                   </div>
                 </div>
               ))}

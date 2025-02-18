@@ -108,7 +108,7 @@ export default function ShopPage() {
 
                             {products.map((product) => (
                                 <Link href={product.id === 9 ? '/kontakt' : `/shop/${product.id}`} key={product.id}>
-                                    <div className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                                    <div className="group bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100/20">
                                         <div className="relative h-48 sm:h-64 overflow-hidden">
                                             <Image
                                                 fill
@@ -119,31 +119,30 @@ export default function ShopPage() {
                                                 priority={product.id <= 3}
                                                 quality={85}
                                             />
-
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <div className="absolute bottom-4 left-4 right-4">
                                                     <span className="text-white text-lg font-medium">Mehr Details</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="p-4 md:p-6">
-                                            <div className="flex items-center justify-between mb-3 md:mb-4">
-                                                <span className="px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+                                        <div className="p-6 md:p-8">
+                                            <div className="flex items-center justify-between mb-4">
+                                                <span className="px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg">
                                                     {product.category}
                                                 </span>
                                                 <div className="text-right">
                                                     {product.id === 9 ? (
-                                                        <span className="text-xl md:text-2xl font-bold text-indigo-700">
+                                                        <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                                                             Individuell
                                                         </span>
                                                     ) : (
                                                         <>
-                                                            <span className="text-xl md:text-2xl font-bold text-indigo-700">
+                                                            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                                                                 {typeof product.price === 'number' ? `${product.price} €` : product.price}
                                                             </span>
                                                             {product.originalPrice && (
-                                                                <span className="ml-2 text-sm text-gray-500 line-through">
+                                                                <span className="ml-2 text-sm text-gray-400 line-through">
                                                                     {product.originalPrice} €
                                                                 </span>
                                                             )}
@@ -152,12 +151,10 @@ export default function ShopPage() {
                                                 </div>
                                             </div>
 
-                                            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">{product.name}</h2>
-                                            <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">{product.description}</p>
+                                            <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{product.name}</h2>
+                                            <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
-                                            <button
-                                                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 md:py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 font-semibold"
-                                            >
+                                            <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 rounded-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center space-x-2 font-medium">
                                                 <span>{product.id === 9 ? 'Angebot anfordern' : 'Jetzt entdecken'}</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -165,6 +162,7 @@ export default function ShopPage() {
                                             </button>
                                         </div>
                                     </div>
+
                                 </Link>
                             ))}
                         </div>
