@@ -89,7 +89,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <main className="flex-grow">
+        <main className="flex-grow bg-gradient-to-b from-gray-50 via-white to-gray-50">
         {/* Hero Section with Founder */}
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient */}
@@ -168,8 +168,9 @@ export default function Home() {
 
 
         {/* About Me Section */}
-        <section className="py-24 px-4 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-4 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/5 to-purple-900/5"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
@@ -208,8 +209,9 @@ export default function Home() {
 
 
         {/* Current Offers Section */}
-        <section className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-4 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-indigo-900/5"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Exklusive Wundertüten
             </h2>
@@ -266,11 +268,21 @@ export default function Home() {
         </section>
 
 
-        <div className="section-divider h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent my-12" />
+        <div className="relative h-24 my-8">
+          <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white px-4">
+            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+          </div>
+          </div>
+        </div>
 
         {/* Special Actions Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-4 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/5 to-purple-900/5"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Live Auction Card */}
               <div className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
@@ -340,7 +352,16 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="section-divider h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent my-8" />
+        <div className="relative h-24 my-8">
+          <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white px-4">
+            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+          </div>
+          </div>
+        </div>
 
         {/* Shipping Information Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
@@ -421,11 +442,21 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="section-divider h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent my-8" />
+        <div className="relative h-24 my-8">
+          <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white px-4">
+            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+          </div>
+          </div>
+        </div>
 
         {/* Auction Rules Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white mb-8">
-          <div className="max-w-7xl mx-auto px-4">
+        <section className="py-16 px-4 relative mb-8">
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-indigo-900/5"></div>
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Auktionsregeln
             </h2>
@@ -470,11 +501,23 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              ))}
+                ))}
+              </div>
+              </div>
+            </section>
+
+            {/* Final divider */}
+            <div className="relative h-24 my-8">
+              <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-white px-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+              </div>
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
-    </Layout>
-  );
-}
+            </main>
+          </Layout>
+          );
+        }
