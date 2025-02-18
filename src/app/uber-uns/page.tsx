@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import Layout from '@/components/layout';
 
+export default function UberUnsPage() {
 
-export default function AboutUs() {
 	const milestones = [
 		{
 			year: '2021',
@@ -27,8 +26,8 @@ export default function AboutUs() {
 	];
 
 	return (
-		<Layout>
-			<main className="flex-grow">
+		<main className="min-h-screen bg-gray-50">
+
 				{/* Hero Section */}
 				<section className="relative py-24 bg-gradient-to-b from-indigo-900 to-purple-900">
 					<div className="#')] opacity-10"></div>
@@ -161,6 +160,6 @@ export default function AboutUs() {
 					</div>
 				</section>
 			</main>
-		</Layout>
+
 	);
 }

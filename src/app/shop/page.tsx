@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Layout from '@/components/layout';
 import { useCart } from '@/context/CartContext';
+
 
 
 const products = [
@@ -111,8 +111,8 @@ export default function ShopPage() {
     };
 
     return (
-        <Layout>
             <main className="min-h-screen">
+
                 <section className="relative py-12 md:py-24 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-indigo-900 to-purple-900"></div>
                     <div className="container mx-auto px-4 relative z-10">
@@ -208,7 +208,7 @@ export default function ShopPage() {
                     </div>
                 </section>
             </main>
-        </Layout>
     );
+
 }
 

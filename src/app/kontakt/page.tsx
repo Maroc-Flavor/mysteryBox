@@ -1,10 +1,8 @@
-import Layout from '@/components/layout';
-
-export default function Contact() {
+export default function KontaktPage() {
 	return (
-		<Layout>
-			<main className="flex-grow">
-				<section className="relative py-12 md:py-24 overflow-hidden">
+		<main className="min-h-screen bg-gray-50 py-12">
+			<section className="relative py-12 overflow-hidden">
+
 					<div className="absolute inset-0 bg-gradient-to-b from-indigo-900 to-purple-900"></div>
 					<div className="container mx-auto px-4 relative z-10">
 						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 text-white">
@@ -87,6 +85,6 @@ export default function Contact() {
 					</div>
 				</section>
 			</main>
-		</Layout>
+
 	);
 }

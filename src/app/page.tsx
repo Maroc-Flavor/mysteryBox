@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import Layout from '../components/layout';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
@@ -88,8 +87,8 @@ export default function Home() {
   };
 
   return (
-    <Layout>
-        <main className="flex-grow bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <main className="flex-grow bg-gradient-to-b from-gray-50 via-white to-gray-50">
+
         {/* Hero Section with Founder */}
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient */}
@@ -586,6 +585,5 @@ export default function Home() {
 
 
             </main>
-          </Layout>
-          );
-        }
+            );
+          }

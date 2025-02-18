@@ -1,11 +1,11 @@
 'use client';
 
-import Layout from '@/components/layout';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useCart } from '@/context/CartContext';
 
-export default function Success() {
+export default function CheckoutSuccessPage() {
 	const router = useRouter();
 	const [isValid, setIsValid] = useState(false);
 
@@ -26,8 +26,8 @@ export default function Success() {
 	}
 
 	return (
-		<Layout>
-			<main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 md:py-24">
+		<main className="min-h-screen bg-gray-50 py-12">
+
 				<div className="max-w-3xl mx-auto px-4">
 					<div className="bg-white rounded-2xl shadow-xl p-8 text-center">
 						<div className="mb-8">
@@ -73,6 +73,6 @@ export default function Success() {
 					</div>
 				</div>
 			</main>
-		</Layout>
+
 	);
 }

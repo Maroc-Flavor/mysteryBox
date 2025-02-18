@@ -3,31 +3,32 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { PayPalOrderData } from '@/types/paypal';
 
 interface PayPalCheckoutButtonProps {
 	amount: number;
-	orderData: {
-		items: any[];
-		customerInfo: {
-			email: string;
-			firstName: string;
-			lastName: string;
-			address: string;
-			city: string;
-			postalCode: string;
-			country: string;
-		};
-		shippingMethod: {
-			id: string;
-			price: number;
-		};
-	};
+	orderData: PayPalOrderData;
 	onSuccess: () => void;
 }
 
 export function PayPalCheckoutButton({ amount, orderData, onSuccess }: PayPalCheckoutButtonProps) {
 	const [error, setError] = useState<string | null>(null);
 	const [isProcessing, setIsProcessing] = useState(false);
+
+	const handleError = (err: unknown) => {
+		console.error("PayPal Fehler:", err);
+		setError("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
+		setIsProcessing(false);
+	};
+
+	const getCountryCode = (country: string): string => {
+		const countryMap: Record<string, string> = {
+			'Deutschland': 'DE',
+			'Österreich': 'AT',
+			'Schweiz': 'CH'
+		};
+		return countryMap[country] || 'DE';
+	};
 
 	return (
 		<div className="space-y-4">
@@ -59,8 +60,7 @@ export function PayPalCheckoutButton({ amount, orderData, onSuccess }: PayPalChe
 										address_line_1: orderData.customerInfo.address,
 										admin_area_2: orderData.customerInfo.city,
 										postal_code: orderData.customerInfo.postalCode,
-										country_code: orderData.customerInfo.country === "Deutschland" ? "DE" : 
-													orderData.customerInfo.country === "Österreich" ? "AT" : "CH"
+										country_code: getCountryCode(orderData.customerInfo.country)
 									}
 								}
 							}
@@ -75,17 +75,12 @@ export function PayPalCheckoutButton({ amount, orderData, onSuccess }: PayPalChe
 							onSuccess();
 						}
 					} catch (err) {
-						setError("Fehler bei der Zahlungsverarbeitung. Bitte versuchen Sie es erneut.");
-						console.error("PayPal Fehler:", err);
+						handleError(err);
 					} finally {
 						setIsProcessing(false);
 					}
 				}}
-				onError={(err) => {
-					setError("Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
-					console.error("PayPal Fehler:", err);
-					setIsProcessing(false);
-				}}
+				onError={handleError}
 				onCancel={() => {
 					setError("Zahlung wurde abgebrochen. Bitte versuchen Sie es erneut.");
 					setIsProcessing(false);

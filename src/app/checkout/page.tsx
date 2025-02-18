@@ -1,8 +1,8 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
-import Layout from '@/components/layout';
 import { useState, useEffect, useCallback } from 'react';
+
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { PayPalCheckoutButton } from '@/components/PayPalCheckoutButton';
@@ -198,8 +198,8 @@ export default function Checkout() {
 
 
 	return (
-		<Layout>
 			<main className="min-h-screen bg-gray-50 py-12">
+
 				<div className="max-w-4xl mx-auto px-4 mb-12">
 					<div className="relative">
 						{/* Progress Line */}
@@ -557,6 +557,6 @@ export default function Checkout() {
 					</div>
 				</div>
 			</main>
-		</Layout>
 	);
+
 }

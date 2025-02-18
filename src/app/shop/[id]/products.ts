@@ -1,104 +1,102 @@
-import { Product } from './types';
+import { Product } from '@/types/products';
 
 export const products: Product[] = [
-
 	{
 		id: 1,
-		category: 'Tech',
 		name: 'Mystery Tech Box',
-		image: '/mysteryBox/images/mysterybox-tech.webp',
+		description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
 		price: 99.99,
 		originalPrice: 129.99,
-		offer: '',
-		description: 'Entdecke spannende Tech-Überraschungen!',
-		detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
+		image: '/mysteryBox/images/mysterybox-tech.webp',
+		category: 'Tech',
+		inStock: true
+
 	},
 	{
 		id: 2,
-		category: 'Fashion',
 		name: 'Mystery Fashion Box',
-		image: '/mysteryBox/images/mysterybox-fashion.webp',
+		description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
 		price: 79.99,
 		originalPrice: 99.99,
-		offer: '',
-		description: 'Dein Style-Upgrade wartet!',
-		detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
+		image: '/mysteryBox/images/mysterybox-fashion.webp',
+		category: 'Fashion',
+		inStock: true
+
 	},
 	{
 		id: 3,
-		category: 'Food',
 		name: 'Mystery Food Box',
-		image: '/mysteryBox/images/placeholder-box1.webp',
+		description: 'Eine kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Geschmackserlebnissen.',
 		price: 49.99,
 		originalPrice: 69.99,
-		offer: '',
-		description: 'Kulinarische Überraschungen warten auf dich!',
-		detailDescription: 'Eine kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Geschmackserlebnissen.',
+		image: '/mysteryBox/images/placeholder-box1.webp',
+		category: 'Food',
+		inStock: true
+
 	},
 	{
 		id: 4,
-		category: 'Deluxe',
 		name: 'Mystery Deluxe Box',
-		image: '/mysteryBox/images/mysterybox-deluxe.webp',
+		description: 'Premium-Überraschungen der Extraklasse! Hochwertige Produkte für besondere Ansprüche.',
 		price: 149.99,
 		originalPrice: 199.99,
-		offer: '',
-		description: 'Ein Hauch von Luxus und Überraschung.',
-		detailDescription: 'Premium-Überraschungen der Extraklasse! Hochwertige Produkte für besondere Ansprüche.',
+		image: '/mysteryBox/images/mysterybox-deluxe.webp',
+		category: 'Deluxe',
+		inStock: true
+
 	},
 	{
 		id: 5,
-		category: 'Mega',
 		name: 'Mystery Mega Box',
-		image: '/mysteryBox/images/mysterybox-mega.webp',
+		description: 'Eine riesige Box voller hochwertiger Überraschungen! Mehr Inhalt, mehr Freude.',
 		price: 199.99,
 		originalPrice: 249.99,
-		offer: '',
-		description: 'Große Überraschungen für große Freude.',
-		detailDescription: 'Eine riesige Box voller hochwertiger Überraschungen! Mehr Inhalt, mehr Freude.',
+		image: '/mysteryBox/images/mysterybox-mega.webp',
+		category: 'Mega',
+		inStock: true
+
 	},
 	{
 		id: 6,
-		category: 'Ultimate',
 		name: 'Mystery Ultimate Box',
-		image: '/mysteryBox/images/mysterybox-ultimate.webp',
+		description: 'Das Beste vom Besten! Die ultimative Mystery Box mit exklusiven Produkten.',
 		price: 299.99,
 		originalPrice: 399.99,
-		offer: '',
-		description: 'Die ultimative Überraschungserfahrung.',
-		detailDescription: 'Das Beste vom Besten! Die ultimative Mystery Box mit exklusiven Produkten.',
+		image: '/mysteryBox/images/mysterybox-ultimate.webp',
+		category: 'Ultimate',
+		inStock: true
+
 	},
-    {
-		id: 7,
-		category: 'XXL',
-		name: 'XXL Premium Mystery Box',
-		price: 99.99,
-		originalPrice: 279.99,
-		offer: '',
-		image: '/mysteryBox/images/mysterybox-premium1.webp',
-		description: '10 KG pure Überraschung!',
-		detailDescription: 'Eine gigantische 10 KG Box voller spannender Überraschungen und Produkte.',
+{
+	id: 7,
+	name: 'XXL Premium Mystery Box',
+	description: 'Eine gigantische 10 KG Box voller spannender Überraschungen und Produkte.',
+	price: 99.99,
+	originalPrice: 279.99,
+	image: '/mysteryBox/images/mysterybox-premium1.webp',
+	category: 'XXL',
+	inStock: true
+
 	},
 	{
 		id: 8,
-		category: 'Starter',
 		name: 'Starter Mystery Box',
+		description: 'Eine 3 KG Box voller Überraschungen - ideal für Mystery Box Einsteiger!',
 		price: 39.99,
 		originalPrice: 120.00,
-		offer: 'Flexible',
 		image: '/mysteryBox/images/starterbox.webp',
-		description: 'Der perfekte Einstieg in die Welt der Mystery Boxes',
-		detailDescription: 'Eine 3 KG Box voller Überraschungen - ideal für Mystery Box Einsteiger!',
+		category: 'Starter',
+		inStock: true
+
 	},
 	{
 		id: 9,
-		category: 'Individuell',
 		name: 'Individuelle Mystery Box',
-		price: '',
-		originalPrice: '',
-		offer: 'Flexible',
+		description: 'Eine komplett individuell anpassbare Mystery Box nach deinen Wünschen und Vorstellungen.',
+		price: 0,
+		originalPrice: 0,
 		image: '/mysteryBox/images/starterbox.webp',
-		description: 'Deine Box, deine Regeln!',
-		detailDescription: 'Eine komplett individuell anpassbare Mystery Box nach deinen Wünschen und Vorstellungen.',
+		category: 'Individuell',
+		inStock: true
 	}
 ];

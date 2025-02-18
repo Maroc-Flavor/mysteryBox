@@ -1,11 +1,12 @@
 'use client';
 
+import { Product } from '@/types/products';
+import { products } from './products';
 import Image from 'next/image';
 import Link from 'next/link';
-import Layout from '@/components/layout';
 import { useCart } from '@/context/CartContext';
 import { motion } from 'framer-motion';
-import { products } from './products';
+
 
 type PageProps = {
   params: { id: string };
@@ -32,19 +33,18 @@ export default function ProductDetail({ params }: PageProps) {
 
   if (!product) {
     return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-2xl text-gray-600">Product not found</div>
-        </div>
-      </Layout>
+      <div className="min-h-screen flex items-center justify-center">
+      <div className="text-2xl text-gray-600">Product not found</div>
+      </div>
     );
+
   }
 
   const isIndividualBox = product.id === 9;
 
   return (
-    <Layout>
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 md:py-12 px-4">
+
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ export default function ProductDetail({ params }: PageProps) {
                 </div>
 
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">{product.name}</h1>
-                <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">{product.detailDescription}</p>
+                <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">{product.description}</p>
 
                 <div className="mt-auto flex flex-col sm:flex-row gap-4">
                   {isIndividualBox ? (
@@ -117,9 +117,9 @@ export default function ProductDetail({ params }: PageProps) {
             </div>
           </motion.div>
         </div>
-      </main>
-    </Layout>
-  );
+        </main>
+      );
+
 }
 
 

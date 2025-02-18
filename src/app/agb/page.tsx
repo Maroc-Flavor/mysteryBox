@@ -1,11 +1,9 @@
-import Layout from '@/components/layout';
-
-export default function AGB() {
+export default function AGBPage() {
 	return (
-		<Layout>
-			<main className="flex-grow">
-				<div className="max-w-4xl mx-auto px-4 py-16">
-					<h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+		<main className="min-h-screen bg-gray-50 py-12">
+			<div className="max-w-4xl mx-auto px-4">
+				<h1 className="text-3xl font-bold mb-8">
+
 						Allgemeine Geschäftsbedingungen
 					</h1>
 					<div className="prose max-w-none space-y-6">
@@ -51,6 +49,6 @@ export default function AGB() {
 					</div>
 				</div>
 			</main>
-		</Layout>
+
 	);
 }

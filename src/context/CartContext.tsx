@@ -1,53 +1,23 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
-interface CartItem {
-	id: number;
-	name: string;
-	price: number;
-	originalPrice: number | string; // Allow string for cases where price is not available
-	image: string;
-	quantity: number;
-}
-
-interface CartContextType {
-	items: CartItem[];
-	addItem: (item: CartItem) => void;
-	removeItem: (id: number) => void;
-	updateQuantity: (id: number, quantity: number) => void;
-	clearCart: () => void;
-	totalItems: number;
-	totalPrice: number;
-	isCartOpen: boolean;
-	setIsCartOpen: (isOpen: boolean) => void;
-}
+import { CartContextType, CartItem } from '@/types/cart';
+import { CartStorage } from '@/services/cartStorage';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-	const [items, setItems] = useState<CartItem[]>(() => {
-		if (typeof window !== 'undefined') {
-			const savedItems = localStorage.getItem('cart');
-			return savedItems ? JSON.parse(savedItems) : [];
-		}
-		return [];
-	});
+	const [items, setItems] = useState<CartItem[]>(() => CartStorage.getItems());
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	useEffect(() => {
-		// Update totals whenever items change
 		const newTotalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 		const newTotalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 		setTotalItems(newTotalItems);
 		setTotalPrice(newTotalPrice);
-		
-		// Save to localStorage
-		if (typeof window !== 'undefined') {
-			localStorage.setItem('cart', JSON.stringify(items));
-		}
+		CartStorage.saveItems(items);
 	}, [items]);
 
 	const addItem = (newItem: CartItem) => {
@@ -79,6 +49,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 	const clearCart = () => {
 		setItems([]);
+		CartStorage.clearItems();
 	};
 
 	return (
