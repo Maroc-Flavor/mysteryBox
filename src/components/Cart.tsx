@@ -148,16 +148,28 @@ export default function Cart() {
 												<span className="font-medium text-gray-100">Gesamt:</span>
 												<span className="text-xl sm:text-2xl font-bold text-green-600">{totalPrice.toFixed(2)} €</span>
 											</div>
-											<Link
-												href="/checkout"
-												className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-medium"
-												onClick={() => setIsCartOpen(false)}
-											>
-												Zur Kasse
-												<svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-												</svg>
-											</Link>
+											<div className="flex flex-col sm:flex-row gap-3">
+												<Link
+													href="/shop"
+													className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-medium"
+													onClick={() => setIsCartOpen(false)}
+												>
+													<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+													</svg>
+													Weitere Boxen jagen
+												</Link>
+												<Link
+													href="/checkout"
+													className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-medium"
+													onClick={() => setIsCartOpen(false)}
+												>
+													Zur Kasse
+													<svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+													</svg>
+												</Link>
+											</div>
 										</div>
 									</>
 								)}
