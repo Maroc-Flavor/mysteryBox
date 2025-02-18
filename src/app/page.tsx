@@ -276,16 +276,36 @@ export default function Home() {
         </section>
 
 
-        <div className="relative h-24 my-8">
-          <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-          </div>
+        {/* Modern Silicon Valley Section Divider */}
+        <div className="relative py-24">
           <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-white px-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+          <div className="w-full max-w-7xl mx-auto px-4">
+            <div className="relative">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent"></div>
+            
+            {/* Main Decorative Element */}
+            <div className="relative flex items-center justify-center">
+              {/* Left Side */}
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent to-indigo-600/30"></div>
+              
+              {/* Center Element */}
+              <div className="relative mx-4 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+              <div className="w-12 h-12 rounded-xl bg-white shadow-2xl border border-gray-100/50 flex items-center justify-center transform rotate-45 hover:rotate-[225deg] transition-all duration-700 group">
+                <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-600 to-purple-600 group-hover:scale-90 transition-transform duration-500"></div>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+              </div>
+              
+              {/* Right Side */}
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent to-purple-600/30"></div>
+            </div>
+            </div>
           </div>
           </div>
         </div>
+
 
         {/* Special Actions Section */}
         <section className="py-24 px-4 relative">
@@ -360,16 +380,36 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="relative h-24 my-8">
-          <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
-          </div>
+        {/* Modern Silicon Valley Section Divider */}
+        <div className="relative py-24">
           <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-white px-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+          <div className="w-full max-w-7xl mx-auto px-4">
+            <div className="relative">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent"></div>
+            
+            {/* Main Decorative Element */}
+            <div className="relative flex items-center justify-center">
+              {/* Left Side */}
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent to-indigo-600/30"></div>
+              
+              {/* Center Element */}
+              <div className="relative mx-4 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+              <div className="w-12 h-12 rounded-xl bg-white shadow-2xl border border-gray-100/50 flex items-center justify-center transform rotate-45 hover:rotate-[225deg] transition-all duration-700 group">
+                <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-600 to-purple-600 group-hover:scale-90 transition-transform duration-500"></div>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+              </div>
+              
+              {/* Right Side */}
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent to-purple-600/30"></div>
+            </div>
+            </div>
           </div>
           </div>
         </div>
+
 
         {/* Shipping Information Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
@@ -514,17 +554,37 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Final divider */}
-            <div className="relative h-24 my-8">
-              <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200"></div>
-              </div>
+            {/* Modern Silicon Valley Section Divider - Final */}
+            <div className="relative py-24">
               <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white px-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full transform rotate-45"></div>
+              <div className="w-full max-w-7xl mx-auto px-4">
+                <div className="relative">
+                {/* Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent"></div>
+                
+                {/* Main Decorative Element */}
+                <div className="relative flex items-center justify-center">
+                  {/* Left Side */}
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent to-indigo-600/30"></div>
+                  
+                  {/* Center Element */}
+                  <div className="relative mx-4 flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+                  <div className="w-12 h-12 rounded-xl bg-white shadow-2xl border border-gray-100/50 flex items-center justify-center transform rotate-45 hover:rotate-[225deg] transition-all duration-700 group">
+                    <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-600 to-purple-600 group-hover:scale-90 transition-transform duration-500"></div>
+                  </div>
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg transform hover:scale-150 transition-transform duration-300"></div>
+                  </div>
+                  
+                  {/* Right Side */}
+                  <div className="flex-1 h-px bg-gradient-to-l from-transparent to-purple-600/30"></div>
+                </div>
+                </div>
               </div>
               </div>
             </div>
+
+
             </main>
           </Layout>
           );
