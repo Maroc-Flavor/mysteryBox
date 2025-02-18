@@ -78,7 +78,7 @@ export default function Navigation() {
 					<div className="flex items-center gap-4">
 						{/* Mobile menu button */}
 						<button 
-							className="lg:hidden p-1.5 rounded-lg hover:bg-gray-100/50 transition-colors"
+							className="lg:hidden p-1.5 text-gray-700 rounded-lg hover:bg-gray-100/50 transition-colors"
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
 							aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
 						>
