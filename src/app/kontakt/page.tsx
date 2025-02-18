@@ -5,12 +5,12 @@ export default function Contact() {
 		<Layout>
 			<main className="flex-grow">
 				<section className="relative py-12 md:py-24 overflow-hidden">
-					<div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 opacity-10"></div>
+					<div className="absolute inset-0 bg-gradient-to-b from-indigo-900 to-purple-900"></div>
 					<div className="container mx-auto px-4 relative z-10">
-						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+						<h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-8 text-white">
 							Kontaktiere uns
 						</h1>
-						<p className="text-base md:text-xl text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-16">
+						<p className="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-8 md:mb-16 leading-relaxed">
 							Hast du Interesse an einer individuellen Mystery Box oder andere Fragen? Wir sind hier, um dir zu helfen!
 						</p>
 
