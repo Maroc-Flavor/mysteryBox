@@ -106,7 +106,7 @@ export default function Cart() {
 															/>
 														</div>
 														<div className="flex-grow min-w-0">
-															<h3 className="font-medium text-gray-800 truncate">{item.name}</h3>
+															<h3 className="font-medium text-gray-600 truncate">{item.name}</h3>
 															<p className="text-indigo-400 font-bold">{item.price} €</p>
 															<div className="flex items-center gap-2 mt-2">
 																<button
@@ -145,7 +145,7 @@ export default function Cart() {
 										</div>
 										<div className="border-t pt-4 mt-4">
 											<div className="flex justify-between items-center mb-4">
-												<span className="font-medium text-gray-100">Gesamt:</span>
+												<span className="font-medium text-gray-500">Gesamt:</span>
 												<span className="text-xl sm:text-2xl font-bold text-green-600">{totalPrice.toFixed(2)} €</span>
 											</div>
 											<div className="flex flex-col sm:flex-row gap-3">
