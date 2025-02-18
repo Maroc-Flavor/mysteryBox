@@ -1,7 +1,7 @@
 1:HL["/mysteryBox/_next/static/media/92f44bb82993d879-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:HL["/mysteryBox/_next/static/media/a34f9d1faa5f3315-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 3:HL["/mysteryBox/_next/static/css/fc955e08c79c203d.css","style",{"crossOrigin":""}]
-0:["lY0UY0JzKZe-uRyu_GKkC",[[["",{"children":["shop",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/mysteryBox/_next/static/css/fc955e08c79c203d.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
+0:["O3XvSFoURrbHvWyD-ZpeG",[[["",{"children":["shop",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/mysteryBox/_next/static/css/fc955e08c79c203d.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
 6:I[4027,["176","static/chunks/176-55f99b3c63e30b6e.js","860","static/chunks/860-8469d2fc7466abd4.js","185","static/chunks/app/layout-1457c5f7146a03d8.js"],"CartProvider"]
 7:I[5434,["176","static/chunks/176-55f99b3c63e30b6e.js","860","static/chunks/860-8469d2fc7466abd4.js","185","static/chunks/app/layout-1457c5f7146a03d8.js"],"PayPalProvider"]
 8:I[6954,[],""]
