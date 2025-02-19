@@ -93,7 +93,7 @@ export default function Home() {
         <section className="min-h-screen relative flex items-center py-12 md:py-0">
           {/* Background with gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founder-floating.webp')]"></div>
+            <div className="absolute inset-0 opacity-10 bg-[url('/mysteryBox/images/founders/founder-floating.webp')]"></div>
           </div>
 
 
