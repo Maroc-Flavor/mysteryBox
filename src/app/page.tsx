@@ -173,7 +173,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/mysteryBox/images/founders/founder-portrait.webp"
+                  src="/mysteryBox/images/products/Box-Hero.webp"
                   alt="Gründer Portrait"
                   fill
                   style={{ objectFit: 'cover' }}
