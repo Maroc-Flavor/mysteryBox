@@ -87,7 +87,7 @@ const products = [
         name: 'Individuelle Mystery Box',
         price: 'Individuell',
         offer: 'Flexible',
-        image: '/mysteryBox/images/products/starterbox.webp',
+        image: '/mysteryBox/images/products/individuellBox.webp',
         description: 'individuell anpassbar. Sprich mit uns.',
         detailDescription: 'individuell anpassbar. Sprich mit uns.',
     }

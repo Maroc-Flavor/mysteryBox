@@ -95,7 +95,7 @@ export const products: Product[] = [
 		description: 'Eine komplett individuell anpassbare Mystery Box nach deinen Wünschen und Vorstellungen.',
 		price: 'individual' as PriceType,
 		originalPrice: 'individual' as PriceType,
-		image: '/mysteryBox/images/products/placeholder-box.webp',
+		image: '/mysteryBox/images/products/individuellBox.webp.webp',
 		category: 'Individuell',
 		inStock: true
 	}

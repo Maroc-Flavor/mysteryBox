@@ -55,7 +55,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: '/mysteryBox/images/products/starterbox.webp',
+        image: '/mysteryBox/images/products/starterBox2.webp',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
