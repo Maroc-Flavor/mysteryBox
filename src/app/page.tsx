@@ -5,10 +5,6 @@ import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
 
-
-
-
-
 interface Product {
   id: number;
   category: string;
@@ -24,10 +20,10 @@ interface Product {
 export default function Home() {
   const { addItem, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsVisible(true);
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
@@ -35,6 +31,7 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const products: Product[] = [
     {
@@ -89,82 +86,107 @@ export default function Home() {
   return (
     <main className="flex-grow bg-gradient-to-b from-gray-50 via-white to-gray-50">
 
-      <section className="min-h-screen relative flex items-center py-12 md:py-0">
+        <section className="min-h-screen relative flex items-center py-12 md:py-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900">
           <div className="absolute inset-0 opacity-5 bg-[url('/mysteryBox/images/pattern-grid.svg')]"></div>
+          {/* Added animated particles effect */}
+          <div className="absolute inset-0 opacity-20">
+          {[...Array(20)].map((_, i) => (
+            <div
+            key={i}
+            className="absolute animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              width: `${Math.random() * 10 + 5}px`,
+              height: `${Math.random() * 10 + 5}px`,
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%'
+            }}
+            />
+          ))}
+          </div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="text-white space-y-6 md:space-y-8">
-              <span className="inline-block px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-300 text-sm font-medium">
-                Live Auktionen & Mystery Boxes
-              </span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-                Entdecke die<br />
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
-                  Überraschung
-                </span>
-              </h1>
-              <p className="text-base md:text-xl text-gray-300 leading-relaxed">
-                Exklusive Retouren-Pakete, live versteigert und ungeöffnet direkt zu dir.
-                Jede Box ist ein spannendes Abenteuer mit garantiertem Mehrwert.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/shop"
-                  className="w-full sm:w-auto text-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/25">
-                  Boxes entdecken
-                </Link>
-                <Link href="#live-auctions"
-                  className="w-full sm:w-auto text-center border border-indigo-400/30 text-white px-8 py-4 rounded-xl text-lg font-medium hover:bg-indigo-500/10 transition-all duration-300 backdrop-blur-sm">
-                  Live Auktionen
-                </Link>
-              </div>
-              <div className="flex items-center gap-4 text-sm text-gray-400">
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Garantierte Echtheit
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Live Unboxing
-                </div>
-              </div>
+          <div className={`text-white space-y-6 md:space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
+            <span className="inline-block px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-300 text-sm font-medium backdrop-blur-sm border border-indigo-500/20">
+            Live Auktionen & Mystery Boxes
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+            Entdecke das
+            <br />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text animate-gradient-x">
+              Unerwartete
+            </span>
+            </h1>
+            <p className="text-base md:text-xl text-gray-300 leading-relaxed">
+            Tauche ein in die Welt der exklusiven Mystery Boxes. 
+            Jede Box ein Abenteuer, jede Öffnung ein Event. 
+            Erlebe den Thrill des Unbekannten.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="/shop"
+              className="group w-full sm:w-auto text-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/25 relative overflow-hidden">
+              <span className="relative z-10">Boxes entdecken</span>
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            </Link>
+            <Link href="#live-auctions"
+              className="group w-full sm:w-auto text-center border border-indigo-400/30 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 backdrop-blur-sm hover:bg-indigo-500/10 relative overflow-hidden">
+              <span className="relative z-10">Live Auktionen</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/10 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </Link>
             </div>
-
-            <div className="relative mt-8 md:mt-0">
-              <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm z-10 rounded-2xl"></div>
-                <Image
-                  src="/mysteryBox/images/products/mysterybox-hero.webp"
-                  alt="Mystery Box Showcase"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="transform hover:scale-105 transition-transform duration-500"
-                  priority
-                  quality={90}
-                />
-              </div>
-              <div className="absolute bottom-4 sm:bottom-8 left-4 right-4 bg-white/10 backdrop-blur-xl p-6 rounded-xl border border-white/20 z-20">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white text-xl font-bold mb-1">Live jetzt</h3>
-                    <p className="text-indigo-200 text-sm">Tech Mystery Box Auktion</p>
-                  </div>
-                  <Link href="#live-auctions"
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center gap-2 hover:bg-red-600 transition-colors">
-                    <span className="animate-pulse">●</span> Live
-                  </Link>
-                </div>
-              </div>
+            <div className="flex items-center gap-4 text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="group-hover:text-indigo-300 transition-colors duration-300">Garantierte Echtheit</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="group-hover:text-indigo-300 transition-colors duration-300">Live Unboxing</span>
+            </div>
             </div>
           </div>
+
+          <div className={`relative mt-8 md:mt-0 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
+            <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm z-10 rounded-2xl 
+              group-hover:from-indigo-600/30 group-hover:to-purple-600/30 transition-all duration-500"></div>
+            <Image
+              src="/mysteryBox/images/products/mysterybox-hero.webp"
+              alt="Mystery Box Showcase"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="transform group-hover:scale-110 transition-transform duration-700"
+              priority
+              quality={90}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
+            </div>
+            <div className="absolute bottom-4 sm:bottom-8 left-4 right-4 bg-white/10 backdrop-blur-xl p-6 rounded-xl border border-white/20 z-20 transform group-hover:translate-y-2 transition-transform duration-300">
+            <div className="flex items-center justify-between">
+              <div>
+              <h3 className="text-white text-xl font-bold mb-1">Live jetzt</h3>
+              <p className="text-indigo-200 text-sm">Tech Mystery Box Auktion</p>
+              </div>
+              <Link href="#live-auctions"
+              className="px-4 py-2 bg-red-500 text-white rounded-lg flex items-center gap-2 hover:bg-red-600 transition-colors group">
+              <span className="animate-pulse">●</span>
+              <span className="group-hover:translate-x-0.5 transition-transform duration-300">Live</span>
+              </Link>
+            </div>
+            </div>
+          </div>
+          </div>
         </div>
-      </section>
+        </section>
 
       {/* Scroll to Top Button */}
       <button

@@ -26,17 +26,22 @@ export const Navigation = () => {
 
 	return (
 		<nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-			isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+			isScrolled 
+				? 'bg-white/80 backdrop-blur-xl border-b border-[#C4A484]/20 shadow-lg' 
+				: 'bg-transparent'
 		}`}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex items-center justify-between h-16">
+				<div className="flex items-center justify-between h-20">
 					<Logo />
 					<DesktopMenu links={MAIN_NAVIGATION_LINKS} />
 					
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-6">
 						<MenuButton isOpen={isMenuOpen} onClick={toggleMenu} />
-						<ShopButton />
-						<CartButton />
+						<div className="hidden md:flex items-center gap-4">
+							<ShopButton />
+							<div className="w-px h-6 bg-[#C4A484]/20"></div>
+							<CartButton />
+						</div>
 					</div>
 				</div>
 			</div>
