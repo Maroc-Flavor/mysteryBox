@@ -1,0 +1,1 @@
+export { PayPalCheckoutButton } from './PayPalCheckoutButton';

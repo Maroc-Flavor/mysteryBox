@@ -5,7 +5,8 @@ import { useState, useEffect, useCallback } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { PayPalCheckoutButton } from '@/components/PayPalCheckoutButton';
+// Update import
+import { PayPalCheckoutButton } from '@/components/payment';
 import { shippingData, type ShippingOption, type CountryShipping } from '@/data/shipping';
 
 interface CountryFlagProps {
