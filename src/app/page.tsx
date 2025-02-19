@@ -44,7 +44,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-      image: '/mysteryBox/images/mysterybox-xxl.webp.webp',
+        image: '/mysteryBox/images/products/mysterybox-xxl.webp',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -55,7 +55,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-      image: '/mysteryBox/images/starterbox.webp',
+        image: '/mysteryBox/images/products/starterbox.webp',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -66,7 +66,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-      image: '/mysteryBox/images/starterbox.webp',
+        image: '/mysteryBox/images/products/placeholder-box.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -125,7 +125,7 @@ export default function Home() {
               <div className="relative mt-8 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
                   <Image
-                    src="/mysteryBox/images/founder-image.webp"
+                    src="/mysteryBox/images/founders/founder-image.webp"
                     alt="Gründer"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -173,7 +173,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/mysteryBox/images/founder-portrait.webp"
+                  src="/mysteryBox/images/founders/founder-portrait.webp"
                   alt="Gründer Portrait"
                   fill
                   style={{ objectFit: 'cover' }}

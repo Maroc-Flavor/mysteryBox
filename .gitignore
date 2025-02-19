@@ -22,6 +22,9 @@ next-env.d.ts
 **/*{secret,credential,api,auth,private,sensitive,confidential}*.{md,ts,js,json}
 **/config/*{credentials,secrets,key,token}*.ts
 
+# PAYPAL INTEGRATION DOKU
+PAYPAL_INTEGRATION.md
+
 # IDE and editor
 .idea/
 .vscode/

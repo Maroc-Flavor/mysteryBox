@@ -1,21 +1,12 @@
+export type PriceType = number | 'surprise' | 'individual';
+
 export interface Product {
 	id: number;
 	name: string;
 	description: string;
-	price: number;
-	originalPrice: number;
+	price: PriceType;
+	originalPrice: PriceType;
 	image: string;
 	category: string;
-	inStock: boolean;
-}
-
-export interface ProductListItem {
-	id: number;
-	category: string;
-	name: string;
-	image: string;
-	price: number | string;
-	originalPrice: number | string;
-	description: string;
 	inStock: boolean;
 }
