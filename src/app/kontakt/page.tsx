@@ -1,6 +1,6 @@
 export default function KontaktPage() {
 	return (
-		<main className="min-h-screen bg-gray-50 py-12">
+		<main>
 			<section className="relative py-12 overflow-hidden">
 
 					<div className="absolute inset-0 bg-gradient-to-b from-indigo-900 to-purple-900"></div>

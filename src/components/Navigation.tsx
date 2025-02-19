@@ -28,7 +28,7 @@ export default function Navigation() {
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link href="/" className="relative flex items-center">
-							<div className="relative w-[60px] h-[24px] md:w-[100px] md:h-[40px] bg-white/80 rounded-full p-1">
+							<div className="relative w-[80px] h-[24px] md:w-[80px] md:h-[100px] bg-white/80 rounded-full p-8">
 								<Image
 									src="/mysteryBox/images/logo.webp"
 									alt="Wundertüten.de"
