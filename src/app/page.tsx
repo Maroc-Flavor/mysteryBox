@@ -66,7 +66,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: '/mysteryBox/images/products/placeholder-box.webp',
+        image: '/mysteryBox/images/products/individuellBoxFrontPage.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
