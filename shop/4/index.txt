@@ -1,7 +1,7 @@
 1:HL["/mysteryBox/_next/static/media/92f44bb82993d879-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:HL["/mysteryBox/_next/static/media/a34f9d1faa5f3315-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 3:HL["/mysteryBox/_next/static/css/654982a584e61203.css","style",{"crossOrigin":""}]
-0:["ysVDHeeUkI6Wu89q3OeLG",[[["",{"children":["shop",{"children":[["id","4","d"],{"children":["__PAGE__?{\"id\":\"4\"}",{}]}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/mysteryBox/_next/static/css/654982a584e61203.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
+0:["rwSDhSPx61CHjjfoXxKSR",[[["",{"children":["shop",{"children":[["id","4","d"],{"children":["__PAGE__?{\"id\":\"4\"}",{}]}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/mysteryBox/_next/static/css/654982a584e61203.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
 6:I[8614,["413","static/chunks/413-49a44038925783d4.js","176","static/chunks/176-784ab6b286fd4e37.js","966","static/chunks/966-7dd3823b859d86d3.js","650","static/chunks/650-d0d8dcc2d2e87572.js","185","static/chunks/app/layout-457e8b45aa608650.js"],"CartProvider"]
 7:I[3570,["413","static/chunks/413-49a44038925783d4.js","176","static/chunks/176-784ab6b286fd4e37.js","966","static/chunks/966-7dd3823b859d86d3.js","650","static/chunks/650-d0d8dcc2d2e87572.js","185","static/chunks/app/layout-457e8b45aa608650.js"],"PayPalProvider"]
 8:I[4928,["413","static/chunks/413-49a44038925783d4.js","176","static/chunks/176-784ab6b286fd4e37.js","966","static/chunks/966-7dd3823b859d86d3.js","650","static/chunks/650-d0d8dcc2d2e87572.js","185","static/chunks/app/layout-457e8b45aa608650.js"],""]
