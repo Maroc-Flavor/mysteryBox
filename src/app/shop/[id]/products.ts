@@ -29,7 +29,7 @@ export const products: Product[] = [
 		description: 'Eine kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Geschmackserlebnissen.',
 		price: 49.99,
 		originalPrice: 69.99,
-		image: '/mysteryBox/images/placeholder-box1.webp',
+		image: '/mysteryBox/images/mysterybox-food.webp',
 		category: 'Food',
 		inStock: true
 
@@ -73,7 +73,7 @@ export const products: Product[] = [
 	description: 'Eine gigantische 10 KG Box voller spannender Überraschungen und Produkte.',
 	price: 99.99,
 	originalPrice: 279.99,
-	image: '/mysteryBox/images/mysterybox-premium1.webp',
+	image: '/mysteryBox/images/mysterybox-xxl.webp.webp',
 	category: 'XXL',
 	inStock: true
 

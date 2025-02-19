@@ -2,7 +2,7 @@
 
 
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { paypalOptions } from '@/config/paypal';
+import { paypalOptions } from '@/config/paypal.config';
 
 export function PayPalProvider({ children }: { children: React.ReactNode }) {
   return (

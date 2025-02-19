@@ -44,7 +44,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-      image: '/mysteryBox/images/mysterybox-premium1.webp',
+      image: '/mysteryBox/images/mysterybox-xxl.webp.webp',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -66,7 +66,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-      image: '/mysteryBox/images/placeholder-box.webp',
+      image: '/mysteryBox/images/starterbox.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
