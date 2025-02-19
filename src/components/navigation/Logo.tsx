@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const Logo = () => (
 	<div className="flex-shrink-0">
 		<Link href="/" className="relative flex items-center">
-			<div className="relative w-[80px] h-[24px] md:w-[80px] md:h-[100px] bg-white/80 rounded-full p-8">
+			<div className="relative rounded-full p-8">
 				<Image
 					src="/mysteryBox/images/logo.webp"
 					alt="Wundertüten.de"
