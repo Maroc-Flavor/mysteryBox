@@ -20,4 +20,39 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes border-pulse {
+  0%, 100% {
+    border-color: rgba(239, 68, 68, 0.8);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 0.4);
+  }
+}
+
+.animate-border-pulse {
+  animation: border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.live-container {
+  position: relative;
+}
+
+.live-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgb(239, 68, 68);
+  border-radius: 1rem;
+  animation: border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: 20;
+}
 

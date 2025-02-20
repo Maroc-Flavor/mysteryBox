@@ -24,6 +24,10 @@ next-env.d.ts
 
 # PAYPAL INTEGRATION DOKU
 PAYPAL_INTEGRATION.md
+# TikTok INTEGRATION DOKU
+docs
+# PROVISORICH
+*.md
 
 # IDE and editor
 .idea/

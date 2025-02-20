@@ -1,59 +1,68 @@
-# Components Architecture
+# Components Documentation
 
-This directory contains all the React components organized in a modular structure to promote maintainability and reusability.
+## Live Stream Integration
 
-## Directory Structure
-
-```
-components/
-├── cart/                 # Cart-related components
-│   ├── Cart.tsx         # Main cart component
-│   ├── CartButton.tsx   # Cart toggle button
-│   └── index.ts         # Barrel file for cart exports
-├── common/              # Shared/common components
-│   ├── CookieConsent.tsx
-│   └── index.ts
-├── layout/              # Layout components
-│   ├── Footer.tsx
-│   └── index.ts
-├── navigation/          # Navigation components
-│   ├── DesktopMenu.tsx
-│   ├── Logo.tsx
-│   ├── MenuButton.tsx
-│   ├── MobileMenu.tsx
-│   ├── Navigation.tsx
-│   ├── ShopButton.tsx
-│   └── index.ts
-└── payment/            # Payment-related components
-	├── PayPalCheckoutButton.tsx
-	└── index.ts
-```
-
-## Usage
-
-Each module exports its components through an index.ts barrel file, allowing for clean imports:
+### Hero Section Live Stream
+Located in `src/app/page.tsx`, the live stream component includes:
 
 ```typescript
-// Import specific components
-import { Cart, CartButton } from '@/components/cart';
-import { CookieConsent } from '@/components/common';
-import { Footer } from '@/components/layout';
-import Navigation from '@/components/navigation';
-import { PayPalCheckoutButton } from '@/components/payment';
+{isLive && roomId ? (
+	<div className="relative w-full h-full">
+		{/* Live stream container with animations */}
+		<iframe src={`https://www.tiktok.com/embed/live/${roomId}`} />
+		{/* Live status indicators */}
+	</div>
+) : (
+	// Fallback content
+)}
 ```
 
-## Design Principles
+### Visual Effects
+- Pulsing border animation
+- Live status badge
+- Backdrop blur effects
+- Overlay information
 
-- **Modularity**: Each component is designed to be self-contained and reusable
-- **Separation of Concerns**: Components are organized by feature/functionality
-- **Clean Imports**: Barrel files provide clean, organized exports
-- **Type Safety**: All components use TypeScript for type safety
-- **Documentation**: Each module includes its own README with specific documentation
+### State Management
+```typescript
+const [isLive, setIsLive] = useState(false);
+const [roomId, setRoomId] = useState<string | null>(null);
+```
+
+### API Integration
+```typescript
+useEffect(() => {
+	const checkTikTokStatus = async () => {
+		const response = await fetch('/api/tiktok-status');
+		const data = await response.json();
+		setIsLive(data.isLive);
+		setRoomId(data.roomId);
+	};
+	// Check every minute
+	const interval = setInterval(checkTikTokStatus, 60000);
+	return () => clearInterval(interval);
+}, []);
+```
+
+## Component Structure
+```
+components/
+├── cart/           # Shopping cart components
+├── common/         # Shared components
+├── layout/         # Layout components
+├── navigation/     # Navigation components
+└── payment/        # Payment integration
+```
+
+## Styling Guidelines
+- Use Tailwind CSS for styling
+- Follow BEM-like class naming
+- Maintain consistent animation timings
+- Use CSS variables for theming
 
 ## Best Practices
-
-1. Always import from the barrel file (index.ts), not directly from component files
-2. Keep components focused and single-responsibility
-3. Use TypeScript interfaces for component props
-4. Document complex components with JSDoc comments
-5. Follow the established directory structure for new components
+1. Keep components focused and single-responsibility
+2. Use TypeScript interfaces for props
+3. Implement proper error boundaries
+4. Optimize for performance
+5. Follow accessibility guidelines
