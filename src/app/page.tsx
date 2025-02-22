@@ -81,7 +81,7 @@ export default function Home() {
   useEffect(() => {
     checkTikTokStatus();
     const interval = setInterval(checkTikTokStatus, POLLING_INTERVAL);
-  
+
     return () => clearInterval(interval);
   }, [checkTikTokStatus]);
 
@@ -234,14 +234,14 @@ export default function Home() {
                     <iframe
                       src={`https://www.tiktok.com/embed/live/${roomId}`}
                       className="w-full h-full absolute inset-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
                       style={{
                         border: 'none',
                         width: '100%',
                         height: '100%',
-                        minHeight: '400px'
+                        minHeight: '600px'
                       }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
                     />
 
                     {/* Live badge */}
