@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 
 interface Product {
   id: number;
@@ -37,7 +38,7 @@ export default function Home() {
   const [isLive, setIsLive] = useState(false);
   const [roomId, setRoomId] = useState<string | null>(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     setIsVisible(true);
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
@@ -45,37 +46,44 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, []);*/
 
   // Add TikTok live status check
-  useEffect(() => {
-    const checkTikTokStatus = async () => {
-      try {
-        const response = await fetch('/api/tiktok-status');
-        const data = await response.json();
-        console.log('TikTok status:', data); // Add debug logging
-        setIsLive(data.isLive);
-        if (data.roomId) {
-          console.log('Setting room ID:', data.roomId); // Add debug logging
-          setRoomId(data.roomId);
-        } else {
-          setRoomId(null);
-        }
-      } catch (error) {
-        console.error('Failed to check TikTok status:', error);
+  const POLLING_INTERVAL = 60000; // Check every minute
+
+  const checkTikTokStatus = useCallback(async () => {
+    try {
+      const response = await fetch('/api/tiktok-status');
+      const data = await response.json();
+
+      if (data.error) {
+        console.error('TikTok status error:', data.error);
         setIsLive(false);
         setRoomId(null);
+        return;
       }
-    };
 
-    // Check initially and every minute
-    checkTikTokStatus();
-    const interval = setInterval(checkTikTokStatus, 60000);
+      console.log('TikTok live status:', {
+        username: data.username,
+        isLive: data.isLive,
+        roomId: data.roomId
+      });
 
-    return () => clearInterval(interval);
+      setIsLive(data.isLive);
+      setRoomId(data.roomId);
+    } catch (error) {
+      console.error('Failed to check TikTok status:', error);
+      setIsLive(false);
+      setRoomId(null);
+    }
   }, []);
 
-
+  useEffect(() => {
+    checkTikTokStatus();
+    const interval = setInterval(checkTikTokStatus, POLLING_INTERVAL);
+  
+    return () => clearInterval(interval);
+  }, [checkTikTokStatus]);
 
   const products: Product[] = [
     {
@@ -85,7 +93,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-        image: '/mysteryBox/images/products/mysterybox-xxl.webp',
+      image: '/mysteryBox/images/products/mysterybox-xxl.webp',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -96,7 +104,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: '/mysteryBox/images/products/starterBox2.webp',
+      image: '/mysteryBox/images/products/starterBox2.webp',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -107,7 +115,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: '/mysteryBox/images/products/individuellBoxFrontPage.webp',
+      image: '/mysteryBox/images/products/individuellBoxFrontPage.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -132,7 +140,7 @@ export default function Home() {
 
       <section className="min-h-screen relative flex items-center py-12 md:py-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900">
-            <div className="absolute inset-0 opacity-5 bg-[url('/mysteryBox/images/pattern-grid.svg')]"></div>
+          <div className="absolute inset-0 opacity-5 bg-[url('/mysteryBox/images/pattern-grid.svg')]"></div>
           <div className="absolute inset-0 opacity-20">
             {[...Array(20)].map((_, i) => (
               <div
@@ -216,42 +224,47 @@ export default function Home() {
 
                 {isLive && roomId ? (
                   <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 mix-blend-overlay z-20"></div>
-                  
-                  {/* Pulsing border */}
-                  <div className="absolute inset-0 border-2 border-red-500 rounded-2xl animate-border-pulse z-30"></div>
-                  
-                  {/* Live stream */}
-                  <iframe
-                    src={`https://www.tiktok.com/embed/live/${roomId}`}
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                  
-                  {/* Live badge */}
-                  <div className="absolute top-4 right-4 z-30">
-                    <div className="px-4 py-2 bg-red-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white animate-pulse-slow"/>
-                    <span className="font-medium">LIVE AUKTION</span>
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 mix-blend-overlay z-20"></div>
+
+                    {/* Pulsing border */}
+                    <div className="absolute inset-0 border-2 border-red-500 rounded-2xl animate-border-pulse z-30"></div>
+
+                    {/* Live stream */}
+                    <iframe
+                      src={`https://www.tiktok.com/embed/live/${roomId}`}
+                      className="w-full h-full absolute inset-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        border: 'none',
+                        width: '100%',
+                        height: '100%',
+                        minHeight: '400px'
+                      }}
+                    />
+
+                    {/* Live badge */}
+                    <div className="absolute top-4 right-4 z-30">
+                      <div className="px-4 py-2 bg-red-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse-slow" />
+                        <span className="font-medium">LIVE AUKTION</span>
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Bottom info */}
-                  <div className="absolute bottom-4 left-4 right-4 z-30">
-                    <div className="bg-black/70 backdrop-blur-sm p-4 rounded-lg text-white border border-white/10">
-                    <p className="font-medium">🎉 Live Mystery Box Auktion</p>
-                    <p className="text-sm opacity-80">Biete mit und sichere dir exklusive Deals!</p>
+
+                    {/* Bottom info */}
+                    <div className="absolute bottom-4 left-4 right-4 z-30">
+                      <div className="bg-black/70 backdrop-blur-sm p-4 rounded-lg text-white border border-white/10">
+                        <p className="font-medium">🎉 Live Mystery Box Auktion</p>
+                        <p className="text-sm opacity-80">Biete mit und sichere dir exklusive Deals!</p>
+                      </div>
                     </div>
-                  </div>
                   </div>
 
                 ) : (
                   <>
                     <Image
-                        src="/mysteryBox/images/products/mysterybox-hero.webp"
+                      src="/mysteryBox/images/products/mysterybox-hero.webp"
                       alt="Mystery Box Showcase"
                       fill
                       style={{ objectFit: 'cover' }}
