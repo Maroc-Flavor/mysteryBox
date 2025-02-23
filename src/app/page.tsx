@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState, useEffect } from 'react';
+import { LIVE_CONFIG } from '@/config/liveStatus';
 
 interface Product {
   id: number;
@@ -34,8 +35,8 @@ export default function Home() {
   const { addItem, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isLive, setIsLive] = useState(false);
-  const [roomId, setRoomId] = useState<string | null>(null);
+  const [isLive, setIsLive] = useState(LIVE_CONFIG.isLive);
+  const [roomId, setRoomId] = useState(LIVE_CONFIG.roomId);
 
   useEffect(() => {
     setIsVisible(true);
@@ -48,43 +49,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const checkTikTokStatus = async () => {
-      try {
-        const response = await fetch('/api/tiktok-status');
-        if (!response.ok) {
-          throw new Error('Failed to fetch TikTok status');
-        }
-
-        const data = await response.json();
-        
-        if (data.error) {
-          console.error('TikTok API error:', data.error);
-          setIsLive(false);
-          setRoomId(null);
-          return;
-        }
-
-        console.log('TikTok live status:', {
-          isLive: data.isLive,
-          roomId: data.roomId,
-          username: data.username
-        });
-
-        setIsLive(data.isLive);
-        setRoomId(data.roomId);
-      } catch (error) {
-        console.error('Failed to check TikTok status:', error);
-        setIsLive(false);
-        setRoomId(null);
-      }
+    // Einfache Statusprüfung
+    const checkLiveStatus = () => {
+      setIsLive(LIVE_CONFIG.isLive);
+      setRoomId(LIVE_CONFIG.roomId);
     };
 
     // Initial check
-    checkTikTokStatus();
+    checkLiveStatus();
 
-    // Check every 30 seconds instead of every minute
-    const interval = setInterval(checkTikTokStatus, 30000);
-
+    // Check every 30 seconds
+    const interval = setInterval(checkLiveStatus, 30000);
     return () => clearInterval(interval);
   }, []);
 

@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server';
 
 const TIKTOK_USERNAME = 'simo4287';
 
+// Für GitHub Pages statischen Test-Modus
+const TEST_MODE = {
+	enabled: true,
+	isLive: false, // Ändern Sie dies manuell je nach Bedarf
+	roomId: null // Fügen Sie hier Ihre Room-ID ein, wenn Sie live sind
+};
+
 async function getTikTokLiveStatus(username: string) {
 	try {
 		const response = await fetch(`https://www.tiktok.com/@${username}/live`, {
@@ -43,5 +50,12 @@ async function getTikTokLiveStatus(username: string) {
 }
 
 export async function GET() {
+	if (TEST_MODE.enabled) {
+		return NextResponse.json({
+			isLive: TEST_MODE.isLive,
+			roomId: TEST_MODE.roomId,
+			username: 'simo4287'
+		});
+	}
 	return getTikTokLiveStatus(TIKTOK_USERNAME);
 }
