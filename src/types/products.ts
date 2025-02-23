@@ -1,4 +1,4 @@
-export type PriceType = number | 'surprise' | 'individual';
+export type PriceType = number | 'individual';
 
 export interface Product {
 	id: number;
@@ -9,4 +9,8 @@ export interface Product {
 	image: string;
 	category: string;
 	inStock: boolean;
+}
+
+export interface CartItem extends Product {
+	quantity: number;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { Product } from '@/types/products';
-import { products } from './products';
+import { products } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';

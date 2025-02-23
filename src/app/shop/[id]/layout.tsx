@@ -1,4 +1,4 @@
-import { products } from './products';
+import { products } from '@/data/products';
 import { Metadata } from 'next';
 
 export function generateStaticParams() {
