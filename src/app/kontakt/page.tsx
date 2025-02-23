@@ -1,4 +1,16 @@
-export default function KontaktPage() {
+'use client';
+
+import { useEffect } from 'react';
+import { useLayout } from '@/context/LayoutContext';
+
+export default function Kontakt() {
+	const { setPageMeta, setLayoutVariant } = useLayout();
+
+	useEffect(() => {
+		setPageMeta('Kontakt', 'Kontaktieren Sie uns - MysteryBox Support');
+		setLayoutVariant('static');
+	}, [setPageMeta, setLayoutVariant]);
+
 	return (
 		<main>
 			<section className="relative py-12 overflow-hidden">

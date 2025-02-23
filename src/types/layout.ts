@@ -1,7 +1,5 @@
 export interface LayoutProps {
   children: React.ReactNode;
-  title?: string;
-  description?: string;
 }
 
 export interface HeaderProps {
@@ -16,4 +14,6 @@ export interface NavigationItem {
   label: string;
   href: string;
   icon?: React.ComponentType;
-} 
+}
+
+export type LayoutVariant = 'default' | 'shop' | 'static'; 

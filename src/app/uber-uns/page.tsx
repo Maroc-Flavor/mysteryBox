@@ -1,6 +1,16 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useLayout } from '@/context/LayoutContext';
 import Image from 'next/image';
 
-export default function UberUnsPage() {
+export default function UberUns() {
+	const { setPageMeta, setLayoutVariant } = useLayout();
+
+	useEffect(() => {
+		setPageMeta('Über uns', 'Erfahren Sie mehr über MysteryBox und unser Team');
+		setLayoutVariant('static');
+	}, [setPageMeta, setLayoutVariant]);
 
 	const milestones = [
 		{
@@ -160,6 +170,5 @@ export default function UberUnsPage() {
 					</div>
 				</section>
 			</main>
-
 	);
 }

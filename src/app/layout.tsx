@@ -1,5 +1,6 @@
 import { CartProvider } from '@/context/CartContext';
 import { PayPalProvider } from '@/providers/PayPalProvider';
+import { LayoutProvider } from '@/context/LayoutContext';
 import { Inter } from "next/font/google";
 import { Metadata } from 'next';
 import MainLayout from '@/components/layout/MainLayout';
@@ -23,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`${inter.variable} antialiased`}>
-        <CartProvider>
-          <PayPalProvider>
-            <MainLayout>{children}</MainLayout>
-          </PayPalProvider>
-        </CartProvider>
+        <LayoutProvider>
+          <CartProvider>
+            <PayPalProvider>
+              <MainLayout>{children}</MainLayout>
+            </PayPalProvider>
+          </CartProvider>
+        </LayoutProvider>
       </body>
     </html>
   );
