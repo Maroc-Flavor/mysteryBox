@@ -222,32 +222,35 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm z-10 rounded-2xl 
                     group-hover:from-indigo-600/30 group-hover:to-purple-600/30 transition-all duration-500"></div>
 
+                {/* Inside your Hero Section, replace the live stream container with this code */}
                 {isLive && roomId ? (
                   <div className="relative w-full h-full overflow-hidden rounded-2xl">
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 mix-blend-overlay z-20"></div>
 
-                    {/* Pulsing border */}
-                    <div className="absolute inset-0 border-2 border-red-500 rounded-2xl animate-border-pulse z-30"></div>
-
-                    {/* Live stream */}
-                    <iframe
-                      src={`https://www.tiktok.com/embed/live/${roomId}`}
-                      className="w-full h-full absolute inset-0"
-                      style={{
-                        border: 'none',
-                        width: '100%',
-                        height: '100%',
-                        minHeight: '600px'
-                      }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                    {/* Live stream container */}
+                    <div className="w-full h-full relative">
+                      <iframe
+                        src={`https://www.tiktok.com/embed/live/${roomId}`}
+                        className="w-full h-full"
+                        style={{
+                          minHeight: '600px',
+                          border: 'none',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0
+                        }}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
 
                     {/* Live badge */}
                     <div className="absolute top-4 right-4 z-30">
                       <div className="px-4 py-2 bg-red-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-white animate-pulse-slow" />
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                         <span className="font-medium">LIVE AUKTION</span>
                       </div>
                     </div>
@@ -260,7 +263,6 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-
                 ) : (
                   <>
                     <Image
