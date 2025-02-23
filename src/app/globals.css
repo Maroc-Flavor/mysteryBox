@@ -44,12 +44,25 @@ body {
 
 .live-container {
   position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+}
+
+.live-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 .live-container::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -2px;
   border: 2px solid rgb(239, 68, 68);
   border-radius: 1rem;
   animation: border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;

@@ -47,20 +47,31 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Add TikTok live status check
   useEffect(() => {
     const checkTikTokStatus = async () => {
       try {
         const response = await fetch('/api/tiktok-status');
-        const data = await response.json();
-        console.log('TikTok status:', data); // Add debug logging
-        setIsLive(data.isLive);
-        if (data.roomId) {
-          console.log('Setting room ID:', data.roomId); // Add debug logging
-          setRoomId(data.roomId);
-        } else {
-          setRoomId(null);
+        if (!response.ok) {
+          throw new Error('Failed to fetch TikTok status');
         }
+
+        const data = await response.json();
+        
+        if (data.error) {
+          console.error('TikTok API error:', data.error);
+          setIsLive(false);
+          setRoomId(null);
+          return;
+        }
+
+        console.log('TikTok live status:', {
+          isLive: data.isLive,
+          roomId: data.roomId,
+          username: data.username
+        });
+
+        setIsLive(data.isLive);
+        setRoomId(data.roomId);
       } catch (error) {
         console.error('Failed to check TikTok status:', error);
         setIsLive(false);
@@ -68,14 +79,14 @@ export default function Home() {
       }
     };
 
-    // Check initially and every minute
+    // Initial check
     checkTikTokStatus();
+
+    // Check every minute
     const interval = setInterval(checkTikTokStatus, 60000);
 
     return () => clearInterval(interval);
   }, []);
-
-
 
   const products: Product[] = [
     {
@@ -130,141 +141,77 @@ export default function Home() {
   return (
     <main className="flex-grow bg-gradient-to-b from-gray-50 via-white to-gray-50">
 
-      <section className="min-h-screen relative flex items-center py-12 md:py-0">
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] flex items-center">
+        {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900">
-            <div className="absolute inset-0 opacity-5 bg-[url('/mysteryBox/images/pattern-grid.svg')]"></div>
-          <div className="absolute inset-0 opacity-20">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  width: `${Math.random() * 10 + 5}px`,
-                  height: `${Math.random() * 10 + 5}px`,
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderRadius: '50%'
-                }}
-              />
-            ))}
-          </div>
+          <div className="absolute inset-0 opacity-5 bg-[url('/mysteryBox/images/pattern-grid.svg')]"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Text Content */}
             <div className={`text-white space-y-6 md:space-y-8 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
                 Entdecke das
                 <br />
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text animate-gradient-x">
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
                   Unerwartete
                 </span>
               </h1>
-              <p className="text-base md:text-xl text-gray-300 leading-relaxed">
-                Tauche ein in die Welt der exklusiven Mystery Boxes.
-                Jede Box ein Abenteuer, jede Öffnung ein Event.
-                Erlebe den Thrill des Unbekannten.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/shop"
-                  className="group w-full sm:w-auto text-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/25 relative overflow-hidden">
-                  <span className="relative z-10">Boxes entdecken</span>
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                </Link>
-              </div>
-
-              <div className="mt-8 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 p-6">
+              
+              {/* Stream Schedule */}
+              <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-semibold text-white">Streaming Schedule</h3>
-                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${isLive ? 'bg-red-500/10 text-red-400' : 'bg-gray-500/10 text-gray-400'
-                    }`}>
-                    <span className={`w-2 h-2 rounded-full ${isLive ? 'bg-red-500 animate-pulse' : 'bg-gray-500'
-                      }`} />
-                    <span>{isLive ? 'LIVE' : 'OFFLINE'}</span>
+                  <h3 className="text-xl font-semibold">Stream Schedule</h3>
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${isLive ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400'}`}>
+                    <span className={`w-2 h-2 rounded-full ${isLive ? 'bg-red-500 animate-pulse' : 'bg-gray-500'}`}></span>
+                    {isLive ? 'LIVE' : 'OFFLINE'}
                   </div>
                 </div>
-
+                
                 <div className="grid grid-cols-2 gap-4">
                   {streamSchedule.map((schedule, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 015.2-1.74V11a8.55 8.55 0 006.33 2.62V10.2a4.83 4.83 0 01-3.77-4.25V5.5a4.83 4.83 0 003.77 4.25v3.38z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">{schedule.day}</p>
-                          <p className="text-indigo-200 text-sm">{schedule.time} Uhr</p>
-                        </div>
-                      </div>
-                      <span className="text-xs px-2 py-1 rounded-md bg-white/10 text-indigo-200">
-                        {schedule.platform}
-                      </span>
+                    <div key={index} className="bg-white/5 rounded-lg p-3">
+                      <div className="font-medium">{schedule.day}</div>
+                      <div className="text-sm text-gray-300">{schedule.time}</div>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
+            {/* Live Stream Container */}
             <div className={`relative mt-8 md:mt-0 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
               <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm z-10 rounded-2xl 
-                    group-hover:from-indigo-600/30 group-hover:to-purple-600/30 transition-all duration-500"></div>
-
                 {isLive && roomId ? (
-                  <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 mix-blend-overlay z-20"></div>
-                  
-                  {/* Pulsing border */}
-                  <div className="absolute inset-0 border-2 border-red-500 rounded-2xl animate-border-pulse z-30"></div>
-                  
-                  {/* Live stream */}
-                  <iframe
-                    src={`https://www.tiktok.com/embed/live/${roomId}`}
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                  
-                  {/* Live badge */}
-                  <div className="absolute top-4 right-4 z-30">
-                    <div className="px-4 py-2 bg-red-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white animate-pulse-slow"/>
-                    <span className="font-medium">LIVE AUKTION</span>
+                  <div className="live-container w-full h-full">
+                    <iframe
+                      src={`https://www.tiktok.com/embed/live/${roomId}`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                    <div className="absolute top-4 right-4 z-30">
+                      <div className="px-4 py-2 bg-red-500 text-white rounded-lg animate-pulse">
+                        LIVE
+                      </div>
                     </div>
                   </div>
-                  
-                  {/* Bottom info */}
-                  <div className="absolute bottom-4 left-4 right-4 z-30">
-                    <div className="bg-black/70 backdrop-blur-sm p-4 rounded-lg text-white border border-white/10">
-                    <p className="font-medium">🎉 Live Mystery Box Auktion</p>
-                    <p className="text-sm opacity-80">Biete mit und sichere dir exklusive Deals!</p>
-                    </div>
-                  </div>
-                  </div>
-
                 ) : (
-                  <>
+                  <div className="relative w-full h-full">
                     <Image
                       src="/mysteryBox/images/products/mysterybox-hero.webp"
                       alt="Mystery Box Showcase"
                       fill
-                      style={{ objectFit: 'cover' }}
-                      className="transform transition-transform duration-700"
+                      className="object-cover rounded-2xl"
                       priority
-                      quality={90}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
-                  </>
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl"></div>
+                  </div>
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </section>
