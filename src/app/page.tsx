@@ -224,7 +224,7 @@ export default function Home() {
 
                 {/* Inside your Hero Section, replace the live stream container with this code */}
                 {isLive && roomId ? (
-                  <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                  <div className="relative w-full h-full overflow-hidden rounded-2xl live-container">
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 mix-blend-overlay z-20"></div>
 
@@ -237,25 +237,27 @@ export default function Home() {
                           minHeight: '600px',
                           border: 'none',
                           position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0
+                          top: '50%',
+                          left: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
                         }}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
                     </div>
 
-                    {/* Live badge */}
+                    {/* Live badge - verbesserte Position */}
                     <div className="absolute top-4 right-4 z-30">
-                      <div className="px-4 py-2 bg-red-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                      <div className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2 animate-pulse">
+                        <span className="w-2 h-2 rounded-full bg-white"></span>
                         <span className="font-medium">LIVE AUKTION</span>
                       </div>
                     </div>
 
-                    {/* Bottom info */}
+                    {/* Bottom info - verbesserte Position */}
                     <div className="absolute bottom-4 left-4 right-4 z-30">
                       <div className="bg-black/70 backdrop-blur-sm p-4 rounded-lg text-white border border-white/10">
                         <p className="font-medium">🎉 Live Mystery Box Auktion</p>

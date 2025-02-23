@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server';
 
 // TikTok username constant
@@ -10,7 +9,8 @@ async function getTikTokLiveStatus(username: string) {
     const response = await fetch(`https://www.tiktok.com/@${username}/live`, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      }
+      },
+      cache: 'no-store'
     });
 
     if (!response.ok) {
@@ -34,7 +34,8 @@ async function getTikTokLiveStatus(username: string) {
     console.error('Error fetching TikTok live status:', error);
     return {
       isLive: false,
-      roomId: null
+      roomId: null,
+      error: error instanceof Error ? error.message : 'Ein unbekannter Fehler ist aufgetreten'
     };
   }
 }

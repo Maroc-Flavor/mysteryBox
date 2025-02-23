@@ -32,9 +32,11 @@ body {
 @keyframes border-pulse {
   0%, 100% {
     border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
   }
   50% {
     border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.1);
   }
 }
 
@@ -44,15 +46,34 @@ body {
 
 .live-container {
   position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
 }
 
 .live-container::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -2px;
   border: 2px solid rgb(239, 68, 68);
   border-radius: 1rem;
   animation: border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   z-index: 20;
+}
+
+.live-stream-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
