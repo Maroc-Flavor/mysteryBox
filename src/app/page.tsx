@@ -82,8 +82,8 @@ export default function Home() {
     // Initial check
     checkTikTokStatus();
 
-    // Check every minute
-    const interval = setInterval(checkTikTokStatus, 60000);
+    // Check every 30 seconds instead of every minute
+    const interval = setInterval(checkTikTokStatus, 30000);
 
     return () => clearInterval(interval);
   }, []);
