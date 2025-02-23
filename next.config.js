@@ -10,6 +10,14 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'flagcdn.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'www.tiktok.com',
+			},
+			{
+				protocol: 'https',
+				hostname: '*.tiktok.com',
+			}
 		],
 		domains: ['images.unsplash.com'],
 	},

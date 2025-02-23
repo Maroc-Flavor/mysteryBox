@@ -31,12 +31,64 @@ const streamSchedule: StreamSchedule[] = [
   { day: 'Sonntag', time: '18:00', platform: 'TikTok' },
 ];
 
+// Countdown Helper Funktionen
+const getNextStream = (schedule: StreamSchedule[]) => {
+  const now = new Date();
+  const today = now.getDay(); // 0 = Sonntag, 1 = Montag, ...
+  const currentTime = now.getHours() * 60 + now.getMinutes();
+
+  const dayMap: { [key: string]: number } = {
+    'Montag': 1,
+    'Mittwoch': 3,
+    'Freitag': 5,
+    'Sonntag': 0
+  };
+
+  return schedule.find(stream => {
+    const streamDay = dayMap[stream.day];
+    const [hours, minutes] = stream.time.split(':').map(Number);
+    const streamTime = hours * 60 + minutes;
+
+    return (
+      today < streamDay || 
+      (today === streamDay && currentTime < streamTime)
+    );
+  }) || schedule[0];
+};
+
+const getTimeUntilStream = (nextStream: StreamSchedule) => {
+  const now = new Date();
+  const dayMap: { [key: string]: number } = {
+    'Montag': 1,
+    'Mittwoch': 3,
+    'Freitag': 5,
+    'Sonntag': 0
+  };
+
+  const targetDay = dayMap[nextStream.day];
+  const [hours, minutes] = nextStream.time.split(':').map(Number);
+  
+  const target = new Date();
+  target.setDate(target.getDate() + ((targetDay + 7 - target.getDay()) % 7));
+  target.setHours(hours, minutes, 0, 0);
+
+  const diff = target.getTime() - now.getTime();
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  return { days, hours: hrs, minutes: mins };
+};
+
 export default function Home() {
   const { addItem, setIsCartOpen } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isLive, setIsLive] = useState(LIVE_CONFIG.isLive);
   const [roomId, setRoomId] = useState(LIVE_CONFIG.roomId);
+  const [nextStream, setNextStream] = useState(getNextStream(streamSchedule));
+  const [timeUntil, setTimeUntil] = useState(getTimeUntilStream(nextStream));
 
   useEffect(() => {
     setIsVisible(true);
@@ -62,6 +114,14 @@ export default function Home() {
     const interval = setInterval(checkLiveStatus, 30000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeUntil(getTimeUntilStream(nextStream));
+    }, 60000); // Update jede Minute
+
+    return () => clearInterval(timer);
+  }, [nextStream]);
 
   const products: Product[] = [
     {
@@ -138,20 +198,48 @@ export default function Home() {
               {/* Stream Schedule */}
               <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-semibold">Stream Schedule</h3>
-                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${isLive ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400'}`}>
-                    <span className={`w-2 h-2 rounded-full ${isLive ? 'bg-red-500 animate-pulse' : 'bg-gray-500'}`}></span>
-                    {isLive ? 'LIVE' : 'OFFLINE'}
+                  <h3 className="text-xl font-semibold">Wann sind wir online?</h3>
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${LIVE_CONFIG.isLive ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400'}`}>
+                    <span className={`w-2 h-2 rounded-full ${LIVE_CONFIG.isLive ? 'bg-red-500 animate-pulse' : 'bg-gray-500'}`}></span>
+                    {LIVE_CONFIG.isLive ? 'LIVE' : 'OFFLINE'}
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   {streamSchedule.map((schedule, index) => (
-                    <div key={index} className="bg-white/5 rounded-lg p-3">
-                      <div className="font-medium">{schedule.day}</div>
-                      <div className="text-sm text-gray-300">{schedule.time}</div>
+                    <div key={index} className="bg-white/5 rounded-lg p-3 flex items-center justify-between group hover:bg-white/10 transition-all duration-300">
+                      <div>
+                        <div className="font-medium">{schedule.day}</div>
+                        <div className="text-sm text-gray-300">{schedule.time}</div>
+                      </div>
+                      <a
+                        href="https://www.tiktok.com/@simo4287"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 hover:from-pink-500/30 hover:to-purple-500/30 rounded-lg text-sm font-medium transition-all duration-300 group-hover:scale-105"
+                      >
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
+                          Folgen
+                        </span>
+                        <span className="text-pink-400">♥</span>
+                      </a>
                     </div>
                   ))}
+                </div>
+
+                {/* Zusätzliche Plattform-Info */}
+                <div className="mt-6 pt-4 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-gray-300 text-sm">
+                    <span>Demnächst auch auf:</span>
+                    <div className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                      <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,13 +247,19 @@ export default function Home() {
             {/* Live Stream Container */}
             <div className={`relative mt-8 md:mt-0 transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
               <div className="relative h-[300px] sm:h-[400px] md:h-[600px] rounded-2xl overflow-hidden">
-                {isLive && roomId ? (
+                {LIVE_CONFIG.isLive && LIVE_CONFIG.roomId ? (
                   <div className="live-container w-full h-full">
                     <iframe
-                      src={`https://www.tiktok.com/embed/live/${roomId}`}
+                      src={`https://www.tiktok.com/embed/live/${LIVE_CONFIG.roomId}`}
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
+                      style={{
+                        border: 'none',
+                        width: '100%',
+                        height: '100%',
+                        minHeight: '600px'
+                      }}
                     />
                     <div className="absolute top-4 right-4 z-30">
                       <div className="px-4 py-2 bg-red-500 text-white rounded-lg animate-pulse">
@@ -176,13 +270,33 @@ export default function Home() {
                 ) : (
                   <div className="relative w-full h-full">
                     <Image
-                      src="/mysteryBox/images/products/mysterybox-hero.webp"
+                      src="/mysteryBox/images/products/Box-Hero.webp"
                       alt="Mystery Box Showcase"
                       fill
                       className="object-cover rounded-2xl"
                       priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center text-white p-8 bg-black/40 rounded-xl backdrop-blur-sm">
+                          <h3 className="text-2xl font-bold mb-4">Nächster Live-Stream</h3>
+                          <div className="flex gap-4 justify-center mb-6">
+                            <div className="bg-white/10 rounded-lg p-4">
+                              <span className="text-3xl font-bold">{timeUntil.days}</span>
+                              <p className="text-sm">Tage</p>
+                            </div>
+                            <div className="bg-white/10 rounded-lg p-4">
+                              <span className="text-3xl font-bold">{timeUntil.hours}</span>
+                              <p className="text-sm">Stunden</p>
+                            </div>
+                            <div className="bg-white/10 rounded-lg p-4">
+                              <span className="text-3xl font-bold">{timeUntil.minutes}</span>
+                              <p className="text-sm">Minuten</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

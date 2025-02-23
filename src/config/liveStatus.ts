@@ -1,6 +1,6 @@
 export const LIVE_CONFIG = {
-  isLive: true,
-  roomId: 'IHRE_GEFUNDENE_ROOM_ID',
+  isLive: false,
+  roomId: '7474578148055714583',
   scheduleInfo: {
     nextStream: 'Montag, 20:00 Uhr',
     platform: 'TikTok'
