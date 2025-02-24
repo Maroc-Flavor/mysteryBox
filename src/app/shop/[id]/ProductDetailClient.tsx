@@ -1,10 +1,12 @@
 'use client';
 
-import { products } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { motion } from 'framer-motion';
+import { useProducts } from '@/hooks/useProducts';
+import { ROUTES } from '@/constants/routes';
+import { useMessage } from '@/hooks/useMessage';
 
 type PageProps = {
   params: { id: string };
@@ -12,13 +14,17 @@ type PageProps = {
 
 export default function ProductDetailClient({ params }: PageProps) {
   const { addItem, setIsCartOpen } = useCart();
-  const product = products.find(p => p.id === parseInt(params.id));
+  const { getProduct, isIndividualBox, getProductAction, formatPrice } = useProducts();
+  const { showMessage } = useMessage();
+  const product = getProduct(params.id);
+  const isIndividual = isIndividualBox(product);
+  const action = getProductAction(product);
 
   // Rest des bestehenden Codes...
   // (Der gesamte UI-Teil bleibt gleich, wird nur in diese neue Datei verschoben)
   
     const handleAddToCart = () => {
-      if (product && product.id !== 9 && typeof product.price === 'number') {
+      if (product && !isIndividual && typeof product.price === 'number') {
         addItem({
           id: product.id,
           name: product.name,
@@ -28,6 +34,7 @@ export default function ProductDetailClient({ params }: PageProps) {
           quantity: 1
         });
         setIsCartOpen(true);
+        showMessage('Produkt wurde zum Warenkorb hinzugefügt', 'success');
       }
     };
   
@@ -40,8 +47,6 @@ export default function ProductDetailClient({ params }: PageProps) {
       );
   
     }
-  
-    const isIndividualBox = product.id === 9;
   
     return (
         <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 md:py-12 px-4">
@@ -72,9 +77,9 @@ export default function ProductDetailClient({ params }: PageProps) {
                     <span className="px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
                       {product.category}
                     </span>
-                    {!isIndividualBox && product.price && (
+                    {!isIndividual && product.price && (
                       <span className="text-2xl md:text-3xl font-bold text-indigo-600">
-                        {product.price} €
+                        {formatPrice(product.price)}
                       </span>
                     )}
                   </div>
@@ -83,7 +88,7 @@ export default function ProductDetailClient({ params }: PageProps) {
                   <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">{product.description}</p>
   
                   <div className="mt-auto flex flex-col sm:flex-row gap-4">
-                    {isIndividualBox ? (
+                    {isIndividual && (
                       <Link
                         href="/kontakt"
                         className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 px-6 md:px-8 rounded-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2"
@@ -93,7 +98,8 @@ export default function ProductDetailClient({ params }: PageProps) {
                         </svg>
                         Kontaktieren Sie uns
                       </Link>
-                    ) : (
+                    )}
+                    {!isIndividual && (
                       <button
                         onClick={handleAddToCart}
                         className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 px-6 md:px-8 rounded-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2"

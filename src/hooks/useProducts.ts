@@ -1,5 +1,6 @@
 import { products } from '@/data/products';
 import { Product } from '@/types/products';
+import { ROUTES } from '@/constants/routes';
 
 export function useProducts() {
   const getProduct = (id: string | number) => {
@@ -17,8 +18,16 @@ export function useProducts() {
   const getProductAction = (product?: Product) => {
     if (!product) return null;
     return isIndividualBox(product) 
-      ? { type: 'contact', text: 'Angebot anfordern' }
-      : { type: 'shop', text: 'Jetzt entdecken' };
+      ? { type: 'contact', text: 'Angebot anfordern', href: ROUTES.CONTACT }
+      : { type: 'shop', text: 'Jetzt entdecken', href: `${ROUTES.SHOP}/${product.id}` };
+  };
+
+  const formatPrice = (price: number | 'individual'): string => {
+    if (price === 'individual') return 'Auf Anfrage';
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR'
+    }).format(price);
   };
 
   return {
@@ -26,6 +35,7 @@ export function useProducts() {
     getProduct,
     isIndividualBox,
     getFilteredProducts,
-    getProductAction
+    getProductAction,
+    formatPrice
   };
 } 

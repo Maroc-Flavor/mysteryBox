@@ -28,7 +28,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		CartStorage.saveItems(items);
 	}, [items]);
 
+	const validateCartItem = (item: CartItem): boolean => {
+		return (
+			typeof item.id === 'number' &&
+			typeof item.price === 'number' &&
+			item.price > 0 &&
+			typeof item.quantity === 'number' &&
+			item.quantity > 0 &&
+			item.quantity <= 10 // Maximale Menge pro Artikel
+		);
+	};
+
 	const addItem = (newItem: CartItem) => {
+		if (!validateCartItem(newItem)) {
+			console.error('Ungültiges Produkt');
+			return;
+		}
 		if (typeof newItem.price !== 'number') return;
 		
 		setItems(currentItems => {

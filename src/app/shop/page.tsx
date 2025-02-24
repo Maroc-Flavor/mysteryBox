@@ -3,14 +3,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
-import { products } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 import { Product } from '@/types/products';
+import { ROUTES } from '@/constants/routes';
 
 export default function ShopPage() {
+    const { products, isIndividualBox, getProductAction, formatPrice } = useProducts();
     const { addItem, setIsCartOpen } = useCart();
 
     const handleAddToCart = (product: Product) => {
-        if (product && typeof product.price === 'number') {
+        if (!isIndividualBox(product) && typeof product.price === 'number') {
             addItem({
                 id: product.id,
                 name: product.name,
@@ -38,63 +40,67 @@ export default function ShopPage() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
 
-                            {products.map((product) => (
-                                <div key={product.id} className="group bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100/20">
-                                    <Link href={product.id === 9 ? '/kontakt' : `/shop/${product.id}`}>
-                                        <div className="relative h-48 sm:h-64 overflow-hidden">
-                                            <Image
-                                                fill
-                                                src={product.image}
-                                                alt={product.name}
-                                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                                className="object-cover transform transition-transform duration-500 group-hover:scale-110"
-                                                priority={product.id <= 3}
-                                                quality={85}
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <div className="absolute bottom-4 left-4 right-4">
-                                                    <span className="text-white text-lg font-medium">Mehr Details</span>
+                            {products.map((product) => {
+                                const action = getProductAction(product);
+                                if (!action) return null;
+
+                                return (
+                                    <div key={product.id} className="group bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100/20">
+                                        <Link href={action.href}>
+                                            <div className="relative h-48 sm:h-64 overflow-hidden">
+                                                <Image
+                                                    fill
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                    className="object-cover transform transition-transform duration-500 group-hover:scale-110"
+                                                    priority={product.id <= 3}
+                                                    quality={85}
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                    <div className="absolute bottom-4 left-4 right-4">
+                                                        <span className="text-white text-lg font-medium">Mehr Details</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="p-6 md:p-8">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <span className="px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg">
-                                                    {product.category}
-                                                </span>
-                                                <div className="text-right">
-                                                    {product.id === 9 ? (
-                                                        <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                                                            Individuell
-                                                        </span>
-                                                    ) : (
-                                                        <>
+                                            <div className="p-6 md:p-8">
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <span className="px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg">
+                                                        {product.category}
+                                                    </span>
+                                                    <div className="text-right">
+                                                        {product.id === 9 ? (
                                                             <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                                                                {typeof product.price === 'number' ? `${product.price} €` : product.price}
+                                                                Individuell
                                                             </span>
-                                                            {product.originalPrice && (
-                                                                <span className="ml-2 text-sm text-gray-400 line-through">
-                                                                    {product.originalPrice} €
+                                                        ) : (
+                                                            <>
+                                                                <span className="text-xl md:text-2xl font-bold">
+                                                                    {formatPrice(product.price)}
                                                                 </span>
-                                                            )}
-                                                        </>
-                                                    )}
+                                                                {product.originalPrice && (
+                                                                    <span className="ml-2 text-sm text-gray-400 line-through">
+                                                                        {product.originalPrice} €
+                                                                    </span>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{product.name}</h2>
-                                            <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">{product.description}</p>
+                                                <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{product.name}</h2>
+                                                <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
                                             </div>
                                         </Link>
                                         <div className="px-6 md:px-8 pb-6 md:pb-8">
                                             <div className="flex flex-col gap-3">
                                                 <Link 
-                                                    href={product.id === 9 ? '/kontakt' : `/shop/${product.id}`}
+                                                    href={action.href}
                                                     className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 rounded-2xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center space-x-2 font-medium"
                                                 >
-                                                    <span>{product.id === 9 ? 'Angebot anfordern' : 'Jetzt entdecken'}</span>
+                                                    <span>{action.text}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                     </svg>
@@ -116,7 +122,8 @@ export default function ShopPage() {
                                             </div>
                                         </div>
                                     </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
