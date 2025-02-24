@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useLayout } from '@/context/LayoutContext';
 import Image from 'next/image';
+import { Newsletter } from '@/components/common/Newsletter';
 
 export default function UberUns() {
 	const { setPageMeta, setLayoutVariant } = useLayout();
@@ -151,21 +152,7 @@ export default function UberUns() {
 							<p className="text-xl mb-8 opacity-90">
 								Erhalte exklusive Angebote, Sneak Peeks und die Chance auf besondere Mystery Boxes.
 							</p>
-							<form className="max-w-md mx-auto">
-								<div className="flex gap-4">
-									<input
-										type="email"
-										placeholder="Deine E-Mail Adresse"
-										className="flex-grow px-6 py-4 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-									/>
-									<button
-										type="submit"
-										className="bg-white text-indigo-600 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors duration-300"
-									>
-										Anmelden
-									</button>
-								</div>
-							</form>
+							<Newsletter />
 						</div>
 					</div>
 				</section>

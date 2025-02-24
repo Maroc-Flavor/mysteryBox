@@ -3,100 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
-
-
-
-const products = [
-    {
-        id: 1,
-        category: 'Tech',
-        name: 'Mystery Tech Box',
-        image: '/mysteryBox/images/products/mysterybox-tech.webp',
-        price: 'Surprise!',
-        description: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
-        detailDescription: 'Ein spannendes Technik-Paket voller Überraschungen! Von Gadgets bis zu Smart-Home-Produkten.',
-    },
-    {
-        id: 2,
-        category: 'Fashion',
-        name: 'Mystery Fashion Box',
-        image: '/mysteryBox/images/products/mysterybox-fashion.webp',
-        price: 'Surprise!',
-        description: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker',
-        detailDescription: 'Stylische Überraschungen für deinen Kleiderschrank! Aktuelle Trends und zeitlose Klassiker.',
-    },
-    {
-        id: 3,
-        category: 'Food',
-        name: 'Mystery Food Box',
-        image: '/mysteryBox/images/products/mysterybox-food.webp',
-        price: 'Surprise!',
-        description: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-        detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-    },
-    {
-        id: 4,
-        category: 'Deluxe',
-        name: 'Mystery Deluxe Box',
-        image: '/mysteryBox/images/products/mysterybox-deluxe.webp',
-        price: 'Surprise!',
-        description: 'Ein Hauch von Luxus und Überraschung.',
-        detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-    },
-    {
-        id: 5,
-        category: 'Mega ',
-        name: 'Mystery Mega Box',
-        image: '/mysteryBox/images/products/mysterybox-mega.webp',
-        price: 'Surprise!',
-        description: 'Große Überraschungen für große Freude.',
-        detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-    },
-    {
-        id: 6,
-        category: 'Ultimate',
-        name: 'Mystery Ultimate Box',
-        image: '/mysteryBox/images/products/mysterybox-ultimate.webp',
-        price: 'Surprise!',
-        description: 'Die ultimative Überraschungserfahrung.',
-        detailDescription: 'Kulinarische Entdeckungsreise mit ausgewählten Spezialitäten und Überraschungen.',
-    },
-    {
-        id: 7,
-        category: 'XXL',
-        name: 'XXL Premium Mystery Box',
-        price: 99.99,
-        originalPrice: 279.99,
-        image: '/mysteryBox/images/products/mysterybox-xxl.webp',
-        description: '10 KG Überraschungsbox',
-        detailDescription: '10 KG Überraschungsbox',
-    },
-    {
-        id: 8,
-        category: 'Starter',
-        name: 'Starter Mystery Box',
-        price: 39.99,
-        originalPrice: 120.00,
-        image: '/mysteryBox/images/products/starterbox.webp',
-        description: '3 KG Überraschungskarton',
-        detailDescription: '3 KG Überraschungskarton.',
-    },
-    {
-        id: 9,
-        category: 'Individuell',
-        name: 'Individuelle Mystery Box',
-        price: 'Individuell',
-        offer: 'Flexible',
-        image: '/mysteryBox/images/products/individuellBox.webp',
-        description: 'individuell anpassbar. Sprich mit uns.',
-        detailDescription: 'individuell anpassbar. Sprich mit uns.',
-    }
-];
+import { products } from '@/data/products';
+import { Product } from '@/types/products';
 
 export default function ShopPage() {
     const { addItem, setIsCartOpen } = useCart();
 
-    const handleAddToCart = (product: any) => {
+    const handleAddToCart = (product: Product) => {
         if (product && typeof product.price === 'number') {
             addItem({
                 id: product.id,

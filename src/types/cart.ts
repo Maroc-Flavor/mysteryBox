@@ -1,3 +1,5 @@
+import { Product } from './products';
+
 export interface CartItem {
 	id: number;
 	name: string;
@@ -9,12 +11,12 @@ export interface CartItem {
 
 export interface CartContextType {
 	items: CartItem[];
+	totalItems: number;
+	totalPrice: number;
+	isCartOpen: boolean;
+	setIsCartOpen: (open: boolean) => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: number) => void;
 	updateQuantity: (id: number, quantity: number) => void;
 	clearCart: () => void;
-	totalItems: number;
-	totalPrice: number;
-	isCartOpen: boolean;
-	setIsCartOpen: (isOpen: boolean) => void;
 }

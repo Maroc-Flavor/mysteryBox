@@ -1,14 +1,14 @@
 "use client"
 
 import { createContext, useContext, useState } from 'react';
-import { LayoutProps } from '@/types/layout';
+import { LayoutVariant } from '@/types/layout';
 
 interface LayoutContextType {
   pageTitle: string;
   pageDescription: string;
-  variant: 'default' | 'shop' | 'static';
+  variant: LayoutVariant;
   setPageMeta: (title: string, description?: string) => void;
-  setLayoutVariant: (variant: 'default' | 'shop' | 'static') => void;
+  setLayoutVariant: (variant: LayoutVariant) => void;
 }
 
 const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
@@ -16,14 +16,14 @@ const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
 export function LayoutProvider({ children }: { children: React.ReactNode }) {
   const [pageTitle, setPageTitle] = useState('');
   const [pageDescription, setPageDescription] = useState('');
-  const [variant, setVariant] = useState<'default' | 'shop' | 'static'>('default');
+  const [variant, setVariant] = useState<LayoutVariant>('default');
 
   const setPageMeta = (title: string, description: string = '') => {
     setPageTitle(title);
     setPageDescription(description);
   };
 
-  const setLayoutVariant = (newVariant: 'default' | 'shop' | 'static') => {
+  const setLayoutVariant = (newVariant: LayoutVariant) => {
     setVariant(newVariant);
   };
 

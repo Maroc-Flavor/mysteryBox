@@ -1,32 +1,42 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { CartContextType, CartItem } from '@/types/cart';
+import { CartItem, CartContextType } from '@/types/cart';
 import { CartStorage } from '@/services/cartStorage';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-	const [items, setItems] = useState<CartItem[]>(() => CartStorage.getItems());
+	const [items, setItems] = useState<CartItem[]>([]);
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [isCartOpen, setIsCartOpen] = useState(false);
 
 	useEffect(() => {
-		const newTotalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-		const newTotalPrice = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+		const storedItems = CartStorage.getItems();
+		if (storedItems && Array.isArray(storedItems)) {
+			setItems(storedItems as CartItem[]);
+		}
+	}, []);
+
+	useEffect(() => {
+		const newTotalItems = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
+		const newTotalPrice = items.reduce((sum, item) => sum + (item.price * (item.quantity || 0)), 0);
+		
 		setTotalItems(newTotalItems);
 		setTotalPrice(newTotalPrice);
 		CartStorage.saveItems(items);
 	}, [items]);
 
 	const addItem = (newItem: CartItem) => {
+		if (typeof newItem.price !== 'number') return;
+		
 		setItems(currentItems => {
 			const existingItem = currentItems.find(item => item.id === newItem.id);
 			if (existingItem) {
 				return currentItems.map(item =>
 					item.id === newItem.id
-						? { ...item, quantity: item.quantity + 1 }
+						? { ...item, quantity: (item.quantity || 0) + 1 }
 						: item
 				);
 			}
@@ -55,14 +65,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<CartContext.Provider value={{
 			items,
-			addItem,
-			removeItem,
-			updateQuantity,
-			clearCart,
 			totalItems,
 			totalPrice,
 			isCartOpen,
-			setIsCartOpen
+			setIsCartOpen,
+			addItem,
+			removeItem,
+			updateQuantity,
+			clearCart
 		}}>
 			{children}
 		</CartContext.Provider>

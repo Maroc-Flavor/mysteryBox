@@ -5,6 +5,8 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/layout/Footer';
 import dynamic from 'next/dynamic';
 import { useLayout } from '@/context/LayoutContext';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 const Cart = dynamic(() => import('@/components/cart/Cart'), {
   ssr: false
@@ -19,7 +21,19 @@ interface MainLayoutProps extends LayoutProps {
 }
 
 export default function MainLayout({ children, variant = 'default' }: MainLayoutProps) {
-  const { pageTitle } = useLayout();
+  const { pageTitle, setLayoutVariant } = useLayout();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Automatisch Layout-Variante basierend auf Pfad setzen
+    if (pathname.startsWith('/shop')) {
+      setLayoutVariant('shop');
+    } else if (['/uber-uns', '/kontakt', '/agb', '/datenschutz', '/impressum'].includes(pathname)) {
+      setLayoutVariant('static');
+    } else {
+      setLayoutVariant('default');
+    }
+  }, [pathname, setLayoutVariant]);
 
   const getContent = () => {
     switch (variant) {
