@@ -59,7 +59,7 @@ export default function UberUns() {
 						<div className="grid md:grid-cols-2 gap-16 items-center">
 							<div className="relative h-[600px] rounded-2xl overflow-hidden">
 								<Image
-									src="/mysteryBox/images/founders/founder-image.webp"
+									src="/mysteryBox/images/founders/amazonBox.webp"
 									alt="Unser Gründer"
 									fill
 									sizes="(max-width: 768px) 100vw, 50vw"
