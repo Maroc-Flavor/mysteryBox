@@ -36,6 +36,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 			if (hasBidderNumber) {
 				return false;
 			}
+			// Wenn bereits andere Produkte im Warenkorb sind, nicht erlauben
+			if (items.length > 0) {
+				alert('Sie können entweder eine Bieternummer ODER Mystery Boxes erwerben, nicht beides zusammen.');
+				return false;
+			}
+		} else {
+			// Wenn eine Bieternummer im Warenkorb ist und ein anderes Produkt hinzugefügt werden soll
+			const hasBidderNumber = items.some(cartItem => cartItem.id === 10);
+			if (hasBidderNumber) {
+				alert('Sie können entweder eine Bieternummer ODER Mystery Boxes erwerben, nicht beides zusammen.');
+				return false;
+			}
 		}
 		
 		return (

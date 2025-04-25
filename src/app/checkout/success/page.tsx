@@ -11,26 +11,38 @@ export default function SuccessPage() {
 	const [isBidderNumber, setIsBidderNumber] = useState(false);
 
 	useEffect(() => {
+		// Prüfen, ob wir von der Checkout-Seite kommen
 		const orderStatus = sessionStorage.getItem('orderComplete');
 		const orderData = sessionStorage.getItem('orderData');
 		
 		if (orderStatus === 'true' && orderData) {
-			const parsedData = JSON.parse(orderData);
-			const hasBidderNumber = parsedData.items.some((item: any) => item.id === 10);
-			
-			setOrderComplete(true);
-			setIsBidderNumber(hasBidderNumber);
-			
-			// Clear session storage
-			sessionStorage.removeItem('orderComplete');
-			sessionStorage.removeItem('orderData');
+			try {
+				const parsedData = JSON.parse(orderData);
+				const hasBidderNumber = parsedData.items.some((item: any) => item.id === 10);
+				
+				setOrderComplete(true);
+				setIsBidderNumber(hasBidderNumber);
+				
+				// Clear session storage
+				sessionStorage.removeItem('orderComplete');
+				sessionStorage.removeItem('orderData');
+			} catch (error) {
+				console.error('Error parsing order data:', error);
+				router.push('/');
+			}
 		} else {
 			router.push('/');
 		}
 	}, [router]);
 
 	if (!orderComplete) {
-		return null;
+		return (
+			<div className="min-h-screen flex items-center justify-center">
+				<div className="text-center">
+					<h1 className="text-2xl font-bold text-gray-900 mb-4">Laden...</h1>
+				</div>
+			</div>
+		);
 	}
 
 	return (
