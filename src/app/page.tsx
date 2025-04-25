@@ -50,7 +50,7 @@ const getNextStream = (schedule: StreamSchedule[]) => {
     const streamTime = hours * 60 + minutes;
 
     return (
-      today < streamDay || 
+      today < streamDay ||
       (today === streamDay && currentTime < streamTime)
     );
   }) || schedule[0];
@@ -67,13 +67,13 @@ const getTimeUntilStream = (nextStream: StreamSchedule) => {
 
   const targetDay = dayMap[nextStream.day];
   const [hours, minutes] = nextStream.time.split(':').map(Number);
-  
+
   const target = new Date();
   target.setDate(target.getDate() + ((targetDay + 7 - target.getDay()) % 7));
   target.setHours(hours, minutes, 0, 0);
 
   const diff = target.getTime() - now.getTime();
-  
+
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -82,7 +82,7 @@ const getTimeUntilStream = (nextStream: StreamSchedule) => {
 };
 
 export default function Home() {
-  const { addItem, setIsCartOpen } = useCart();
+  const { addItem, setIsCartOpen, items } = useCart();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isLive, setIsLive] = useState(LIVE_CONFIG.isLive);
@@ -131,7 +131,7 @@ export default function Home() {
       price: 99.99,
       originalPrice: 279.99,
       offer: '',
-        image: '/mysteryBox/images/products/mysterybox-xxl.webp',
+      image: '/mysteryBox/images/products/mysterybox-xxl.webp',
       description: '10 KG Überraschungsbox',
       detailDescription: '10 KG Überraschungsbox'
     },
@@ -142,7 +142,7 @@ export default function Home() {
       price: 39.99,
       originalPrice: 120.00,
       offer: '',
-        image: '/mysteryBox/images/products/starterBox2.webp',
+      image: '/mysteryBox/images/products/starterBox2.webp',
       description: '3 KG Überraschungskarton',
       detailDescription: '3 KG Überraschungsbox'
     },
@@ -153,7 +153,7 @@ export default function Home() {
       price: '',
       originalPrice: '',
       offer: 'Flexible',
-        image: '/mysteryBox/images/products/individuellBoxFrontPage.webp',
+      image: '/mysteryBox/images/products/individuellBoxFrontPage.webp',
       description: 'individuell anpassbar. Sprich mit uns.',
       detailDescription: 'individuell anpassbar. Sprich mit uns.'
     }
@@ -161,6 +161,14 @@ export default function Home() {
 
   const handleAddToCart = (product: Product) => {
     if (product && typeof product.price === 'number') {
+      // Prüfen, ob bereits eine Bieternummer im Warenkorb ist
+      if (product.id === 10) {
+        const hasBidderNumber = items.some(item => item.id === 10);
+        if (hasBidderNumber) {
+          alert('Sie können nur eine Bieternummer erwerben.');
+          return;
+        }
+      }
       addItem({
         id: product.id,
         name: product.name,
@@ -194,7 +202,7 @@ export default function Home() {
                   Unerwartete
                 </span>
               </h1>
-              
+
               {/* Stream Schedule */}
               <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -204,7 +212,7 @@ export default function Home() {
                     {LIVE_CONFIG.isLive ? 'LIVE' : 'OFFLINE'}
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   {streamSchedule.map((schedule, index) => (
                     <div key={index} className="bg-white/5 rounded-lg p-3 flex items-center justify-between group hover:bg-white/10 transition-all duration-300">
@@ -233,10 +241,10 @@ export default function Home() {
                     <span>Demnächst auch auf:</span>
                     <div className="flex items-center gap-3">
                       <svg className="w-5 h-5 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                       </svg>
                       <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     </div>
                   </div>
@@ -270,7 +278,7 @@ export default function Home() {
                 ) : (
                   <div className="relative w-full h-full">
                     <Image
-                      src="/mysteryBox/images/products/Box-Hero.webp"
+                      src="/mysteryBox/images/products/Box-Hero-Section.webp"
                       alt="Mystery Box Showcase"
                       fill
                       className="object-cover rounded-2xl"
@@ -330,8 +338,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative h-[500px] rounded-2xl overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-sm z-10 rounded-2xl 
-          group-hover:from-indigo-600/30 group-hover:to-purple-600/30 transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20  z-10 rounded-2xl 
+                group-hover:from-indigo-600/30 group-hover:to-purple-600/30 transition-all duration-500"></div>
               <Image
                 src="/mysteryBox/images/products/Box-Hero.webp"
                 alt="Mystery Box Showcase"
@@ -522,69 +530,68 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/5 to-purple-900/5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Live Auction Card */}
+            {/* Bieternummer Card */}
             <div className="bg-white p-8 rounded-2xl shadow-xl border border-indigo-50 overflow-hidden relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-purple-600/5 group-hover:from-indigo-600/10 group-hover:to-purple-600/10 transition-all duration-500"></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-600 rounded-lg text-sm font-medium">
+                  <span className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-600 rounded-lg text-sm font-medium">
                     <span className="animate-pulse">●</span> LIVE
                   </span>
-                  <span className="px-4 py-2 bg-indigo-500/10 text-indigo-600 rounded-lg text-sm font-medium">
-                    Jetzt mitbieten
+                  <span className="px-4 py-2 bg-purple-500/10 text-purple-600 rounded-lg text-sm font-medium">
+                    Jetzt registrieren
                   </span>
                 </div>
 
                 <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  Live Auktionen
+                  Bieternummer erwerben
                 </h2>
 
                 <p className="text-xl text-gray-600 mb-8">
-                  Sei live dabei wenn spannende Mystery Boxes versteigert werden.
-                  Mitbieten, gewinnen und live beim Unboxing dabei sein!
+                  Sichere dir deine persönliche Bieternummer für unsere Live-Auktionen.
+                  Mit nur 1€ bist du dabei und kannst bei spannenden Mystery Boxes mitbieten!
                 </p>
 
-                <div className="grid grid-cols-3 gap-4 mb-8">
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-300"
-                  >
-                    <svg className="w-8 h-8 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <svg className="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm font-medium text-gray-800">Instagram</span>
-                  </a>
-
-                  <a
-                    href="https://www.tiktok.com/@simo4287/live"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-br from-gray-900/10 to-gray-800/10 hover:from-gray-900/20 hover:to-gray-800/20 transition-all duration-300"
-                  >
-                    <svg className="w-8 h-8 text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 015.2-1.74V11a8.55 8.55 0 006.33 2.62V10.2a4.83 4.83 0 01-3.77-4.25V5.5a4.83 4.83 0 003.77 4.25v3.38z" />
+                    <span>Einmalige Bieternummer</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <svg className="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm font-medium text-gray-800">TikTok</span>
-                  </a>
-
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center gap-2 p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/10 hover:from-blue-500/20 hover:to-blue-600/20 transition-all duration-300"
-                  >
-                    <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    <span>Persönliche Registrierung</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <svg className="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm font-medium text-gray-800">Facebook</span>
-                  </a>
+                    <span>Zugang zu allen Live-Auktionen</span>
+                  </div>
                 </div>
 
-                <p className="text-gray-500 text-center">
-                  Folge uns auf deiner bevorzugten Plattform und verpasse keine Auktion!
-                </p>
+                <button
+                  onClick={() => {
+                    addItem({
+                      id: 10,
+                      name: 'Bieternummer',
+                      price: 1.00,
+                      originalPrice: 1.00,
+                      image: '/mysteryBox/images/products/bidder-number.webp',
+                      quantity: 1
+                    });
+                    setIsCartOpen(true);
+                  }}
+                  className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:opacity-90 transition-all duration-300 font-medium flex items-center justify-center gap-2 group"
+                >
+                  <span>Bieternummer erwerben</span>
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
               </div>
             </div>
 

@@ -29,6 +29,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 	}, [items]);
 
 	const validateCartItem = (item: CartItem): boolean => {
+		// Prüfen, ob es sich um eine Bieternummer handelt
+		if (item.id === 10) {
+			// Wenn bereits eine Bieternummer im Warenkorb ist, nicht erlauben
+			const hasBidderNumber = items.some(cartItem => cartItem.id === 10);
+			if (hasBidderNumber) {
+				return false;
+			}
+		}
+		
 		return (
 			typeof item.id === 'number' &&
 			typeof item.price === 'number' &&
@@ -41,7 +50,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 	const addItem = (newItem: CartItem) => {
 		if (!validateCartItem(newItem)) {
-			console.error('Ungültiges Produkt');
+			if (newItem.id === 10) {
+				alert('Sie können nur eine Bieternummer erwerben.');
+			} else {
+				console.error('Ungültiges Produkt');
+			}
 			return;
 		}
 		if (typeof newItem.price !== 'number') return;

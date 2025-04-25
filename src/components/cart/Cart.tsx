@@ -44,7 +44,14 @@ const CartItemComponent = ({ item, onUpdateQuantity, onRemove }: {
         </button>
         <span className="font-medium text-gray-900 w-8 text-center">{item.quantity}</span>
         <button
-          onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+          onClick={() => {
+            // Wenn es sich um eine Bieternummer handelt, keine Erhöhung erlauben
+            if (item.id === 10) {
+              alert('Sie können nur eine Bieternummer erwerben.');
+              return;
+            }
+            onUpdateQuantity(item.id, item.quantity + 1);
+          }}
           className="text-gray-700 hover:text-gray-700 p-1"
           aria-label="Menge erhöhen"
         >

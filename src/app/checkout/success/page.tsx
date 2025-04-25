@@ -1,78 +1,139 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCart } from '@/context/CartContext';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function CheckoutSuccessPage() {
+export default function SuccessPage() {
 	const router = useRouter();
-	const [isValid, setIsValid] = useState(false);
+	const [orderComplete, setOrderComplete] = useState(false);
+	const [isBidderNumber, setIsBidderNumber] = useState(false);
 
 	useEffect(() => {
-		// Überprüfen, ob wir von einer erfolgreichen PayPal-Zahlung kommen
-		const hasValidOrder = sessionStorage.getItem('orderComplete');
-		if (!hasValidOrder) {
-			router.replace('/shop');
-			return;
+		const orderStatus = sessionStorage.getItem('orderComplete');
+		const orderData = sessionStorage.getItem('orderData');
+		
+		if (orderStatus === 'true' && orderData) {
+			const parsedData = JSON.parse(orderData);
+			const hasBidderNumber = parsedData.items.some((item: any) => item.id === 10);
+			
+			setOrderComplete(true);
+			setIsBidderNumber(hasBidderNumber);
+			
+			// Clear session storage
+			sessionStorage.removeItem('orderComplete');
+			sessionStorage.removeItem('orderData');
+		} else {
+			router.push('/');
 		}
-		// Entfernen des Flags nach der Überprüfung
-		sessionStorage.removeItem('orderComplete');
-		setIsValid(true);
 	}, [router]);
 
-	if (!isValid) {
+	if (!orderComplete) {
 		return null;
 	}
 
 	return (
-		<main className="min-h-screen bg-gray-50 py-12">
-
-				<div className="max-w-3xl mx-auto px-4">
+		<main className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 py-12">
+			<div className="max-w-4xl mx-auto px-4">
+				{isBidderNumber ? (
 					<div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-						<div className="mb-8">
-							<div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-								<svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-								</svg>
+						<div className="w-24 h-24 mx-auto mb-6 relative">
+							<Image
+								src="/mysteryBox/images/products/bidder-number.webp"
+								alt="Bieternummer"
+								fill
+								className="object-contain"
+							/>
+						</div>
+						
+						<h1 className="text-3xl font-bold text-gray-900 mb-4">
+							Herzlichen Glückwunsch!
+						</h1>
+						
+						<div className="space-y-6 mb-8">
+							<p className="text-xl text-gray-600">
+								Sie haben erfolgreich Ihre persönliche Bieternummer erworben!
+							</p>
+							
+							<div className="bg-indigo-50 rounded-xl p-6 space-y-4">
+								<h2 className="text-xl font-semibold text-indigo-900">
+									Wichtige Hinweise:
+								</h2>
+								<ul className="text-left space-y-3 text-gray-700">
+									<li className="flex items-start gap-3">
+										<svg className="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+										</svg>
+										<span>Ihre Bieternummer ist persönlich und darf nicht geteilt werden</span>
+									</li>
+									<li className="flex items-start gap-3">
+										<svg className="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+										</svg>
+										<span>Sie erhalten Ihre Bieternummer in Kürze per E-Mail</span>
+									</li>
+									<li className="flex items-start gap-3">
+										<svg className="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+										</svg>
+										<span>Mit dieser Nummer können Sie an allen Live-Auktionen teilnehmen</span>
+									</li>
+								</ul>
 							</div>
 						</div>
 
-						<h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-							Zahlung erfolgreich!
+						<div className="flex flex-col sm:flex-row gap-4 justify-center">
+							<Link
+								href="/"
+								className="px-6 py-3 bg-white border-2 border-indigo-600 text-indigo-600 rounded-xl hover:bg-indigo-50 transition-all duration-300 font-medium"
+							>
+								Zurück zur Startseite
+							</Link>
+							<Link
+								href="/#live-auctions"
+								className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:opacity-90 transition-all duration-300 font-medium"
+							>
+								Zu den Live-Auktionen
+							</Link>
+						</div>
+					</div>
+				) : (
+					<div className="bg-white rounded-2xl shadow-xl p-8 text-center">
+						<div className="w-24 h-24 mx-auto mb-6 relative">
+							<Image
+								src="/mysteryBox/images/products/Box-Hero-Section.webp"
+								alt="Mystery Box"
+								fill
+								className="object-contain"
+							/>
+						</div>
+						
+						<h1 className="text-3xl font-bold text-gray-900 mb-4">
+							Vielen Dank für Ihre Bestellung!
 						</h1>
-
-						<p className="text-lg text-gray-600 mb-8">
-							Vielen Dank für Ihren Einkauf. Ihre Bestellung wurde erfolgreich abgeschlossen und wird schnellstmöglich bearbeitet.
+						
+						<p className="text-xl text-gray-600 mb-8">
+							Ihre Bestellung wurde erfolgreich aufgegeben und wird in Kürze versendet.
 						</p>
 
-						<div className="bg-gray-50 p-6 rounded-xl mb-8">
-							<h2 className="text-xl font-semibold text-gray-900 mb-4">Nächste Schritte</h2>
-							<ul className="text-left space-y-3">
-								<li className="flex items-center text-gray-600">
-									<svg className="w-5 h-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-									</svg>
-									Sie erhalten in Kürze eine Bestätigungs-E-Mail
-								</li>
-								<li className="flex items-center text-gray-600">
-									<svg className="w-5 h-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-									</svg>
-									Ihre Bestellung wird für den Versand vorbereitet
-								</li>
-							</ul>
+						<div className="flex flex-col sm:flex-row gap-4 justify-center">
+							<Link
+								href="/"
+								className="px-6 py-3 bg-white border-2 border-indigo-600 text-indigo-600 rounded-xl hover:bg-indigo-50 transition-all duration-300 font-medium"
+							>
+								Zurück zur Startseite
+							</Link>
+							<Link
+								href="/shop"
+								className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:opacity-90 transition-all duration-300 font-medium"
+							>
+								Weitere Boxen entdecken
+							</Link>
 						</div>
-
-						<Link 
-							href="/shop" 
-							className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:opacity-90 transition-all duration-300 font-medium"
-						>
-							Zurück zum Shop
-						</Link>
 					</div>
-				</div>
-			</main>
-
+				)}
+			</div>
+		</main>
 	);
 }

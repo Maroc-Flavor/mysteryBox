@@ -44,7 +44,7 @@ const steps = [
 	{
 		id: 2,
 		name: 'Versand',
-		icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0' // LKW-Icon
+		icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0z M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0' // LKW-Icon
   },
 	{
 		id: 3,
@@ -75,7 +75,10 @@ export default function Checkout() {
 		address: '',
 		city: '',
 		postalCode: '',
-		country: selectedCountry.name
+		country: selectedCountry.name,
+		tiktokUsername: '',
+		isOver18: false,
+		acceptTerms: false
 	});
 
 	const [finalPrice, setFinalPrice] = useState(totalPrice);
@@ -83,37 +86,49 @@ export default function Checkout() {
 	// Update final price when shipping or total price changes
 	useEffect(() => {
 		if (selectedShipping) {
-			setFinalPrice(totalPrice + selectedShipping.price);
+			// Wenn nur eine Bieternummer im Warenkorb ist, keine Versandkosten berechnen
+			const hasOnlyBidderNumber = items.length === 1 && items[0].id === 10;
+			setFinalPrice(hasOnlyBidderNumber ? totalPrice : totalPrice + selectedShipping.price);
 		}
-	}, [totalPrice, selectedShipping]);
+	}, [totalPrice, selectedShipping, items]);
 
 	// Form validation with error messages
 	const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-	const validateField = useCallback((name: string, value: string): string => {
-		if (!value.trim()) return 'Pflichtfeld';
+	const validateField = useCallback((name: string, value: string | boolean): string => {
+		if (typeof value === 'boolean') {
+			if (name === 'isOver18' && !value) return 'Sie müssen mindestens 18 Jahre alt sein';
+			if (name === 'acceptTerms' && !value) return 'Sie müssen die AGB akzeptieren';
+			return '';
+		}
+
+		if (!value.toString().trim()) return 'Pflichtfeld';
 
 		switch (name) {
 			case 'email':
-				return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) 
+				return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString()) 
 					? 'Bitte geben Sie eine gültige E-Mail-Adresse ein' 
 					: '';
 			case 'postalCode':
-				return !/^\d{5}$/.test(value) 
+				return !/^\d{5}$/.test(value.toString()) 
 					? 'Die PLZ muss aus 5 Ziffern bestehen' 
 					: '';
 			case 'firstName':
 			case 'lastName':
-				return value.length < 2 
+				return value.toString().length < 2 
 					? 'Muss mindestens 2 Zeichen lang sein' 
 					: '';
 			case 'address':
-				return value.length < 5 
+				return value.toString().length < 5 
 					? 'Bitte geben Sie eine vollständige Adresse ein' 
 					: '';
 			case 'city':
-				return value.length < 2 
+				return value.toString().length < 2 
 					? 'Bitte geben Sie einen gültigen Ort ein' 
+					: '';
+			case 'tiktokUsername':
+				return value.toString().length < 2 
+					? 'Bitte geben Sie Ihren TikTok-Username ein' 
 					: '';
 			default:
 				return '';
@@ -170,6 +185,31 @@ export default function Checkout() {
 		const errors: Record<string, string> = {};
 		let isValid = true;
 
+		// Wenn es sich um eine Bieternummer handelt, zusätzliche Felder validieren
+		const isBidderNumber = items.some(item => item.id === 10);
+		
+		if (isBidderNumber) {
+			// Prüfen, ob mehr als eine Bieternummer im Warenkorb ist
+			const bidderNumberCount = items.filter(item => item.id === 10).length;
+			if (bidderNumberCount > 1) {
+				errors.bidderNumber = 'Sie können nur eine Bieternummer erwerben.';
+				isValid = false;
+			}
+
+			if (!formData.tiktokUsername) {
+				errors.tiktokUsername = 'Bitte geben Sie Ihren TikTok-Username ein';
+				isValid = false;
+			}
+			if (!formData.isOver18) {
+				errors.isOver18 = 'Sie müssen mindestens 18 Jahre alt sein';
+				isValid = false;
+			}
+			if (!formData.acceptTerms) {
+				errors.acceptTerms = 'Sie müssen die AGB akzeptieren';
+				isValid = false;
+			}
+		}
+
 		fields.forEach(field => {
 			const error = validateField(field, formData[field as keyof typeof formData]);
 			if (error) {
@@ -180,14 +220,16 @@ export default function Checkout() {
 
 		setFormErrors(errors);
 		return isValid;
-	}, [formData, validateField]);
+	}, [formData, validateField, items]);
 
 	const handleSubmit = useCallback((e: React.FormEvent) => {
 		e.preventDefault();
 		if (validateForm()) {
-			setStep(2);
+			// Wenn es sich um eine Bieternummer handelt, direkt zum Bestätigungsschritt springen
+			const isBidderNumber = items.some(item => item.id === 10);
+			setStep(isBidderNumber ? 3 : 2);
 		}
-	}, [validateForm]);
+	}, [validateForm, items]);
 
 	const handleOrderComplete = useCallback(() => {
 		sessionStorage.setItem('orderComplete', 'true');
@@ -396,6 +438,67 @@ export default function Checkout() {
 													/>
 												</div>
 											</div>
+											{/* Additional fields for bidder number */}
+											{items.some(item => item.id === 10) && (
+												<div className="space-y-4 mt-8 pt-8 border-t border-gray-200">
+													<h3 className="text-xl font-bold text-gray-900">Bieternummer-Registrierung</h3>
+													
+													<div>
+														<label className="block text-sm font-medium text-gray-700 mb-1">
+															TikTok Username
+														</label>
+														<input
+															type="text"
+															name="tiktokUsername"
+															required
+															value={formData.tiktokUsername}
+															onChange={handleInputChange}
+															className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500"
+														/>
+													</div>
+
+													<div className="space-y-4">
+														<div className="flex items-center">
+															<input
+																type="checkbox"
+																name="isOver18"
+																checked={formData.isOver18}
+																onChange={(e) => {
+																	setFormData(prev => ({ ...prev, isOver18: e.target.checked }));
+																	setFormErrors(prev => ({ ...prev, isOver18: '' }));
+																}}
+																className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+															/>
+															<label className="ml-2 block text-sm text-gray-700">
+																Ich bestätige, dass ich mindestens 18 Jahre alt bin
+															</label>
+														</div>
+
+														<div className="flex items-center">
+															<input
+																type="checkbox"
+																name="acceptTerms"
+																checked={formData.acceptTerms}
+																onChange={(e) => {
+																	setFormData(prev => ({ ...prev, acceptTerms: e.target.checked }));
+																	setFormErrors(prev => ({ ...prev, acceptTerms: '' }));
+																}}
+																className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+															/>
+															<label className="ml-2 block text-sm text-gray-700">
+																Ich akzeptiere die <a href="/agb" className="text-indigo-600 hover:text-indigo-500">AGB</a>
+															</label>
+														</div>
+													</div>
+
+													{formErrors.isOver18 && (
+														<p className="text-red-500 text-sm">{formErrors.isOver18}</p>
+													)}
+													{formErrors.acceptTerms && (
+														<p className="text-red-500 text-sm">{formErrors.acceptTerms}</p>
+													)}
+												</div>
+											)}
 											<button
 												type="submit"
 												className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
@@ -405,7 +508,7 @@ export default function Checkout() {
 										  </form>
 										)}
 
-										{step === 2 && (
+										{step === 2 && !items.some(item => item.id === 10) && (
 										  <form onSubmit={(e) => { e.preventDefault(); setStep(3); }} className="space-y-6">
 											<h2 className="text-2xl font-bold text-gray-900 mb-6">Versandoptionen</h2>
 											<div className="space-y-4">
@@ -486,18 +589,41 @@ export default function Checkout() {
 										  </form>
 										)}
 
+										{step === 2 && items.some(item => item.id === 10) && (
+										  <div className="text-center py-8">
+											<h2 className="text-2xl font-bold text-gray-900 mb-4">Bieternummer-Registrierung</h2>
+											<p className="text-gray-600 mb-6">Ihre Bieternummer wird Ihnen nach erfolgreicher Zahlung per E-Mail zugesendet.</p>
+											<button
+											  onClick={() => setStep(3)}
+											  className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:opacity-90 transition-colors"
+											>
+											  Weiter zur Zahlung
+											</button>
+										  </div>
+										)}
+
 										{step === 3 && (
 										  <div className="space-y-6">
 											<h2 className="text-2xl font-bold mb-6 text-gray-900">Bestellübersicht</h2>
 											<div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl mb-6">
 											  <p className="text-gray-700 mb-4">Gesamtbetrag: <span className="font-bold text-xl">{finalPrice.toFixed(2)} €</span></p>
-											  <p className="text-gray-600 mb-4">Ihre Bestellung wird an folgende Adresse geliefert:</p>
-											  <div className="text-gray-700">
-												<p>{formData.firstName} {formData.lastName}</p>
-												<p>{formData.address}</p>
-												<p>{formData.postalCode} {formData.city}</p>
-												<p>{formData.country}</p>
-											  </div>
+											  {!items.some(item => item.id === 10) && (
+												<>
+												  <p className="text-gray-600 mb-4">Ihre Bestellung wird an folgende Adresse geliefert:</p>
+												  <div className="text-gray-700">
+													<p>{formData.firstName} {formData.lastName}</p>
+													<p>{formData.address}</p>
+													<p>{formData.postalCode} {formData.city}</p>
+													<p>{formData.country}</p>
+												  </div>
+												</>
+											  )}
+											  {items.some(item => item.id === 10) && (
+												<div className="text-gray-700">
+												  <p className="mb-2">TikTok Username: {formData.tiktokUsername}</p>
+												  <p>Ihre Bieternummer wird Ihnen nach erfolgreicher Zahlung per E-Mail zugesendet.</p>
+												</div>
+											  )}
 											</div>
 											<div className="space-y-4">
 											  <PayPalCheckoutButton 
@@ -543,11 +669,13 @@ export default function Checkout() {
 										<span>{totalPrice.toFixed(2)} €</span>
 									</div>
 
-
-									<div className="flex justify-between items-center mb-2 text-gray-700">
-										<span>Versand</span>
-										<span>{selectedShipping.price.toFixed(2)} €</span>
-									</div>
+									{/* Versandkosten nur anzeigen, wenn keine Bieternummer im Warenkorb ist */}
+									{!items.some(item => item.id === 10) && (
+										<div className="flex justify-between items-center mb-2 text-gray-700">
+											<span>Versand</span>
+											<span>{selectedShipping.price.toFixed(2)} €</span>
+										</div>
+									)}
 									<div className="flex justify-between items-center text-lg font-bold text-gray-900">
 										<span>Gesamt</span>
 										<span>{finalPrice.toFixed(2)} €</span>
