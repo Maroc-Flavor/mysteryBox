@@ -232,10 +232,18 @@ export default function Checkout() {
 	}, [validateForm, items]);
 
 	const handleOrderComplete = useCallback(() => {
+		const orderData = {
+			items,
+			customerInfo: formData,
+			shippingMethod: selectedShipping,
+			totalPrice: finalPrice
+		};
+		
 		sessionStorage.setItem('orderComplete', 'true');
+		sessionStorage.setItem('orderData', JSON.stringify(orderData));
 		clearCart();
 		router.push('/checkout/success');
-	}, [clearCart, router]);
+	}, [clearCart, router, items, formData, selectedShipping, finalPrice]);
 
 
 

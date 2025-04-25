@@ -9,19 +9,21 @@ export default function SuccessPage() {
 	const router = useRouter();
 	const [orderComplete, setOrderComplete] = useState(false);
 	const [isBidderNumber, setIsBidderNumber] = useState(false);
+	const [orderData, setOrderData] = useState<any>(null);
 
 	useEffect(() => {
 		// Prüfen, ob wir von der Checkout-Seite kommen
 		const orderStatus = sessionStorage.getItem('orderComplete');
-		const orderData = sessionStorage.getItem('orderData');
+		const storedOrderData = sessionStorage.getItem('orderData');
 		
-		if (orderStatus === 'true' && orderData) {
+		if (orderStatus === 'true' && storedOrderData) {
 			try {
-				const parsedData = JSON.parse(orderData);
+				const parsedData = JSON.parse(storedOrderData);
 				const hasBidderNumber = parsedData.items.some((item: any) => item.id === 10);
 				
 				setOrderComplete(true);
 				setIsBidderNumber(hasBidderNumber);
+				setOrderData(parsedData);
 				
 				// Clear session storage
 				sessionStorage.removeItem('orderComplete');
@@ -35,7 +37,7 @@ export default function SuccessPage() {
 		}
 	}, [router]);
 
-	if (!orderComplete) {
+	if (!orderComplete || !orderData) {
 		return (
 			<div className="min-h-screen flex items-center justify-center">
 				<div className="text-center">
@@ -125,9 +127,27 @@ export default function SuccessPage() {
 							Vielen Dank für Ihre Bestellung!
 						</h1>
 						
-						<p className="text-xl text-gray-600 mb-8">
-							Ihre Bestellung wurde erfolgreich aufgegeben und wird in Kürze versendet.
-						</p>
+						<div className="space-y-6 mb-8">
+							<p className="text-xl text-gray-600">
+								Ihre Bestellung wurde erfolgreich aufgegeben und wird in Kürze versendet.
+							</p>
+							
+							<div className="bg-indigo-50 rounded-xl p-6 space-y-4">
+								<h2 className="text-xl font-semibold text-indigo-900 mb-4">
+									Bestelldetails:
+								</h2>
+								<div className="text-left space-y-2 text-gray-700">
+									<p><span className="font-medium">Bestellnummer:</span> {Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
+									<p><span className="font-medium">Gesamtbetrag:</span> {orderData.totalPrice.toFixed(2)} €</p>
+									<p><span className="font-medium">Versandart:</span> {orderData.shippingMethod?.name}</p>
+									<p><span className="font-medium">Lieferadresse:</span></p>
+									<p>{orderData.customerInfo.firstName} {orderData.customerInfo.lastName}</p>
+									<p>{orderData.customerInfo.address}</p>
+									<p>{orderData.customerInfo.postalCode} {orderData.customerInfo.city}</p>
+									<p>{orderData.customerInfo.country}</p>
+								</div>
+							</div>
+						</div>
 
 						<div className="flex flex-col sm:flex-row gap-4 justify-center">
 							<Link
